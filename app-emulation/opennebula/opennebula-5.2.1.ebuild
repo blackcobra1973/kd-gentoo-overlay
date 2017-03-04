@@ -175,7 +175,7 @@ EOF
 
 	elog "If you wish to use the sunstone server, please issue the command"
 	#elog "/usr/share/one/install_gems as oneadmin user"
-	elog "gem install sequel thin json rack sinatra builder treetop zendesk_api mysql parse-cron"
+	elog "gem install thin json rack sinatra builder zendesk_api mysql parse-cron"
 
 
 }
