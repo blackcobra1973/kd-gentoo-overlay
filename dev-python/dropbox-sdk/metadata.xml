@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer>
+		<email>leycec@gmail.com</email>
+		<name>leycec</name>
+	</maintainer>
+	<longdescription>
+A Python SDK for integrating with the Dropbox API v2. Compatible with Python 2.7 and 3.4+. Documentation is available on Read the Docs.
+</longdescription>
+	<upstream>
+		<doc lang="en">http://dropbox-sdk-python.readthedocs.org</doc>
+		<bugs-to>https://github.com/dropbox/dropbox-sdk-python/issues</bugs-to>
+	</upstream>
+</pkgmetadata>
