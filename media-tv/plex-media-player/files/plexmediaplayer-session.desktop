@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Plex Media Player
+Exec=plexmediaplayer --tv --fullscreen
+Icon=plexmediaplayer
+Terminal=false
+Type=Application
+DesktopNames=PlexMediaPlayer
