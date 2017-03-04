@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=5
+EAPI=6
 
-inherit webapp eutils rpm depend.php
+inherit webapp eutils rpm
 
 DESCRIPTION="Open Source Groupware Solution"
 HOMEPAGE="http://zarafa.com/"
@@ -24,12 +24,7 @@ PDEPEND="plugin_filepreviewer? ( www-apps/zarafa-webapp-plugins-filepreviewer )
 	plugin_smime? ( www-apps/zarafa-webapp-plugins-smime )
 	plugin_mdm? ( www-apps/zarafa-webapp-plugins-mdm )"
 
-need_php_httpd
-
-pkg_setup () {
-	webapp_pkg_setup
-	require_php_with_use iconv session xml
-}
+DEPEND=">=virtual/httpd-php-5.4"
 
 src_install() {
 	webapp_src_preinst
