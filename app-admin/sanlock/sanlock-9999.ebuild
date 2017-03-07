@@ -11,7 +11,9 @@ inherit git-2 distutils
 
 DESCRIPTION="Shared storage lock manager"
 HOMEPAGE="https://fedorahosted.org/sanlock/"
-EGIT_REPO_URI="git://git.fedorahosted.org/sanlock.git"
+#EGIT_REPO_URI="git://git.fedorahosted.org/sanlock.git"
+EGIT_REPO_URI="git://github.com/nirs/sanlock.git"
+
 
 LICENSE="GPL-2"
 SLOT="0"
