@@ -30,6 +30,7 @@ RDEPEND="
 	dev-python/pyflakes
 	dev-python/pyparted
 	dev-python/python-ethtool
+	dev-python/pyyaml
 	net-fs/nfs-utils
 	net-misc/bridge-utils
 	net-misc/rsync
