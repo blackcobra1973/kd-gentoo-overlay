@@ -20,7 +20,8 @@ RDEPEND="
 	app-admin/sanlock[python]
 	app-admin/sudo
 	app-arch/tar
-	>=app-emulation/libvirt-0.10.2[python]
+	>=app-emulation/libvirt-1.3.5
+	dev-python/libvirt-python
 	app-emulation/qemu
 	dev-libs/openssl
 	dev-python/cherrypy
