@@ -31,7 +31,7 @@ RDEPEND="
 	dev-python/pyparted
 	dev-python/python-ethtool
 	dev-python/pyyaml
-	dev-python/tzlocal
+	dev-python/python-dateutil
 	net-fs/nfs-utils
 	net-misc/bridge-utils
 	net-misc/rsync
