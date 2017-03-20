@@ -1,17 +1,17 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=6
 
-inherit webapp eutils
+inherit webapp
 
 DESCRIPTION="Z-Push - open source push technology"
 HOMEPAGE="http://z-push.sourceforge.net"
 
 ZPUSH_RELEASE="final"
 ZPUSH_BASE_VERSION="2.3"
-ZPUSH_VERSION="2.3.2"
+ZPUSH_VERSION="2.3.5"
 ZPUSH_BUILD=""
 ZPUSH_SUFFIX=""
 
