@@ -1,6 +1,5 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: 1dd4a0d0ab8d2618c6c8aa8214d27d98b73ee831 $
 
 EAPI=5
 USE_RUBY="ruby21"
@@ -26,7 +25,7 @@ ruby_add_rdepend "
 		>=dev-ruby/activerecord-4.2.8:4.2[postgres]
 		>=dev-ruby/activesupport-4.2.8:4.2
 		dev-ruby/pg
-		dev-ruby/postgres_ext
+		dev-ruby/postgres_ext:3
 		>=dev-ruby/railties-4.2.6:4.2
 		>=dev-ruby/recog-2.0.0:*
 		dev-ruby/arel-helpers
