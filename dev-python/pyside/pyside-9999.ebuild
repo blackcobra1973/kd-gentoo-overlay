@@ -51,16 +51,13 @@ QT_PV="5.3.0:5"
 
 RDEPEND="
 	${PYTHON_DEPS}
-	>=dev-python/shiboken-${PV}:${SLOT}=[${PYTHON_USEDEP}]
+	>=dev-python/shiboken-${PV}:${SLOT}[${PYTHON_USEDEP}]
 	>=dev-qt/qtcore-${QT_PV}
 	>=dev-qt/qtxml-${QT_PV}
-	concurrent? ( >=dev-qt/qtconcurrent-${QT_PV} )
 	declarative? ( >=dev-qt/qtdeclarative-${QT_PV}[widgets?] )
 	designer? ( >=dev-qt/designer-${QT_PV} )
-	gui? ( >=dev-qt/qtgui-${QT_PV} )
 	help? ( >=dev-qt/qthelp-${QT_PV} )
 	multimedia? ( >=dev-qt/qtmultimedia-${QT_PV}[widgets?] )
-	network? ( >=dev-qt/qtnetwork-${QT_PV} )
 	opengl? ( >=dev-qt/qtopengl-${QT_PV} )
 	printsupport? ( >=dev-qt/qtprintsupport-${QT_PV} )
 	script? ( >=dev-qt/qtscript-${QT_PV} )
@@ -71,18 +68,19 @@ RDEPEND="
 	webengine? ( >=dev-qt/qtwebengine-${QT_PV}[widgets?] )
 	webkit? ( >=dev-qt/qtwebkit-${QT_PV}[printsupport] )
 	websockets? ( >=dev-qt/qtwebsockets-${QT_PV} )
-	widgets? ( >=dev-qt/qtwidgets-${QT_PV} )
 	x11extras? ( >=dev-qt/qtx11extras-${QT_PV} )
 	xmlpatterns? ( >=dev-qt/qtxmlpatterns-${QT_PV} )
+	concurrent? ( >=dev-qt/qtconcurrent-${QT_PV} )
+	gui? ( >=dev-qt/qtgui-${QT_PV} )
+	network? ( >=dev-qt/qtnetwork-${QT_PV} )
+	printsupport? ( >=dev-qt/qtprintsupport-${QT_PV} )
+	sql? ( >=dev-qt/qtsql-${QT_PV} )
+	testlib? ( >=dev-qt/qttest-${QT_PV} )
+	widgets? ( >=dev-qt/qtwidgets-${QT_PV} )
 "
 DEPEND="${RDEPEND}"
 
 src_prepare() {
-	# Fix generated pkgconfig file to require the shiboken
-	# library suffixed with the correct python version.
-	sed -i -e '/^Requires:/ s/shiboken$/&@SHIBOKEN_PYTHON_SUFFIX@/' \
-		libpyside/${PN}2.pc.in || die
-
 	# Force the optional "Qt5Concurrent", "Qt5Gui", "Qt5Network",
 	# "Qt5PrintSupport", "Qt5Sql", "Qt5Test", and "Qt5Widgets" packages
 	# erroneously marked as mandatory to be optional.
@@ -98,8 +96,6 @@ src_prepare() {
 }
 
 src_configure() {
-	append-cxxflags -std=c++11
-
 	# For each line of the form "CHECK_PACKAGE_FOUND(${PACKAGE_NAME} opt)" in
 	# "PySide2/CMakeLists.txt" defining an optional dependency, an option of the
 	# form "-DCMAKE_DISABLE_FIND_PACKAGE_${PACKAGE_NAME}=$(usex !${USE_FLAG})"
@@ -108,7 +104,6 @@ src_configure() {
 		-DBUILD_TESTS=$(usex test)
 		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5Concurrent=$(usex !concurrent)
 		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5Gui=$(usex !gui)
-		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5Test=$(usex !gui)
 		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5Designer=$(usex !designer)
 		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5UiTools=$(usex !designer)
 		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5Help=$(usex !help)
@@ -125,10 +120,12 @@ src_configure() {
 		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5Svg=$(usex !svg)
 		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5Test=$(usex !testlib)
 		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5WebChannel=$(usex !webchannel)
+		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5WebEngine=$(usex !webengine)
 		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5WebEngineWidgets=$(usex !webengine)
 		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5WebKit=$(usex !webkit)
 		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5WebKitWidgets=$(usex !webkit)
 		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5WebSockets=$(usex !websockets)
+		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5Widgets=$(usex !widgets)
 		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5X11Extras=$(usex !x11extras)
 		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5XmlPatterns=$(usex !xmlpatterns)
 	)
