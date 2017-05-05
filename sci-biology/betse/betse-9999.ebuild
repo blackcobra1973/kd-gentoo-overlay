@@ -3,7 +3,7 @@
 # $Id$
 EAPI=6
 
-PYTHON_COMPAT=( python{3_4,3_5} )
+PYTHON_COMPAT=( python3_{4,5,6} )
 
 inherit distutils-r1
 
@@ -134,5 +134,5 @@ python_install_all() {
 	distutils-r1_python_install_all
 
 	# Recursively install all available documentation.
-	dodoc -r AUTHORS.md README.rst doc/*
+	dodoc -r README.rst doc/*
 }
