@@ -4,20 +4,27 @@
 
 EAPI=5
 
-inherit git-2 cmake-utils
+inherit cmake-utils flag-o-matic
 
 DESCRIPTION="Library for working with MIME messages and Internet messaging services like IMAP, POP or SMTP"
 HOMEPAGE="http://www.vmime.org"
-EGIT_REPO_URI="git://github.com/kisli/vmime"
+
+SRC_URI="https://github.com/kisli/vmime/archive/v0.9.2.tar.gz -> vmime-${PV}.tar.gz"
+S="${WORKDIR}/vmime-${PV}"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS=""
-IUSE="+c++11 debug doc examples gnutls icu +imap +maildir +pop sasl sendmail +smtp ssl"
+KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror"
+
+IUSE="+c++11 debug doc examples gnutls icu imap maildir pop sasl sendmail smtp ssl"
 
 RDEPEND="!dev-cpp/libvmime-zcp
 	virtual/libiconv
 	gnutls? ( >=net-libs/gnutls-1.2.0 )
+	!gnutls? (
+		ssl? ( dev-libs/openssl )
+	)
 	sasl? ( virtual/gsasl )
 	sendmail? ( virtual/mta )"
 DEPEND="${RDEPEND}
@@ -38,7 +45,9 @@ src_prepare() {
 }
 
 src_configure() {
-	local mycmakeargs="
+	append-cppflags -DVMIME_ALWAYS_GENERATE_7BIT_PARAMETER=1
+
+	local mycmakeargs=(
 		$(cmake-utils_use c++11 VMIME_SHARED_PTR_USE_CXX)
 		$(cmake-utils_use sasl VMIME_HAVE_SASL_SUPPORT)
 		$(cmake-utils_use pop VMIME_HAVE_MESSAGING_PROTO_POP3)
@@ -46,22 +55,21 @@ src_configure() {
 		$(cmake-utils_use imap VMIME_HAVE_MESSAGING_PROTO_IMAP)
 		$(cmake-utils_use maildir VMIME_HAVE_MESSAGING_PROTO_MAILDIR )
 		$(cmake-utils_use sendmail VMIME_HAVE_MESSAGING_PROTO_SENDMAIL)
-	"
-
-	mycmakeargs+=" -DVMIME_BUILD_SAMPLES=OFF"
+		'-DVMIME_BUILD_SAMPLES=OFF'
+	)
 
 	if use icu; then
-		mycmakeargs+=" -DVMIME_CHARSETCONV_LIB_IS_ICU=ON -DVMIME_CHARSETCONV_LIB_IS_ICONV=OFF"
+		mycmakeargs+=('-DVMIME_CHARSETCONV_LIB_IS_ICU=ON' '-DVMIME_CHARSETCONV_LIB_IS_ICONV=OFF')
 	else
-		mycmakeargs+=" -DVMIME_CHARSETCONV_LIB_IS_ICU=OFF -DVMIME_CHARSETCONV_LIB_IS_ICONV=ON"
+		mycmakeargs+=('-DVMIME_CHARSETCONV_LIB_IS_ICU=OFF' '-DVMIME_CHARSETCONV_LIB_IS_ICONV=ON')
 	fi
 
-	if use ssl && use gnutls ; then
-		mycmakeargs+=" -DVMIME_TLS_SUPPORT_LIB_IS_GNUTLS=ON -DVMIME_TLS_SUPPORT_LIB_IS_OPENSSL=OFF"
-	elif use ssl && ! use gnutls ; then
-		mycmakeargs+=" -DVMIME_TLS_SUPPORT_LIB_IS_GNUTLS=OFF -DVMIME_TLS_SUPPORT_LIB_IS_OPENSSL=ON"
+	if use gnutls; then
+		mycmakeargs+=('-DVMIME_TLS_SUPPORT_LIB=gnutls' '-DVMIME_TLS_SUPPORT_LIB_IS_GNUTLS=ON' '-DVMIME_TLS_SUPPORT_LIB_IS_OPENSSL=OFF')
+	elif use ssl; then
+		mycmakeargs+=('-DVMIME_TLS_SUPPORT_LIB=openssl' '-DVMIME_TLS_SUPPORT_LIB_IS_GNUTLS=OFF' '-DVMIME_TLS_SUPPORT_LIB_IS_OPENSSL=ON')
 	else
-		mycmakeargs+=" -DVMIME_TLS_SUPPORT_LIB_IS_GNUTLS=OFF -DVMIME_TLS_SUPPORT_LIB_IS_OPENSSL=OFF"
+		mycmakeargs+=('-DVMIME_TLS_SUPPORT_LIB_IS_GNUTLS=OFF' '-DVMIME_TLS_SUPPORT_LIB_IS_OPENSSL=OFF')
 	fi
 
 	if use debug; then
