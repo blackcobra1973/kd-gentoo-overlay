@@ -3,14 +3,14 @@
 
 EAPI=5
 
-USE_RUBY="ruby21 ruby22 ruby23"
+USE_RUBY="ruby23"
 #RUBY_FAKEGEM_RECIPE_TEST="rspec3"
 RUBY_FAKEGEM_TASK_DOC=""
 RUBY_FAKEGEM_BINWRAP=""
 
 inherit ruby-fakegem
 
-DESCRIPTION="Ruby Exploitation(Rex) library for discovering supported cipher suites"
+DESCRIPTION="ruby implmenetation of the SSLScan tool "
 HOMEPAGE="https://rubygems.org/gems/rex-sslscan"
 
 LICENSE="BSD"
@@ -22,4 +22,5 @@ IUSE=""
 # doesn't seem to actually run any tests
 RESTRICT=test
 
-ruby_add_bdepend "dev-ruby/rex-socket dev-ruby/rex-text"
+PDEPEND="dev-libs/openssl"
+ruby_add_rdepend "dev-ruby/rex-socket dev-ruby/rex-text"
