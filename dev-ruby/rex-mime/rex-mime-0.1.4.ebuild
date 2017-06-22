@@ -1,16 +1,15 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
-USE_RUBY="ruby21 ruby22 ruby23"
-#RUBY_FAKEGEM_RECIPE_TEST="rspec3"
+USE_RUBY="ruby23"
 RUBY_FAKEGEM_TASK_DOC=""
 RUBY_FAKEGEM_BINWRAP=""
 
 inherit ruby-fakegem
 
-DESCRIPTION="Ruby Exploitation(Rex) library for creating and parsing MIME messages"
+DESCRIPTION="library is for creating and/or parsing MIME messages"
 HOMEPAGE="https://rubygems.org/gems/rex-mime"
 
 LICENSE="BSD"
@@ -18,8 +17,8 @@ LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~x86"
 IUSE=""
-
-# doesn't seem to actually run any tests
 RESTRICT=test
 
-ruby_add_bdepend "dev-ruby/rex-text"
+all_ruby_prepare() {
+	sed -i '/bundler/d' Rakefile
+}
