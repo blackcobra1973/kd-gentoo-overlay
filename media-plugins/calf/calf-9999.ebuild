@@ -18,14 +18,14 @@ fi
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-IUSE="lash lv2 static-libs experimental"
+IUSE="lash lv2 static-libs"
 
 RDEPEND="dev-libs/atk
 	dev-libs/expat
 	dev-libs/glib:2
 	gnome-base/libglade:2.0
 	media-sound/fluidsynth
-	media-sound/jack-audio-connection-kit
+	virtual/jack
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf
 	x11-libs/gtk+:2
@@ -42,5 +42,10 @@ src_prepare() {
 }
 
 src_configure() {
-	econf --with-lv2-dir=/usr/$(get_libdir)/lv2 $(use_with lash) $(use_with lv2) $(use_enable experimental)
+	myeconfargs=(
+		--with-lv2-dir=/usr/$(get_libdir)/lv2
+		$(use_with lash)
+		$(use_with lv2)
+	)
+	autotools-utils_src_configure
 }
