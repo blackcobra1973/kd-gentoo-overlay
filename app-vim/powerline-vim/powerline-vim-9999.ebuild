@@ -1,7 +1,7 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
-EAPI="6"
+
+EAPI=6
 
 # Since eclasses cannot be conditionally inherited, this ebuild remains distinct
 # from the top-level Powerline ebuild at "app-misc/powerline".
@@ -34,11 +34,13 @@ else
 	MY_PN="powerline-status"
 	MY_P="${MY_PN}-${PV}"
 	SRC_URI="mirror://pypi/p/${MY_PN}/${MY_P}.tar.gz"
-	KEYWORDS="~amd64 ~ppc ~x86 ~x86-fbsd"
+	KEYWORDS="~amd64 ~x86"
 	S="${WORKDIR}/${MY_P}"
 fi
 
 src_prepare() {
+	default
+
 	# vim-plugin_src_install() expects that ${S} is the top-level directory for
 	# the Vim plugin to be installed to "/usr/share/vim/vimfiles". To guarantee
 	# this, that directory is moved to "${T}/vim", everything else
@@ -53,12 +55,9 @@ src_prepare() {
 	# vim-plugin_src_install() from installing such files as documentation.
 	# Which, if you think about it, is a pretty terrible default behaviour.
 	find . -type f '(' -name '*.class' -o -name '*.py' ')' -delete ||
-		die '"find" failed.' 
+		die '"find" failed.'
 
 	# Remove nonstandard paths from this plugin's implementation.
 	sed -i -e '/sys\.path\.append/d' "${S}"/plugin/powerline.vim ||
 		die '"sed" failed.'
-
-	# Apply user-specific patches *AFTER* all requisite patches above.
-	default_src_prepare
 }
