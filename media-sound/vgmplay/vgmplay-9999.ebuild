@@ -1,5 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+
 EAPI="6"
 
 inherit readme.gentoo-r1
@@ -36,16 +37,20 @@ IUSE="alsa ao debug opl pulseaudio"
 REQUIRED_USE=""
 
 DEPEND="
-	sys-libs/zlib:=
+	sys-libs/zlib
 	virtual/libc
-	ao? ( media-libs/libao:= )
+	ao? ( media-libs/libao )
 "
 
 # VGMPlay indirectly supports ALSA and PulseAudio via OSS runtime emulation in
-# the high-level "vgm-player" script. (It's not the best... but it's something.)
+# the high-level "vgm-player" script. Something is better than nothing.
+#
+# Note that, although the "pulseaudio' package provides an "oss" USE flag, this
+# flag has been deprecated; since this package now unconditionally installs
+# "padsp", the PulseAudio OSS wrapper, merely installing "pulseaudio" suffices.
 RDEPEND="${DEPEND}
 	alsa? ( media-libs/alsa-oss )
-	pulseaudio? ( media-sound/pulseaudio[oss] )
+	pulseaudio? ( media-sound/pulseaudio )
 "
 
 if [[ ${PV} == 9999 ]]; then
@@ -59,18 +64,14 @@ else
 fi
 
 src_prepare() {
+	default
+
 	# Remove the bundled "zlib" directory.
 	rm -r VGMPlay/zlib || die '"rm" failed.'
 
 	# Strip hardcoded ${CFLAGS}.
 	sed -e '/CFLAGS := -O3/s~ -O3~~' \
 		-i VGMPlay/Makefile || die '"sed" failed.'
-
-	# Apply user-specific patches.
-	eapply_user
-
-	# Perform default logic.
-	default_src_prepare
 }
 
 src_compile() {
@@ -91,13 +92,21 @@ src_compile() {
 
 	# VGMPlay only provides a GNU "Makefile"; notably, no autotools-based
 	# "configure" script is provided.
-	cd VGMPlay
-	emake "${VGMPLAY_MAKE_OPTIONS[@]}"
+	emake --directory=VGMPlay "${VGMPLAY_MAKE_OPTIONS[@]}"
 }
 
 src_install() {
 	# Absolute path of the system-wide VGMPlay directory.
 	VGMPLAY_DIR="${EPREFIX}/usr/share/${PN}"
+
+	# Create all directories assumed to exist by this makefile.
+	exeinto usr/bin
+
+	# Install all VGMPlay commands (e.g., "vgm-player") and manpages.
+	emake --directory=VGMPlay play_install "${VGMPLAY_MAKE_OPTIONS[@]}"
+
+	# Install all remaining documentation.
+	dodoc VGMPlay/*.txt
 
 	# Contents of the "/usr/share/doc/${P}/README.gentoo" file to be installed.
 	DOC_CONTENTS="
@@ -129,23 +138,6 @@ src_install() {
 
 	# Install this document.
 	readme.gentoo_create_doc
-
-	# Create all directories assumed to exist by this makefile.
-	exeinto usr/bin
-	insinto usr/share/man/man1
-
-	# Note that an additional "play_install" target performing the "install"
-	# target and additionally installing the "vgm-player" executable.
-	# Unfortunately, the name of this target recently changed from "play_inst"
-	# and is thus not reasonably supportable by both the stable and live builds.
-	cd VGMPlay
-	emake install "${VGMPLAY_MAKE_OPTIONS[@]}"
-
-	# Install all executables *NOT* installed above. (Thanks alot, "Makefile".)
-	doexe vgm-player vgm2pcm vgm2wav
-
-	# Install all documentation.
-	dodoc *.txt
 }
 
 pkg_postinst() {

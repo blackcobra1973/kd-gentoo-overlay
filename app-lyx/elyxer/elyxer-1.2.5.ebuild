@@ -1,5 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+
 EAPI=6
 
 PYTHON_COMPAT=( python2_7 pypy )
@@ -41,11 +42,11 @@ RDEPEND="${DEPEND}"
 #FIXME: eLyXer provides translations in "po" installed by "install.py", which
 #we should probably also install.
 src_install() {
-    # eLyXer bundles no sane makefiles, so this is it.
-    newbin elyxer.py elyxer
-    dodoc README.md
-    use doc && dohtml -r docs
+	# eLyXer bundles no sane makefiles, so this is it.
+	newbin elyxer.py elyxer
+	dodoc README.md
+	use doc && dodoc -r docs
 
-    # eLyXer assumes "python" to be Python 2.x. Ensure this.
-    python_fix_shebang "${ED}/usr/bin/elyxer"
+	# eLyXer assumes "python" to be Python 2.x. Ensure this.
+	python_fix_shebang "${ED}/usr/bin/elyxer"
 }
