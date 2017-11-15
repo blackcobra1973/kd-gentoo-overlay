@@ -29,6 +29,7 @@ RDEPEND=">=dev-libs/xmlrpc-c-1.18.02[abyss,cxx,threads]
 		dev-ruby/amazon-ec2
 		dev-ruby/webmock
 		dev-ruby/mysql
+		dev-ruby/mysql2
 		dev-ruby/parse-cron
 		dev-ruby/sequel
 		dev-ruby/treetop
