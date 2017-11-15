@@ -5,17 +5,18 @@
 EAPI=4
 USE_RUBY="ruby22 ruby23"
 
-inherit ruby-fakegem
+RUBY_FAKEGEM_EXTRAINSTALL="VERSION"
 
-DESCRIPTION="Ruby client for the Puppet Forge API"
-HOMEPAGE="https://github.com/puppetlabs/forge-ruby"
+inherit ruby-fakegem eutils
+
+DESCRIPTION="A framework for bundlers, used by librarian-puppet"
+HOMEPAGE="https://github.com/carlossg/librarian"
 
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-ruby_add_rdepend "dev-ruby/faraday"
-ruby_add_rdepend "dev-ruby/faraday_middleware"
-ruby_add_rdepend "dev-ruby/minitar"
-ruby_add_rdepend "dev-ruby/semantic_puppet"
+RUBY_PATCHES=( "${FILESDIR}/${P}-git-silent.patch" )
+
+ruby_add_rdepend "dev-ruby/thor"
