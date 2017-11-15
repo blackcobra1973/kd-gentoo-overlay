@@ -28,9 +28,12 @@ RDEPEND=">=dev-libs/xmlrpc-c-1.18.02[abyss,cxx,threads]
 		dev-ruby/uuidtools
 		dev-ruby/amazon-ec2
 		dev-ruby/webmock
+		dev-ruby/mysql
+		dev-ruby/parse-cron
 		dev-ruby/sequel
 		dev-ruby/treetop
 		dev-ruby/xml-simple
+		dev-ruby/zendesk_api
 		dev-libs/log4cpp )
 	mysql? ( virtual/mysql )
 	dev-db/sqlite
@@ -175,7 +178,7 @@ EOF
 
 	elog "If you wish to use the sunstone server, please issue the command"
 	#elog "/usr/share/one/install_gems as oneadmin user"
-	elog "gem install thin json rack sinatra builder zendesk_api mysql parse-cron"
+	elog "gem install sequel thin json rack sinatra builder treetop zendesk_api mysql parse-cron"
 
 
 }
