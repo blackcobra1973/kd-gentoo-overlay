@@ -1,0 +1,74 @@
+# ChangeLog for gnome-extra/budgie-desktop
+# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  15 Nov 2017; wjn <wjn@aol.jp> budgie-desktop-10.4.ebuild:
+  Depend on dev-lang/sassc instead of dev-libs/sassc
+
+   This commit is because sassc was added to dev-lang in gentoo repository
+
+  31 Oct 2017; wjn <wjn@aol.jp> budgie-desktop-10.3.1-r1.ebuild:
+  Install GNOME schemas
+
+  31 Oct 2017; wjn <wjn@aol.jp> budgie-desktop-10.3.1-r1.ebuild:
+  Tidy up dependencies
+
+   - Enable USE dependencies
+   - Depend on Mutter (libmutter) slot
+
+  31 Oct 2017; wjn <wjn@aol.jp> budgie-desktop-10.3.1-r1.ebuild:
+  Use meson.eclass, fix building with newer Meson
+
+   - Simplify functions by inherit meson.eclass and vala.eclass
+   - Temporary work around to avoid Meson's bug about subprojects
+
+*budgie-desktop-10.4 (31 Oct 2017)
+
+  31 Oct 2017; wjn <wjn@aol.jp> +budgie-desktop-10.4.ebuild:
+  Add version 10.4
+
+*budgie-desktop-10.3.1-r1 (14 May 2017)
+
+  14 May 2017; wjn <wjn@aol.jp> -budgie-desktop-10.3.1.ebuild,
+  +budgie-desktop-10.3.1-r1.ebuild,
+  +files/budgie-desktop-10.3.1-for-gtk3_22_13.patch:
+  Work around serious regressions in GTK3.22.13+
+
+   Upstream: https://github.com/budgie-desktop/budgie-desktop/commit/b07359f
+
+   This patch is neccessary to run in >=gtk+-3.22.13
+
+  14 May 2017; wjn <wjn@aol.jp> budgie-desktop-10.3.1.ebuild,
+  +files/budgie-desktop-10.3.1-fix-typo.patch:
+  Fix typo in meson.build
+
+   Upstream: https://github.com/budgie-desktop/budgie-desktop/commit/8454436
+
+  14 May 2017; wjn <wjn@aol.jp> budgie-desktop-10.2.9.ebuild,
+  budgie-desktop-10.3.1.ebuild:
+  Add use dep of app-i18n/ibus[vala]
+
+   app-i18n/ibus[vala] is needed to compile
+
+  14 May 2017; wjn <wjn@aol.jp> -budgie-desktop-10.2.8.ebuild:
+  Delete old version 10.2.8
+
+*budgie-desktop-10.3.1 (18 Apr 2017)
+
+  18 Apr 2017; wjn <wjn@aol.jp> +budgie-desktop-10.3.1.ebuild:
+  Add version 10.3.1
+
+  03 Jan 2017; wjn <wjn@aol.jp> budgie-desktop-10.2.8.ebuild,
+  budgie-desktop-10.2.9.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+*budgie-desktop-10.2.9 (16 Dec 2016)
+
+  16 Dec 2016; wjn <wjn@aol.jp> +budgie-desktop-10.2.9.ebuild:
+  Add version 10.2.9
+
+*budgie-desktop-10.2.8 (10 Nov 2016)
+
+  10 Nov 2016; wjn <wjn@aol.jp> +budgie-desktop-10.2.8.ebuild, +metadata.xml:
+  Add newly, version 10.2.8
+

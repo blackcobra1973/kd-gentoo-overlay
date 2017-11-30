@@ -1,0 +1,79 @@
+From b07359f5c14185126ac6d780c44b25fe325c2cba Mon Sep 17 00:00:00 2001
+From: Ikey Doherty <ikey@solus-project.com>
+Date: Thu, 11 May 2017 03:48:48 +0100
+Subject: [PATCH] Work around serious regressions in GTK3.22.13+
+
+A number of alterations have been made in GTK 3.22.13+ that persist in
+GTK 3.22.14+ that cause Budgie to segfault on start, notably:
+
+ - Construction initialisation order no longer reliable
+ - Listboxes changed their internals for forall/foreach and break
+   assumptions on dealing with just "your" content
+ - Placeholders + other widgets included in content of ListBox iterations so
+   explicit type checking for basic "children" is now required
+
+This fixes #918.
+
+Signed-off-by: Ikey Doherty <ikey@solus-project.com>
+---
+ src/applets/budgie-menu/BudgieMenuWindow.vala | 13 ++++++++++---
+ src/raven/notifications_view.vala             |  4 +---
+ src/raven/raven.vala                          |  2 +-
+ 3 files changed, 12 insertions(+), 7 deletions(-)
+
+diff --git a/src/applets/budgie-menu/BudgieMenuWindow.vala b/src/applets/budgie-menu/BudgieMenuWindow.vala
+index ad0cda1..78b9967 100644
+--- a/src/applets/budgie-menu/BudgieMenuWindow.vala
++++ b/src/applets/budgie-menu/BudgieMenuWindow.vala
+@@ -255,13 +255,20 @@ public class BudgieMenuWindow : Gtk.Popover
+             m.insert(dname, score);
+         }
+ 
+-        foreach (var sprog in content.get_children()) {
+-            MenuButton child = (sprog as Gtk.Bin).get_child() as MenuButton;
++        content.foreach((sprog)=> {
++            if (!(sprog is Gtk.Bin)) {
++                return;
++            }
++            Gtk.Widget? gtk_child = (sprog as Gtk.Bin).get_child();
++            if (!(gtk_child is MenuButton)) {
++                return;
++            }
++            MenuButton child = gtk_child as MenuButton;
+             var key = child.info.get_filename();
+             if (m.contains(key)) {
+                 child.score = m.get(key);
+             }
+-        }
++        });
+ 
+         content.invalidate_sort();
+     }
+diff --git a/src/raven/notifications_view.vala b/src/raven/notifications_view.vala
+index 5305c24..98eb95b 100644
+--- a/src/raven/notifications_view.vala
++++ b/src/raven/notifications_view.vala
+@@ -687,9 +687,7 @@ public class NotificationsView : Gtk.Box
+     [DBus (visible = false)]
+     void clear_all()
+     {
+-        foreach (var child in listbox.get_children()) {
+-            child.destroy();
+-        }
++        listbox.foreach((c)=> listbox.remove(c));
+ 
+         update_child_count();
+         Raven.get_instance().ReadNotifications();
+diff --git a/src/raven/raven.vala b/src/raven/raven.vala
+index 119df3d..843819e 100644
+--- a/src/raven/raven.vala
++++ b/src/raven/raven.vala
+@@ -200,7 +200,7 @@ public class Raven : Gtk.Window
+ 
+     public void set_notification_count(uint count)
+     {
+-        if (this.n_count != count) {
++        if (this.n_count != count && this.iface != null) {
+             this.n_count = count;
+             this.iface.notifications = count;
+             this.iface.NotificationsChanged();

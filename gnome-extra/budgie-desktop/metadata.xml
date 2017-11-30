@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>wjn@aol.jp</email>
+	</maintainer>
+	<use>
+		<flag name="control-center">Install
+			<pkg>gnome-base/gnome-control-center</pkg> for configuring purpose
+		</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">budie-desktop/budie-desktop</remote-id>
+	</upstream>
+</pkgmetadata>
