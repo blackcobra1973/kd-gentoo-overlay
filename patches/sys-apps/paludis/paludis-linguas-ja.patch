@@ -1,0 +1,10 @@
+--- a/paludis/repositories/e/ebuild/ebuild.bash.orig	2015-03-16 11:57:46.889121641 +0900
++++ b/paludis/repositories/e/ebuild/ebuild.bash	2015-05-22 08:15:38.718639241 +0900
+@@ -64,6 +64,7 @@
+ 
+     unset GZIP BZIP BZIP2 CDPATH GREP_OPTIONS GREP_COLOR GLOBIGNORE
+     unset LANG ${!LC_*}
++    export LINGUAS="ja ja_JP en_US en"
+     export LC_ALL=C
+ 
+     # pagers won't run with redirected output, but some naughty packages like

@@ -1,0 +1,159 @@
+diff -ur --unidirectional-new-file -ur gedit-markdown-master.orig/plugins/markdown-preview/markdown-preview/__init__.py gedit-markdown-master/plugins/markdown-preview/markdown-preview/__init__.py
+--- gedit-markdown-master.orig/plugins/markdown-preview/markdown-preview/__init__.py	2015-11-25 08:11:00.257123920 +0000
++++ gedit-markdown-master/plugins/markdown-preview/markdown-preview/__init__.py	2015-11-25 08:11:20.751123445 +0000
+@@ -18,7 +18,7 @@
+ # You should have received a copy of the GNU General Public License
+ # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ 
+-from gi.repository import Gdk, Gtk, Gedit, GObject, WebKit
++from gi.repository import Gdk, Gtk, Gedit, GObject, WebKit, Gio
+ import codecs
+ import os
+ import sys
+@@ -112,18 +112,22 @@
+ 		if markdownVisibility == "1":
+ 			self.addMarkdownPreviewTab()
+ 		
+-		self.addMenuItems()
++		self.addWindowActions()
+ 	
+ 	def do_deactivate(self):
+ 		# Remove menu items.
+-		manager = self.window.get_ui_manager()
+-		manager.remove_ui(self.uiId)
+-		manager.remove_action_group(self.actionGroup1)
+-		manager.remove_action_group(self.actionGroup2)
+-		
++		self.window.remove_action('MarkdownPreview')
++		self.window.remove_action('ToggleTab')
+ 		# Remove Markdown Preview from the panel.
+ 		self.removeMarkdownPreviewTab()
+-	
++		# delete instance variables
++		self.action_update = None
++		self.action_toggle = None
++		self.actionGroup1 = None
++		self.actionGroup2 = None
++		self.scrolledWindow = None
++		self.htmlView = None
++
+ 	def do_update_state(self):
+ 		self.actionGroup1.set_sensitive(self.window.get_active_document() != None)
+ 	
+@@ -133,15 +137,19 @@
+ 		else:
+ 			panel = self.window.get_bottom_panel()
+ 		
+-		image = Gtk.Image()
+-		image.set_from_icon_name("gnome-mime-text-html", Gtk.IconSize.MENU)
+-		
+-		panel.add_item(self.scrolledWindow, "MarkdownPreview", _("Markdown Preview"), image)
++		panel.add_titled(self.scrolledWindow, "MarkdownPreview", _("Markdown Preview"))
+ 		panel.show()
+-		panel.activate_item(self.scrolledWindow)
++		panel.set_visible_child(self.scrolledWindow)
++
++	def addWindowActions(self):
+ 	
+-	def addMenuItems(self):
+-		manager = self.window.get_ui_manager()
++		self.action_update = Gio.SimpleAction(name='MarkdownPreview')
++		self.action_update.connect('activate', lambda x, y: self.updatePreview(y, False))
++		self.window.add_action(self.action_update)
++		
++		self.action_toggle = Gio.SimpleAction(name='ToggleTab')
++		self.action_toggle.connect('activate', lambda x, y: self.toggleTab())
++		self.window.add_action(self.action_toggle)
+ 		
+ 		self.actionGroup1 = Gtk.ActionGroup("UpdateMarkdownPreview")
+ 		action = ("MarkdownPreview",
+@@ -150,8 +158,8 @@
+ 		          markdownShortcut,
+ 		          _("Preview in HTML of the current document or the selection"),
+ 		          lambda x, y: self.updatePreview(y, False))
+-		self.actionGroup1.add_actions([action], self.window)
+-		manager.insert_action_group(self.actionGroup1, -1)
++		#self.actionGroup1.add_actions([action], self.window)
++		#self.window.insert_action_group('win', self.actionGroup1)
+ 		
+ 		self.actionGroup2 = Gtk.ActionGroup("ToggleTab")
+ 		action = ("ToggleTab",
+@@ -160,18 +168,9 @@
+ 		          markdownVisibilityShortcut,
+ 		          _("Display or hide the Markdown Preview panel tab"),
+ 		          lambda x, y: self.toggleTab())
+-		self.actionGroup2.add_actions([action], self.window)
+-		manager.insert_action_group(self.actionGroup2, -1)
+-		
+-		self.uiId = manager.new_merge_id()
++		#self.actionGroup2.add_actions([action], self.window)
++		#self.window.insert_action_group('win', self.actionGroup2)
+ 		
+-		manager.add_ui(self.uiId, "/MenuBar/ToolsMenu/ToolsOps_4",
+-		               "MarkdownPreview", "MarkdownPreview",
+-		               Gtk.UIManagerItemType.MENUITEM, True)
+-		
+-		manager.add_ui(self.uiId, "/MenuBar/ToolsMenu/ToolsOps_4",
+-		               "ToggleTab", "ToggleTab",
+-		               Gtk.UIManagerItemType.MENUITEM, False)
+ 	
+ 	def copyCurrentUrl(self):
+ 		self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+@@ -347,7 +346,7 @@
+ 		else:
+ 			panel = self.window.get_bottom_panel()
+ 		
+-		panel.remove_item(self.scrolledWindow)
++		panel.remove(self.scrolledWindow)
+ 	
+ 	def toggleTab(self):
+ 		if markdownPanel == "side":
+@@ -355,7 +354,7 @@
+ 		else:
+ 			panel = self.window.get_bottom_panel()
+ 		
+-		if panel.activate_item(self.scrolledWindow):
++		if panel.get_visible_child() == self.scrolledWindow:
+ 			self.removeMarkdownPreviewTab()
+ 		else:
+ 			self.addMarkdownPreviewTab()
+@@ -399,12 +398,37 @@
+ 		
+ 		panel.show()
+ 		
+-		if not panel.activate_item(self.scrolledWindow):
++		if not panel.get_visible_child() == self.scrolledWindow:
+ 			self.addMarkdownPreviewTab()
+-			panel.activate_item(self.scrolledWindow)
++			panel.set_visible_child(self.scrolledWindow)
+ 	
+ 	def urlTooltipVisible(self):
+ 		if hasattr(self, "urlTooltip") and self.urlTooltip.get_property("visible"):
+ 			return True
+ 		
+ 		return False
++
++class MarkdownPreviewMenu(GObject.Object, Gedit.AppActivatable):
++	app = GObject.property(type=Gedit.App)
++
++	def __init__(self):
++		GObject.Object.__init__(self)
++
++	def do_activate(self):
++		self.app.set_accels_for_action("win.MarkdownPreview", [markdownShortcut])
++		self.app.set_accels_for_action("win.ToggleTab", [markdownVisibilityShortcut])
++
++		self.tools_menu_ext = self.extend_menu("tools-section")
++		
++		md_prev_update = Gio.MenuItem.new(_("Update Markdown preview"), "win.MarkdownPreview")
++		md_prev_toggle = Gio.MenuItem.new(_("Toggle Markdown preview"), "win.ToggleTab")
++		
++		self.tools_menu_ext.append_menu_item(md_prev_update)
++		self.tools_menu_ext.append_menu_item(md_prev_toggle)
++
++	def do_deactivate(self):
++		self.app.set_accels_for_action("win.MarkdownPreview", [])
++		self.app.set_accels_for_action("win.ToggleTab", [])
++
++		self.tools_menu_ext = None
++

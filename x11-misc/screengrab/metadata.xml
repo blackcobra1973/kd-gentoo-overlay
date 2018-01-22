@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>wjn@aol.jp</email>
+	</maintainer>
+	<upstream>
+		<maintainer type="person" status="active">
+			<email>doomer3d@gmail.com</email>
+			<name>Artem Galichkin</name>
+		</maintainer>
+		<remote-id type="github">DOOMer/screengrab</remote-id>
+	</upstream>
+	<use>
+		<flag name='xdg'>Place config files into $XDG_CONFIG_HOME</flag>
+	</use>
+</pkgmetadata>

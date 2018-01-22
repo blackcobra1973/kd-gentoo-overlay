@@ -1,0 +1,90 @@
+# ChangeLog for app-text/markdown-gtksourceview
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> markdown-gtksourceview-2.1.9999-r2.ebuild,
+  markdown-gtksourceview-3.2.9999-r1.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> markdown-gtksourceview-2.1.9999-r2.ebuild,
+  markdown-gtksourceview-3.2.9999-r1.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> markdown-gtksourceview-2.1.9999-r2.ebuild,
+  markdown-gtksourceview-3.2.9999-r1.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+*markdown-gtksourceview-2.1.9999-r2 (20 Nov 2016)
+
+  20 Nov 2016; wjn <wjn@aol.jp> -markdown-gtksourceview-2.1.9999-r1.ebuild,
+  +markdown-gtksourceview-2.1.9999-r2.ebuild:
+  Depend <=pluma-1.16.0 if USE="webkit"
+
+   Python support for plugins removed as of Pluma 1.17.0
+
+*markdown-gtksourceview-3.2.9999-r1 (28 Oct 2016)
+*markdown-gtksourceview-2.1.9999-r1 (28 Oct 2016)
+
+  28 Oct 2016; wjn <wjn@aol.jp> -markdown-gtksourceview-2.1.9999.ebuild,
+  +markdown-gtksourceview-2.1.9999-r1.ebuild,
+  -markdown-gtksourceview-3.2.9999.ebuild,
+  +markdown-gtksourceview-3.2.9999-r1.ebuild:
+  Remove python deps when USE="-webkit"
+
+   Because Python is required only in the preview functionality
+
+   Additionally, Python 3.5 is added to the slot of 3.0
+
+  19 Feb 2016; wjn <wjn@aol.jp> markdown-gtksourceview-2.1.9999.ebuild,
+  markdown-gtksourceview-3.2.9999.ebuild:
+  Correct for quality assurance
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> markdown-gtksourceview-2.1.9999.ebuild,
+  markdown-gtksourceview-3.2.9999.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  27 Nov 2015; wjn <wjn@aol.jp> markdown-gtksourceview-3.2.9999.ebuild:
+  3.2.9999: Comment about the patch for Gedit
+
+   The patch file for >=gedit-3.12 is originally written by Niels Müller.
+  See https://github.com/jpfleury/gedit-
+  markdown/compare/master...nielsmde:master
+
+  25 Nov 2015; wjn <wjn@aol.jp>
+  +files/markdown-gtksourceview-3.2.9999-gedit-3.12.patch,
+  markdown-gtksourceview-3.2.9999.ebuild:
+  3.0: Fix for >=gedit-3.12
+
+*markdown-gtksourceview-3.2.9999 (25 Nov 2015)
+
+  25 Nov 2015; wjn <wjn@aol.jp> +markdown-gtksourceview-3.2.9999.ebuild,
+  metadata.xml:
+  Add version 3.2.9999 (slot 3.0) for gedit
+
+*markdown-gtksourceview-2.1.9999 (25 Nov 2015)
+
+  25 Nov 2015; wjn <wjn@aol.jp> -markdown-gtksourceview-2.1.ebuild,
+  +markdown-gtksourceview-2.1.9999.ebuild, metadata.xml:
+  Support plugins for Pluma
+
+   When USE="pluma", plugins of snippets and HTML export will be installed.
+
+   When USE="pluma webkit", preview plugin will be also installed.
+  Be sure preview plugin depends on pywebkitgtk and webkit-gtk:2.
+
+  09 Sep 2015; wjn <wjn@aol.jp> +metadata.xml:
+  Add minimal metadata.xml(s) for QA.
+
+  09 Sep 2015; wjn <wjn@aol.jp> markdown-gtksourceview-2.1.ebuild:
+  Update ebuild file format from "# $Header: $" to "# $Id"
+
+   Since Gentoo changes the VCS from CVS to git, ebuild header is changed.
+
+*markdown-gtksourceview-2.1 (27 Jan 2015)
+
+  27 Jan 2015; wjn <wjn@aol.jp> +markdown-gtksourceview-2.1.ebuild:
+  Commit for initializing, Move from GitHub
+

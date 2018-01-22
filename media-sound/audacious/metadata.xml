@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+		Audacious is an open source audio player.
+		A descendant of XMMS, Audacious plays your music how you want it, 
+		without stealing away your computer’s resources from other tasks.
+		Drag and drop folders and individual song files, 
+		search for artists and albums in your entire music library, 
+		or create and edit your own custom playlists.
+		Listen to CD’s or stream music from the Internet.
+		Tweak the sound with the graphical equalizer or experiment with LADSPA
+		effects.
+		Enjoy the modern GTK-themed interface or change things up with Winamp
+		Classic skins.
+		Use the plugins included with Audacious to fetch lyrics for your music,
+		to set an alarm in the morning, and more.
+	</longdescription>
+	<maintainer type="person">
+		<email>wjn@aol.jp</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">audacious-media-player/audacious</remote-id>
+		<doc>http://audacious-media-player.org/</doc>
+	</upstream>
+	<use>
+		<flag name="gtk">Enable GTK+ User Interface (<pkg>x11-libs/gtk+</pkg>)
+			</flag>
+		<flag name="gtk3">Link against version 3 of the GIMP Toolkit instead
+			of version 2 (x11-libs/gtk+)</flag>
+		<flag name="qt5">Enable Qt5 UI and output (<pkg>dev-qt/qtgui:5</pkg>,
+			<pkg>dev-qt/qtmultimedia:5</pkg>)</flag>
+	</use>
+</pkgmetadata>

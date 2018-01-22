@@ -1,0 +1,62 @@
+# ChangeLog for x11-libs/gdk-pixbuf-psd
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> gdk-pixbuf-psd-0.1.0.ebuild,
+  gdk-pixbuf-psd-9999.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> gdk-pixbuf-psd-0.1.0.ebuild,
+  gdk-pixbuf-psd-9999.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> gdk-pixbuf-psd-0.1.0.ebuild,
+  gdk-pixbuf-psd-9999.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> gdk-pixbuf-psd-0.1.0.ebuild,
+  gdk-pixbuf-psd-9999.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  19 Dec 2015; wjn <wjn@aol.jp> gdk-pixbuf-psd-0.1.0.ebuild,
+  gdk-pixbuf-psd-9999.ebuild:
+  Improve to support multilib environment
+
+   Now multilib (multi ABI) is supported.
+  64 bit library and 32 bit library are able to be installed.
+   Be sure it depends on the same ABI installs of gdk-pixbuf and glib.
+
+  25 Nov 2015; wjn <wjn@aol.jp> gdk-pixbuf-psd-0.1.0.ebuild,
+  gdk-pixbuf-psd-9999.ebuild:
+  x11-libs/*: Add RESTRICT="mirror"
+
+  09 Sep 2015; wjn <wjn@aol.jp> metadata.xml:
+  Trivial fixes for QA.
+
+  09 Sep 2015; wjn <wjn@aol.jp> gdk-pixbuf-psd-0.1.0.ebuild,
+  gdk-pixbuf-psd-9999.ebuild:
+  Fix trivials such as redundant new lines etc.
+
+  09 Sep 2015; wjn <wjn@aol.jp> metadata.xml:
+  Fix metadata.xml(s)
+
+  09 Sep 2015; wjn <wjn@aol.jp> gdk-pixbuf-psd-0.1.0.ebuild,
+  gdk-pixbuf-psd-9999.ebuild:
+  Update ebuild file format from "# $Header: $" to "# $Id"
+
+   Since Gentoo changes the VCS from CVS to git, ebuild header is changed.
+
+  26 May 2015; wjn <wjn@aol.jp> gdk-pixbuf-psd-0.1.0.ebuild,
+  gdk-pixbuf-psd-9999.ebuild:
+  Fix typo, tidy up.
+
+*gdk-pixbuf-psd-9999 (27 Jan 2015)
+*gdk-pixbuf-psd-0.1.0 (27 Jan 2015)
+
+  27 Jan 2015; wjn <wjn@aol.jp> +gdk-pixbuf-psd-0.1.0.ebuild,
+  +gdk-pixbuf-psd-9999.ebuild, +metadata.xml:
+  Commit for initializing, Move from GitHub
+

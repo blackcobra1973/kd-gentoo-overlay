@@ -1,0 +1,72 @@
+# ChangeLog for dev-python/bbcode
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> bbcode-1.0.24.ebuild, bbcode-1.0.25.ebuild:
+  [QA] Update copyright year to 2018
+
+*bbcode-1.0.25 (15 Jun 2017)
+
+  15 Jun 2017; wjn <wjn@aol.jp> +bbcode-1.0.25.ebuild:
+  Add version 1.0.25
+
+  06 Jun 2017; wjn <wjn@aol.jp> bbcode-1.0.24.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  13 Jan 2017; wjn <wjn@aol.jp> -bbcode-1.0.21.ebuild:
+  Delete old version 1.0.21
+
+  03 Jan 2017; wjn <wjn@aol.jp> bbcode-1.0.21.ebuild, bbcode-1.0.24.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  30 Oct 2016; wjn <wjn@aol.jp> bbcode-1.0.21.ebuild:
+  Drop Python 3.3 support
+
+*bbcode-1.0.24 (30 Oct 2016)
+
+  30 Oct 2016; wjn <wjn@aol.jp> +bbcode-1.0.24.ebuild:
+  Add version 1.0.24
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> bbcode-1.0.21.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  25 Nov 2015; wjn <wjn@aol.jp> bbcode-1.0.21.ebuild:
+  dev-python/*: Add RESTRICT="mirror"
+
+  25 Nov 2015; wjn <wjn@aol.jp> bbcode-1.0.21.ebuild:
+  dev-python/*: Add ${PYTHON_DEPS} to dependencies
+
+  04 Nov 2015; wjn <wjn@aol.jp> bbcode-1.0.21.ebuild:
+  Add python3_5 to $PYTHON_COMPAT.
+
+   Added Python 3.5 build, but this isn't fully tested.
+
+  09 Sep 2015; wjn <wjn@aol.jp> bbcode-1.0.21.ebuild:
+  Update ebuild file format from "# $Header: $" to "# $Id"
+
+   Since Gentoo changes the VCS from CVS to git, ebuild header is changed.
+
+  09 Sep 2015; wjn <wjn@aol.jp> bbcode-1.0.21.ebuild:
+  dev-python/{bbcode,phpserialize,typogrify}: Remove obsolete python ver 2.6
+  and 3.2
+
+*bbcode-1.0.21 (14 May 2015)
+
+  14 May 2015; wjn <wjn@aol.jp> -bbcode-1.0.19.ebuild, -bbcode-1.0.20.ebuild,
+  +bbcode-1.0.21.ebuild:
+  Add version 1.0.21, delete version 1.0.19 and 1.0.20.
+
+  26 Feb 2015; wjn <wjn@aol.jp> bbcode-1.0.19.ebuild, bbcode-1.0.20.ebuild,
+  metadata.xml:
+  Update for the Quality Assurance
+
+*bbcode-1.0.20 (27 Jan 2015)
+*bbcode-1.0.19 (27 Jan 2015)
+
+  27 Jan 2015; wjn <wjn@aol.jp> +bbcode-1.0.19.ebuild, +bbcode-1.0.20.ebuild,
+  +metadata.xml:
+  Commit for initializing, Move from GitHub
+

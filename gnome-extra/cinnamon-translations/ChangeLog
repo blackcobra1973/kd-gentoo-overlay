@@ -1,0 +1,13 @@
+# ChangeLog for gnome-extra/cinnamon-translations
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> cinnamon-translations-3.4.3.ebuild:
+  [QA] Update copyright year to 2018
+
+*cinnamon-translations-3.4.3 (02 Nov 2017)
+
+  02 Nov 2017; wjn <wjn@aol.jp> +cinnamon-translations-3.4.3.ebuild,
+  +metadata.xml:
+  Add temporarily to add version 3.4.3
+

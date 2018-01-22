@@ -1,0 +1,49 @@
+# ChangeLog for app-editors/mined
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> mined-2015.25.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> mined-2015.25.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> mined-2015.25.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> mined-2015.25.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  24 Nov 2015; wjn <wjn@aol.jp> mined-2015.25.ebuild:
+  Add RESTRICT="mirror"
+
+   Mined isn't in GENTOO_MIRRORS.
+
+  09 Sep 2015; wjn <wjn@aol.jp> +metadata.xml:
+  Add minimal metadata.xml(s) for QA.
+
+  09 Sep 2015; wjn <wjn@aol.jp> -mined-2014.24.ebuild,
+  -mined-2014.24.2.ebuild, mined-2015.25.ebuild:
+  delete deprecated version 2014.24{,.2}
+
+  09 Sep 2015; wjn <wjn@aol.jp> mined-2014.24.ebuild, mined-2014.24.2.ebuild,
+  mined-2015.25.ebuild:
+  Update ebuild file format from "# $Header: $" to "# $Id"
+
+   Since Gentoo changes the VCS from CVS to git, ebuild header is changed.
+
+*mined-2015.25 (29 Mar 2015)
+
+  29 Mar 2015; wjn <wjn@aol.jp> +mined-2015.25.ebuild:
+  Add version 2015.25.
+
+*mined-2014.24.2 (27 Jan 2015)
+*mined-2014.24 (27 Jan 2015)
+
+  27 Jan 2015; wjn <wjn@aol.jp> +mined-2014.24.ebuild,
+  +mined-2014.24.2.ebuild:
+  Commit for initializing, Move from GitHub
+

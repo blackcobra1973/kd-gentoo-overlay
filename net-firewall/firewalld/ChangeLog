@@ -1,0 +1,60 @@
+# ChangeLog for net-firewall/firewalld
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> files/firewalld.init,
+  firewalld-0.4.4.2.ebuild, firewalld-0.4.4.4.ebuild,
+  firewalld-0.4.4.5.ebuild:
+  [QA] Update copyright year to 2018
+
+  13 Jul 2017; wjn <wjn@aol.jp> firewalld-0.4.4.2.ebuild,
+  firewalld-0.4.4.4.ebuild, firewalld-0.4.4.5.ebuild:
+  Add python{3_5,3_6} to PYTHON_COMPAT
+
+   Now, depended dev-python/python-slip package supports Python 3.5 and 3.6
+  ( See Gentoo: 368afaa )
+
+*firewalld-0.4.4.5 (21 Jun 2017)
+
+  21 Jun 2017; wjn <wjn@aol.jp> +firewalld-0.4.4.5.ebuild:
+  Add version 0.4.4.5
+
+  06 Jun 2017; wjn <wjn@aol.jp> files/firewalld.init,
+  firewalld-0.4.4.2.ebuild:
+  [QA] Update copyright year to 2017
+
+  06 Jun 2017; wjn <wjn@aol.jp> files/firewalld.init:
+  [QA] Remove no longer needed '$Id$' lines
+
+*firewalld-0.4.4.4 (26 May 2017)
+
+  26 May 2017; wjn <wjn@aol.jp> +firewalld-0.4.4.4.ebuild:
+  Add version 0.4.4.4
+
+  26 May 2017; wjn <wjn@aol.jp> firewalld-0.4.4.2.ebuild:
+  Move SRC_URI from fedorahosted.org to GitHub
+
+  01 Feb 2017; wjn <wjn@aol.jp> files/firewalld.init:
+  Run firewalld before net
+
+   Firewalls should stand before networks are up
+
+  01 Feb 2017; wjn <wjn@aol.jp> files/firewalld.init:
+  Change "provide iptables.." to "provide firewall"
+
+   OpenRC now prohibits init scripts from providing a virtual service with
+  the name used by real services.
+   See https://github.com/OpenRC/openrc/commit/69f052b
+
+   Therefore, "provide iptables" and /etc/init.d/iptables conflict.
+  Providing ip6tables and ebtables are also prohibited
+
+*firewalld-0.4.4.2 (29 Jan 2017)
+
+  29 Jan 2017; wjn <wjn@aol.jp> +files/firewalld.init,
+  +firewalld-0.4.4.2.ebuild, +metadata.xml:
+  Add newly, version 0.4.4.2
+
+   Upstream:
+    http://www.firewalld.org/ https://github.com/t-woerner/firewalld
+

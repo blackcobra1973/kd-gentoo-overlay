@@ -1,0 +1,58 @@
+# ChangeLog for x11-libs/gdk-pixbuf-xcf
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> gdk-pixbuf-xcf-2012.05.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> gdk-pixbuf-xcf-2012.05.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> gdk-pixbuf-xcf-2012.05.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> gdk-pixbuf-xcf-2012.05.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+*gdk-pixbuf-xcf-2012.05 (19 Dec 2015)
+
+  19 Dec 2015; wjn <wjn@aol.jp> +gdk-pixbuf-xcf-2012.05.ebuild,
+  -gdk-pixbuf-xcf-9999.ebuild:
+  Rename version 9999 to 2012.05
+
+   gdk-pixbuf-xcf (io-xcf ; Xcf Pixbuf Loader) is obsolete.
+  Upstream doesn't seem to be developed, I fixed the version number to
+  2012.05.
+
+   Since It's repository had been hosted by Gitorious, Gitorious was closed.
+  Now it's not distributed.
+   Therefore I decided to redistribute it through gh.asis.li.
+  (It's license is LGPL v2 or later.)
+
+   NOTE: It has some bugs, but they're not fixed.
+
+  25 Nov 2015; wjn <wjn@aol.jp> gdk-pixbuf-xcf-9999.ebuild:
+  x11-libs/*: Add RESTRICT="mirror"
+
+  09 Sep 2015; wjn <wjn@aol.jp> metadata.xml:
+  Trivial fixes for QA.
+
+  09 Sep 2015; wjn <wjn@aol.jp> metadata.xml:
+  Fix metadata.xml(s)
+
+  09 Sep 2015; wjn <wjn@aol.jp> gdk-pixbuf-xcf-9999.ebuild:
+  Update ebuild file format from "# $Header: $" to "# $Id"
+
+   Since Gentoo changes the VCS from CVS to git, ebuild header is changed.
+
+  26 May 2015; wjn <wjn@aol.jp> gdk-pixbuf-xcf-9999.ebuild:
+  Fix typo, tidy up.
+
+*gdk-pixbuf-xcf-9999 (27 Jan 2015)
+
+  27 Jan 2015; wjn <wjn@aol.jp> +gdk-pixbuf-xcf-9999.ebuild, +metadata.xml:
+  Commit for initializing, Move from GitHub
+

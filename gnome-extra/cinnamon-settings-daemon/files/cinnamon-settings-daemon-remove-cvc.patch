@@ -1,0 +1,3855 @@
+diff --git a/configure.ac b/configure.ac
+index 2aaa07d..1d37412 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -224,12 +224,6 @@ dnl ---------------------------------------------------------------------------
+ PKG_CHECK_MODULES(GIOUNIX, [gio-unix-2.0])
+ 
+ dnl ---------------------------------------------------------------------------
+-dnl - media-keys plugin stuff
+-dnl ---------------------------------------------------------------------------
+-
+-PKG_CHECK_MODULES(MEDIA_KEYS, [gio-unix-2.0 libnotify libcanberra $GUDEV_PKG cvc >= $CINNAMON_DESKTOP_REQUIRED_VERSION cinnamon-desktop >= $CINNAMON_DESKTOP_REQUIRED_VERSION])
+-
+-dnl ---------------------------------------------------------------------------
+ dnl - xrandr plugin stuff
+ dnl ---------------------------------------------------------------------------
+ 
+@@ -497,7 +491,6 @@ plugins/dummy/Makefile
+ plugins/power/Makefile
+ plugins/housekeeping/Makefile
+ plugins/keyboard/Makefile
+-plugins/media-keys/Makefile
+ plugins/mouse/Makefile
+ plugins/orientation/Makefile
+ plugins/print-notifications/Makefile
+@@ -515,7 +508,6 @@ data/org.cinnamon.settings-daemon.plugins.xsettings.gschema.xml.in
+ data/org.cinnamon.settings-daemon.plugins.keyboard.gschema.xml.in
+ data/org.cinnamon.settings-daemon.plugins.power.gschema.xml.in
+ data/org.cinnamon.settings-daemon.plugins.color.gschema.xml.in
+-data/org.cinnamon.settings-daemon.plugins.media-keys.gschema.xml.in
+ data/org.cinnamon.settings-daemon.peripherals.gschema.xml.in
+ data/org.cinnamon.settings-daemon.plugins.housekeeping.gschema.xml.in
+ data/org.cinnamon.settings-daemon.plugins.orientation.gschema.xml.in
+diff --git a/data/Makefile.am b/data/Makefile.am
+index d397487..6564a00 100644
+--- a/data/Makefile.am
++++ b/data/Makefile.am
+@@ -13,7 +13,6 @@ gsettings_SCHEMAS =							\
+ 	org.cinnamon.settings-daemon.plugins.keyboard.gschema.xml		\
+ 	org.cinnamon.settings-daemon.plugins.power.gschema.xml		\
+ 	org.cinnamon.settings-daemon.plugins.color.gschema.xml		\
+-	org.cinnamon.settings-daemon.plugins.media-keys.gschema.xml	\
+ 	org.cinnamon.settings-daemon.plugins.xsettings.gschema.xml		\
+ 	org.cinnamon.settings-daemon.plugins.housekeeping.gschema.xml	\
+ 	org.cinnamon.settings-daemon.plugins.print-notifications.gschema.xml	\
+diff --git a/data/org.cinnamon.settings-daemon.plugins.gschema.xml.in.in b/data/org.cinnamon.settings-daemon.plugins.gschema.xml.in.in
+index c7e817c..638d32a 100644
+--- a/data/org.cinnamon.settings-daemon.plugins.gschema.xml.in.in
++++ b/data/org.cinnamon.settings-daemon.plugins.gschema.xml.in.in
+@@ -10,7 +10,6 @@
+     <child name="font" schema="org.cinnamon.settings-daemon.plugins.font"/>
+     <child name="housekeeping" schema="org.cinnamon.settings-daemon.plugins.housekeeping"/>
+     <child name="keyboard" schema="org.cinnamon.settings-daemon.plugins.keyboard"/>
+-    <child name="media-keys" schema="org.cinnamon.settings-daemon.plugins.media-keys"/>
+     <child name="mouse" schema="org.cinnamon.settings-daemon.plugins.mouse"/>
+     <child name="orientation" schema="org.cinnamon.settings-daemon.plugins.orientation"/>
+     <child name="power" schema="org.cinnamon.settings-daemon.plugins.power"/>
+diff --git a/data/org.cinnamon.settings-daemon.plugins.media-keys.gschema.xml.in.in b/data/org.cinnamon.settings-daemon.plugins.media-keys.gschema.xml.in.in
+deleted file mode 100644
+index f37b0f0..0000000
+--- a/data/org.cinnamon.settings-daemon.plugins.media-keys.gschema.xml.in.in
++++ /dev/null
+@@ -1,151 +0,0 @@
+-<schemalist>
+-  <schema gettext-domain="@GETTEXT_PACKAGE@" id="org.cinnamon.settings-daemon.plugins.media-keys" path="/org/cinnamon/settings-daemon/plugins/media-keys/">
+-     <key name="active" type="b">
+-      <default>true</default>
+-      <_summary>Activation of this plugin</_summary>
+-      <_description>Whether this plugin would be activated by cinnamon-settings-daemon or not</_description>
+-    </key>
+-    <key name="priority" type="i">
+-      <default>98</default>
+-      <_summary>Priority to use for this plugin</_summary>
+-      <_description>Priority to use for this plugin in cinnamon-settings-daemon startup queue</_description>
+-    </key>
+-    <key name="calculator" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="email" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="eject" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="help" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="home" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="media" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="next" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="pause" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="play" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="logout" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="shutdown" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="previous" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="screensaver" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="search" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="stop" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="volume-down" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="volume-mute" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="volume-up" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="screenshot" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="window-screenshot" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="area-screenshot" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="screenshot-clip" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="window-screenshot-clip" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="area-screenshot-clip" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="terminal" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="www" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="magnifier" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="screenreader" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="on-screen-keyboard" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="increase-text-size" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="decrease-text-size" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="toggle-contrast" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="magnifier-zoom-in" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-    <key name="magnifier-zoom-out" type="s">
+-      <default>''</default>
+-      <_summary>deprecated - moved to org.cinnamon.desktop.keybindings.media-keys</_summary>
+-    </key>
+-  </schema>
+-
+-</schemalist>
+diff --git a/plugins/Makefile.am b/plugins/Makefile.am
+index 1052719..162d36c 100644
+--- a/plugins/Makefile.am
++++ b/plugins/Makefile.am
+@@ -13,7 +13,6 @@ enabled_plugins =	\
+ 	power		\
+ 	housekeeping    \
+ 	keyboard	\
+-	media-keys	\
+ 	mouse		\
+ 	orientation	\
+ 	screensaver-proxy \
+diff --git a/plugins/media-keys/Makefile.am b/plugins/media-keys/Makefile.am
+deleted file mode 100644
+index a810226..0000000
+--- a/plugins/media-keys/Makefile.am
++++ /dev/null
+@@ -1,116 +0,0 @@
+-icondir = $(datadir)/icons/hicolor
+-context = actions
+-
+-plugin_name = media-keys
+-
+-NULL =
+-SUBDIRS =
+-
+-AM_CFLAGS = $(WARN_CFLAGS)
+-
+-plugin_LTLIBRARIES = libmedia-keys.la
+-
+-BUILT_SOURCES = 			\
+-	csd-marshal.h			\
+-	csd-marshal.c			\
+-	$(NULL)
+-
+-csd-marshal.c: csd-marshal.list
+-	$(AM_V_GEN) $(GLIB_GENMARSHAL) --prefix=csd_marshal $< --header --body --internal > $@
+-
+-csd-marshal.h: csd-marshal.list
+-	$(AM_V_GEN) $(GLIB_GENMARSHAL) --prefix=csd_marshal $< --header --internal > $@
+-
+-libmedia_keys_la_SOURCES = 		\
+-	csd-media-keys-plugin.h		\
+-	csd-media-keys-plugin.c		\
+-	csd-media-keys-manager.h	\
+-	csd-media-keys-manager.c	\
+-	bus-watch-namespace.c		\
+-	bus-watch-namespace.h		\
+-	mpris-controller.c		\
+-	mpris-controller.h		\
+-	$(BUILT_SOURCES)		\
+-	$(NULL)
+-
+-libmedia_keys_la_CPPFLAGS = \
+-	-I$(top_srcdir)/data/					\
+-	-I$(top_srcdir)/cinnamon-settings-daemon			\
+-	-I$(top_srcdir)/plugins/common				\
+-	-DBINDIR=\"$(bindir)\"					\
+-	-DPIXMAPDIR=\""$(pkgdatadir)"\"				\
+-	-DGTKBUILDERDIR=\""$(pkgdatadir)"\"			\
+-	-DCINNAMON_SETTINGS_LOCALEDIR=\""$(datadir)/locale"\"	\
+-	$(AM_CPPFLAGS)
+-
+-libmedia_keys_la_CFLAGS = \
+-	$(PLUGIN_CFLAGS)		\
+-	$(SETTINGS_PLUGIN_CFLAGS)	\
+-	$(MEDIA_KEYS_CFLAGS)		\
+-	$(AM_CFLAGS)
+-
+-libmedia_keys_la_LDFLAGS = 		\
+-	$(WARN_LDFLAGS)			\
+-	$(CSD_PLUGIN_LDFLAGS)
+-
+-libmedia_keys_la_LIBADD  = 		\
+-	$(top_builddir)/plugins/common/libcommon.la			\
+-	$(MEDIA_KEYS_LIBS)						\
+-	$(SETTINGS_PLUGIN_LIBS)						\
+-	-lm
+-
+-plugin_in_files = 		\
+-	media-keys.cinnamon-settings-plugin.in
+-
+-plugin_DATA = $(plugin_in_files:.cinnamon-settings-plugin.in=.cinnamon-settings-plugin)
+-
+-libexec_PROGRAMS = csd-test-media-keys
+-
+-csd_test_media_keys_SOURCES =			\
+-	csd-media-keys-manager.c		\
+-	csd-media-keys-manager.h		\
+-	bus-watch-namespace.c			\
+-	bus-watch-namespace.h			\
+-	mpris-controller.c		        \
+-	mpris-controller.h	        	\
+-	test-media-keys.c			\
+-	$(BUILT_SOURCES)			\
+-	$(NULL)
+-
+-csd_test_media_keys_CPPFLAGS = \
+-	-I$(top_srcdir)/data/					\
+-	-I$(top_srcdir)/cinnamon-settings-daemon			\
+-	-I$(top_srcdir)/plugins/common				\
+-	-DBINDIR=\"$(bindir)\"					\
+-	-DPIXMAPDIR=\""$(pkgdatadir)"\"				\
+-	-DGTKBUILDERDIR=\""$(pkgdatadir)"\"			\
+-	-DCINNAMON_SETTINGS_LOCALEDIR=\""$(datadir)/locale"\"	\
+-	$(AM_CPPFLAGS)
+-
+-csd_test_media_keys_CFLAGS = \
+-	$(PLUGIN_CFLAGS)		\
+-	$(SETTINGS_PLUGIN_CFLAGS)	\
+-	$(MEDIA_KEYS_CFLAGS)		\
+-	$(AM_CFLAGS)
+-
+-csd_test_media_keys_LDADD = \
+-	$(top_builddir)/cinnamon-settings-daemon/libcsd.la		\
+-	$(top_builddir)/plugins/common/libcommon.la			\
+-	$(SETTINGS_DAEMON_LIBS)			\
+-	$(SETTINGS_PLUGIN_LIBS)			\
+-	$(MEDIA_KEYS_LIBS)			\
+-	-lm
+-
+-EXTRA_DIST = 				\
+-	csd-marshal.list		\
+-	README.media-keys-API		\
+-	$(plugin_in_files)
+-
+-CLEANFILES = 			\
+-	$(BUILT_SOURCES)	\
+-	$(plugin_DATA)
+-
+-DISTCLEANFILES =		\
+-	$(plugin_DATA)
+-
+-@CSD_INTLTOOL_PLUGIN_RULE@
+diff --git a/plugins/media-keys/README.media-keys-API b/plugins/media-keys/README.media-keys-API
+deleted file mode 100644
+index 0f6bd0b..0000000
+--- a/plugins/media-keys/README.media-keys-API
++++ /dev/null
+@@ -1,51 +0,0 @@
+-This is very simple documentation to cinnamon-settings-daemon's
+-D-Bus API for media players.
+-
+-cinnamon-settings-daemon will send key press events from multimedia
+-keys to applications that register their interest in those events.
+-This allows the play/pause button to control an audio player that's
+-not focused for example.
+-
+-The D-Bus API is described in csd-media-keys-manager.c (look for
+-introspection_xml), but a small explanation follows here.
+-
+-1. Create yourself a proxy object for the remote interface:
+-Object path: /org/gnome/SettingsDaemon/MediaKeys
+-D-Bus name: org.gnome.SettingsDaemon.MediaKeys
+-Interface name: org.gnome.SettingsDaemon.MediaKeys
+-
+-2. Register your application with cinnamon-settings-daemon
+-GrabMediaPlayerKeys ("my-application", 0)
+-with the second argument being the current time (usually 0,
+-or the time passed to you from an event, such as a mouse click)
+-
+-3. Listen to the MediaPlayerKeyPressed() signal
+-
+-4. When receiving a MediaPlayerKeyPressed() signal,
+-check whether the first argument (application) matches
+-the value you passed to GrabMediaPlayerKeys() and apply the
+-action depending on the key (2nd argument)
+-
+-Possible values of key are:
+-- Play
+-- Pause
+-- Stop
+-- Previous
+-- Next
+-- Rewind
+-- FastForward
+-- Repeat
+-- Shuffle
+-
+-5. Every time your application is focused, you should call
+-GrabMediaPlayerKeys() again, so that cinnamon-settings-daemon knows
+-which one was last used. This allows switching between a movie player
+-and a music player, for example, and have the buttons control the
+-last used application.
+-
+-6. When your application wants to stop using the functionality
+-it can call ReleaseMediaPlayerKeys(). If your application does
+-not call ReleaseMediaPlayerKeys() and releases its D-Bus connection
+-then the application will be automatically removed from the list of
+-applications held by cinnamon-settings-daemon.
+-
+diff --git a/plugins/media-keys/bus-watch-namespace.c b/plugins/media-keys/bus-watch-namespace.c
+deleted file mode 100644
+index d714528..0000000
+--- a/plugins/media-keys/bus-watch-namespace.c
++++ /dev/null
+@@ -1,352 +0,0 @@
+-/*
+- * Copyright 2013 Canonical Ltd.
+- *
+- * This program is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU Lesser General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * Lesser General Public License for more details.
+- *
+- * You should have received a copy of the GNU Lesser General Public License
+- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+- *
+- * Author: Lars Uebernickel <lars.uebernickel@canonical.com>
+- */
+-
+-#include "config.h"
+-#include <gio/gio.h>
+-#include <string.h>
+-#include "bus-watch-namespace.h"
+-
+-typedef struct
+-{
+-  guint                     id;
+-  gchar                    *name_space;
+-  GBusNameAppearedCallback  appeared_handler;
+-  GBusNameVanishedCallback  vanished_handler;
+-  gpointer                  user_data;
+-  GDestroyNotify            user_data_destroy;
+-
+-  GDBusConnection          *connection;
+-  GCancellable             *cancellable;
+-  GHashTable               *names;
+-  guint                     subscription_id;
+-} NamespaceWatcher;
+-
+-typedef struct
+-{
+-  NamespaceWatcher *watcher;
+-  gchar            *name;
+-} GetNameOwnerData;
+-
+-static guint namespace_watcher_next_id;
+-static GHashTable *namespace_watcher_watchers;
+-
+-static void
+-namespace_watcher_stop (gpointer data)
+-{
+-  NamespaceWatcher *watcher = data;
+-
+-  g_cancellable_cancel (watcher->cancellable);
+-  g_object_unref (watcher->cancellable);
+-
+-  if (watcher->subscription_id)
+-    g_dbus_connection_signal_unsubscribe (watcher->connection, watcher->subscription_id);
+-
+-  if (watcher->vanished_handler)
+-    {
+-      GHashTableIter it;
+-      const gchar *name;
+-
+-      g_hash_table_iter_init (&it, watcher->names);
+-      while (g_hash_table_iter_next (&it, (gpointer *) &name, NULL))
+-        watcher->vanished_handler (watcher->connection, name, watcher->user_data);
+-    }
+-
+-  if (watcher->user_data_destroy)
+-    watcher->user_data_destroy (watcher->user_data);
+-
+-  if (watcher->connection)
+-    {
+-      g_signal_handlers_disconnect_by_func (watcher->connection, namespace_watcher_stop, watcher);
+-      g_object_unref (watcher->connection);
+-    }
+-
+-  g_hash_table_unref (watcher->names);
+-
+-  g_hash_table_remove (namespace_watcher_watchers, GUINT_TO_POINTER (watcher->id));
+-  if (g_hash_table_size (namespace_watcher_watchers) == 0)
+-    g_clear_pointer (&namespace_watcher_watchers, g_hash_table_destroy);
+-
+-  g_free (watcher);
+-}
+-
+-static void
+-namespace_watcher_name_appeared (NamespaceWatcher *watcher,
+-                                 const gchar      *name,
+-                                 const gchar      *owner)
+-{
+-  /* There's a race between NameOwnerChanged signals arriving and the
+-   * ListNames/GetNameOwner sequence returning, so this function might
+-   * be called more than once for the same name. To ensure that
+-   * appeared_handler is only called once for each name, it is only
+-   * called when inserting the name into watcher->names (each name is
+-   * only inserted once there).
+-   */
+-  if (g_hash_table_contains (watcher->names, name))
+-    return;
+-
+-  g_hash_table_add (watcher->names, g_strdup (name));
+-
+-  if (watcher->appeared_handler)
+-    watcher->appeared_handler (watcher->connection, name, owner, watcher->user_data);
+-}
+-
+-static void
+-namespace_watcher_name_vanished (NamespaceWatcher *watcher,
+-                                 const gchar      *name)
+-{
+-  if (g_hash_table_remove (watcher->names, name) && watcher->vanished_handler)
+-    watcher->vanished_handler (watcher->connection, name, watcher->user_data);
+-}
+-
+-static gboolean
+-dbus_name_has_namespace (const gchar *name,
+-                         const gchar *name_space)
+-{
+-  gint len_name;
+-  gint len_namespace;
+-
+-  len_name = strlen (name);
+-  len_namespace = strlen (name_space);
+-
+-  if (len_name < len_namespace)
+-    return FALSE;
+-
+-  if (memcmp (name_space, name, len_namespace) != 0)
+-    return FALSE;
+-
+-  return len_namespace == len_name || name[len_namespace] == '.';
+-}
+-
+-static void
+-name_owner_changed (GDBusConnection *connection,
+-                    const gchar     *sender_name,
+-                    const gchar     *object_path,
+-                    const gchar     *interface_name,
+-                    const gchar     *signal_name,
+-                    GVariant        *parameters,
+-                    gpointer         user_data)
+-{
+-  NamespaceWatcher *watcher = user_data;
+-  const gchar *name;
+-  const gchar *old_owner;
+-  const gchar *new_owner;
+-
+-  g_variant_get (parameters, "(&s&s&s)", &name, &old_owner, &new_owner);
+-
+-  if (old_owner[0] != '\0')
+-    namespace_watcher_name_vanished (watcher, name);
+-
+-  if (new_owner[0] != '\0')
+-    namespace_watcher_name_appeared (watcher, name, new_owner);
+-}
+-
+-static void
+-got_name_owner (GObject      *object,
+-                GAsyncResult *result,
+-                gpointer      user_data)
+-{
+-  GetNameOwnerData *data = user_data;
+-  GError *error = NULL;
+-  GVariant *reply;
+-  const gchar *owner;
+-
+-  reply = g_dbus_connection_call_finish (G_DBUS_CONNECTION (object), result, &error);
+-
+-  if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+-    {
+-      g_error_free (error);
+-      goto out;
+-    }
+-
+-  if (reply == NULL)
+-    {
+-      if (!g_error_matches (error, G_DBUS_ERROR, G_DBUS_ERROR_NAME_HAS_NO_OWNER))
+-        g_warning ("bus_watch_namespace: error calling org.freedesktop.DBus.GetNameOwner: %s", error->message);
+-      g_error_free (error);
+-      goto out;
+-    }
+-
+-  g_variant_get (reply, "(&s)", &owner);
+-  namespace_watcher_name_appeared (data->watcher, data->name, owner);
+-
+-  g_variant_unref (reply);
+-
+-out:
+-  g_free (data->name);
+-  g_slice_free (GetNameOwnerData, data);
+-}
+-
+-static void
+-names_listed (GObject      *object,
+-              GAsyncResult *result,
+-              gpointer      user_data)
+-{
+-  NamespaceWatcher *watcher;
+-  GError *error = NULL;
+-  GVariant *reply;
+-  GVariantIter *iter;
+-  const gchar *name;
+-
+-  reply = g_dbus_connection_call_finish (G_DBUS_CONNECTION (object), result, &error);
+-
+-  if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+-    {
+-      g_error_free (error);
+-      return;
+-    }
+-
+-  watcher = user_data;
+-
+-  if (reply == NULL)
+-    {
+-      g_warning ("bus_watch_namespace: error calling org.freedesktop.DBus.ListNames: %s", error->message);
+-      g_error_free (error);
+-      return;
+-    }
+-
+-  g_variant_get (reply, "(as)", &iter);
+-  while (g_variant_iter_next (iter, "&s", &name))
+-    {
+-      if (dbus_name_has_namespace (name, watcher->name_space))
+-        {
+-          GetNameOwnerData *data = g_slice_new (GetNameOwnerData);
+-          data->watcher = watcher;
+-          data->name = g_strdup (name);
+-          g_dbus_connection_call (watcher->connection, "org.freedesktop.DBus", "/",
+-                                  "org.freedesktop.DBus", "GetNameOwner",
+-                                  g_variant_new ("(s)", name), G_VARIANT_TYPE ("(s)"),
+-                                  G_DBUS_CALL_FLAGS_NONE, -1, watcher->cancellable,
+-                                  got_name_owner, data);
+-        }
+-    }
+-
+-  g_variant_iter_free (iter);
+-  g_variant_unref (reply);
+-}
+-
+-static void
+-connection_closed (GDBusConnection *connection,
+-                   gboolean         remote_peer_vanished,
+-                   GError          *error,
+-                   gpointer         user_data)
+-{
+-  NamespaceWatcher *watcher = user_data;
+-
+-  namespace_watcher_stop (watcher);
+-}
+-
+-static void
+-got_bus (GObject      *object,
+-         GAsyncResult *result,
+-         gpointer      user_data)
+-{
+-  GDBusConnection *connection;
+-  NamespaceWatcher *watcher;
+-  GError *error = NULL;
+-
+-  connection = g_bus_get_finish (result, &error);
+-
+-  if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+-    {
+-      g_error_free (error);
+-      return;
+-    }
+-
+-  watcher = user_data;
+-
+-  if (connection == NULL)
+-    {
+-      namespace_watcher_stop (watcher);
+-      return;
+-    }
+-
+-  watcher->connection = connection;
+-  g_signal_connect (watcher->connection, "closed", G_CALLBACK (connection_closed), watcher);
+-
+-
+-#ifdef HAVE_NEW_GLIB
+-  // G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_NAMESPACE is only available since Glib 2.38, LMDE uses 2.36 so we test the version of Glib here.
+-  watcher->subscription_id =
+-    g_dbus_connection_signal_subscribe (watcher->connection, "org.freedesktop.DBus",
+-                                        "org.freedesktop.DBus", "NameOwnerChanged", "/org/freedesktop/DBus",
+-                                        watcher->name_space, G_DBUS_SIGNAL_FLAGS_MATCH_ARG0_NAMESPACE,
+-                                        name_owner_changed, watcher, NULL);
+-#endif /* HAVE_NEW_GLIB */
+-
+-  g_dbus_connection_call (watcher->connection, "org.freedesktop.DBus", "/",
+-                          "org.freedesktop.DBus", "ListNames", NULL, G_VARIANT_TYPE ("(as)"),
+-                          G_DBUS_CALL_FLAGS_NONE, -1, watcher->cancellable,
+-                          names_listed, watcher);
+-}
+-
+-guint
+-bus_watch_namespace (GBusType                  bus_type,
+-                     const gchar              *name_space,
+-                     GBusNameAppearedCallback  appeared_handler,
+-                     GBusNameVanishedCallback  vanished_handler,
+-                     gpointer                  user_data,
+-                     GDestroyNotify            user_data_destroy)
+-{
+-  NamespaceWatcher *watcher;
+-
+-  /* same rules for interfaces and well-known names */
+-  g_return_val_if_fail (name_space != NULL && g_dbus_is_interface_name (name_space), 0);
+-  g_return_val_if_fail (appeared_handler || vanished_handler, 0);
+-
+-  watcher = g_new0 (NamespaceWatcher, 1);
+-  watcher->id = namespace_watcher_next_id++;
+-  watcher->name_space = g_strdup (name_space);
+-  watcher->appeared_handler = appeared_handler;
+-  watcher->vanished_handler = vanished_handler;
+-  watcher->user_data = user_data;
+-  watcher->user_data_destroy = user_data_destroy;
+-  watcher->cancellable = g_cancellable_new ();;
+-  watcher->names = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+-
+-  if (namespace_watcher_watchers == NULL)
+-    namespace_watcher_watchers = g_hash_table_new (g_direct_hash, g_direct_equal);
+-  g_hash_table_insert (namespace_watcher_watchers, GUINT_TO_POINTER (watcher->id), watcher);
+-
+-  g_bus_get (bus_type, watcher->cancellable, got_bus, watcher);
+-
+-  return watcher->id;
+-}
+-
+-void
+-bus_unwatch_namespace (guint id)
+-{
+-  /* namespace_watcher_stop() might have already removed the watcher
+-   * with @id in the case of a connection error. Thus, this function
+-   * doesn't warn when @id is absent from the hash table.
+-   */
+-
+-  if (namespace_watcher_watchers)
+-    {
+-      NamespaceWatcher *watcher;
+-
+-      watcher = g_hash_table_lookup (namespace_watcher_watchers, GUINT_TO_POINTER (id));
+-      if (watcher)
+-        {
+-          /* make sure vanished() is not called as a result of this function */
+-          g_hash_table_remove_all (watcher->names);
+-
+-          namespace_watcher_stop (watcher);
+-        }
+-    }
+-}
+diff --git a/plugins/media-keys/bus-watch-namespace.h b/plugins/media-keys/bus-watch-namespace.h
+deleted file mode 100644
+index 215f6be..0000000
+--- a/plugins/media-keys/bus-watch-namespace.h
++++ /dev/null
+@@ -1,34 +0,0 @@
+-/*
+- * Copyright 2013 Canonical Ltd.
+- *
+- * This program is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU Lesser General Public License as
+- * published by the Free Software Foundation; either version 2 of the
+- * License, or (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * Lesser General Public License for more details.
+- *
+- * You should have received a copy of the GNU Lesser General Public License
+- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+- *
+- * Author: Lars Uebernickel <lars.uebernickel@canonical.com>
+- */
+-
+-#ifndef __BUS_WATCH_NAMESPACE_H__
+-#define __BUS_WATCH_NAMESPACE_H__
+-
+-#include <gio/gio.h>
+-
+-guint       bus_watch_namespace         (GBusType                  bus_type,
+-                                         const gchar              *name_space,
+-                                         GBusNameAppearedCallback  appeared_handler,
+-                                         GBusNameVanishedCallback  vanished_handler,
+-                                         gpointer                  user_data,
+-                                         GDestroyNotify            user_data_destroy);
+-
+-void        bus_unwatch_namespace       (guint id);
+-
+-#endif
+diff --git a/plugins/media-keys/csd-marshal.c b/plugins/media-keys/csd-marshal.c
+deleted file mode 100644
+index ecfcdfc..0000000
+--- a/plugins/media-keys/csd-marshal.c
++++ /dev/null
+@@ -1,102 +0,0 @@
+-
+-#ifndef __csd_marshal_MARSHAL_H__
+-#define __csd_marshal_MARSHAL_H__
+-
+-#include	<glib-object.h>
+-
+-G_BEGIN_DECLS
+-
+-#ifdef G_ENABLE_DEBUG
+-#define g_marshal_value_peek_boolean(v)  g_value_get_boolean (v)
+-#define g_marshal_value_peek_char(v)     g_value_get_schar (v)
+-#define g_marshal_value_peek_uchar(v)    g_value_get_uchar (v)
+-#define g_marshal_value_peek_int(v)      g_value_get_int (v)
+-#define g_marshal_value_peek_uint(v)     g_value_get_uint (v)
+-#define g_marshal_value_peek_long(v)     g_value_get_long (v)
+-#define g_marshal_value_peek_ulong(v)    g_value_get_ulong (v)
+-#define g_marshal_value_peek_int64(v)    g_value_get_int64 (v)
+-#define g_marshal_value_peek_uint64(v)   g_value_get_uint64 (v)
+-#define g_marshal_value_peek_enum(v)     g_value_get_enum (v)
+-#define g_marshal_value_peek_flags(v)    g_value_get_flags (v)
+-#define g_marshal_value_peek_float(v)    g_value_get_float (v)
+-#define g_marshal_value_peek_double(v)   g_value_get_double (v)
+-#define g_marshal_value_peek_string(v)   (char*) g_value_get_string (v)
+-#define g_marshal_value_peek_param(v)    g_value_get_param (v)
+-#define g_marshal_value_peek_boxed(v)    g_value_get_boxed (v)
+-#define g_marshal_value_peek_pointer(v)  g_value_get_pointer (v)
+-#define g_marshal_value_peek_object(v)   g_value_get_object (v)
+-#define g_marshal_value_peek_variant(v)  g_value_get_variant (v)
+-#else /* !G_ENABLE_DEBUG */
+-/* WARNING: This code accesses GValues directly, which is UNSUPPORTED API.
+- *          Do not access GValues directly in your code. Instead, use the
+- *          g_value_get_*() functions
+- */
+-#define g_marshal_value_peek_boolean(v)  (v)->data[0].v_int
+-#define g_marshal_value_peek_char(v)     (v)->data[0].v_int
+-#define g_marshal_value_peek_uchar(v)    (v)->data[0].v_uint
+-#define g_marshal_value_peek_int(v)      (v)->data[0].v_int
+-#define g_marshal_value_peek_uint(v)     (v)->data[0].v_uint
+-#define g_marshal_value_peek_long(v)     (v)->data[0].v_long
+-#define g_marshal_value_peek_ulong(v)    (v)->data[0].v_ulong
+-#define g_marshal_value_peek_int64(v)    (v)->data[0].v_int64
+-#define g_marshal_value_peek_uint64(v)   (v)->data[0].v_uint64
+-#define g_marshal_value_peek_enum(v)     (v)->data[0].v_long
+-#define g_marshal_value_peek_flags(v)    (v)->data[0].v_ulong
+-#define g_marshal_value_peek_float(v)    (v)->data[0].v_float
+-#define g_marshal_value_peek_double(v)   (v)->data[0].v_double
+-#define g_marshal_value_peek_string(v)   (v)->data[0].v_pointer
+-#define g_marshal_value_peek_param(v)    (v)->data[0].v_pointer
+-#define g_marshal_value_peek_boxed(v)    (v)->data[0].v_pointer
+-#define g_marshal_value_peek_pointer(v)  (v)->data[0].v_pointer
+-#define g_marshal_value_peek_object(v)   (v)->data[0].v_pointer
+-#define g_marshal_value_peek_variant(v)  (v)->data[0].v_pointer
+-#endif /* !G_ENABLE_DEBUG */
+-
+-
+-/* VOID:STRING,STRING (csd-marshal.list:1) */
+-G_GNUC_INTERNAL void csd_marshal_VOID__STRING_STRING (GClosure     *closure,
+-                                                      GValue       *return_value,
+-                                                      guint         n_param_values,
+-                                                      const GValue *param_values,
+-                                                      gpointer      invocation_hint,
+-                                                      gpointer      marshal_data);
+-void
+-csd_marshal_VOID__STRING_STRING (GClosure     *closure,
+-                                 GValue       *return_value G_GNUC_UNUSED,
+-                                 guint         n_param_values,
+-                                 const GValue *param_values,
+-                                 gpointer      invocation_hint G_GNUC_UNUSED,
+-                                 gpointer      marshal_data)
+-{
+-  typedef void (*GMarshalFunc_VOID__STRING_STRING) (gpointer     data1,
+-                                                    gpointer     arg_1,
+-                                                    gpointer     arg_2,
+-                                                    gpointer     data2);
+-  register GMarshalFunc_VOID__STRING_STRING callback;
+-  register GCClosure *cc = (GCClosure*) closure;
+-  register gpointer data1, data2;
+-
+-  g_return_if_fail (n_param_values == 3);
+-
+-  if (G_CCLOSURE_SWAP_DATA (closure))
+-    {
+-      data1 = closure->data;
+-      data2 = g_value_peek_pointer (param_values + 0);
+-    }
+-  else
+-    {
+-      data1 = g_value_peek_pointer (param_values + 0);
+-      data2 = closure->data;
+-    }
+-  callback = (GMarshalFunc_VOID__STRING_STRING) (marshal_data ? marshal_data : cc->callback);
+-
+-  callback (data1,
+-            g_marshal_value_peek_string (param_values + 1),
+-            g_marshal_value_peek_string (param_values + 2),
+-            data2);
+-}
+-
+-G_END_DECLS
+-
+-#endif /* __csd_marshal_MARSHAL_H__ */
+-
+diff --git a/plugins/media-keys/csd-marshal.h b/plugins/media-keys/csd-marshal.h
+deleted file mode 100644
+index 1ea985d..0000000
+--- a/plugins/media-keys/csd-marshal.h
++++ /dev/null
+@@ -1,20 +0,0 @@
+-
+-#ifndef __csd_marshal_MARSHAL_H__
+-#define __csd_marshal_MARSHAL_H__
+-
+-#include	<glib-object.h>
+-
+-G_BEGIN_DECLS
+-
+-/* VOID:STRING,STRING (csd-marshal.list:1) */
+-G_GNUC_INTERNAL void csd_marshal_VOID__STRING_STRING (GClosure     *closure,
+-                                                      GValue       *return_value,
+-                                                      guint         n_param_values,
+-                                                      const GValue *param_values,
+-                                                      gpointer      invocation_hint,
+-                                                      gpointer      marshal_data);
+-
+-G_END_DECLS
+-
+-#endif /* __csd_marshal_MARSHAL_H__ */
+-
+diff --git a/plugins/media-keys/csd-marshal.list b/plugins/media-keys/csd-marshal.list
+deleted file mode 100644
+index 72f9937..0000000
+--- a/plugins/media-keys/csd-marshal.list
++++ /dev/null
+@@ -1 +0,0 @@
+-VOID:STRING,STRING
+diff --git a/plugins/media-keys/csd-media-keys-manager.c b/plugins/media-keys/csd-media-keys-manager.c
+deleted file mode 100644
+index 5adbffd..0000000
+--- a/plugins/media-keys/csd-media-keys-manager.c
++++ /dev/null
+@@ -1,2354 +0,0 @@
+-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
+- *
+- * Copyright (C) 2001-2003 Bastien Nocera <hadess@hadess.net>
+- * Copyright (C) 2006-2007 William Jon McCann <mccann@jhu.edu>
+- *
+- * This program is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published by
+- * the Free Software Foundation; either version 2 of the License, or
+- * (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin Street - Suite 500, Boston, MA 02110-1335, USA.
+- *
+- */
+-
+-#include "config.h"
+-
+-#include <sys/types.h>
+-#include <sys/wait.h>
+-#include <stdlib.h>
+-#include <stdio.h>
+-#include <unistd.h>
+-#include <string.h>
+-#include <errno.h>
+-#include <math.h>
+-
+-#include <locale.h>
+-
+-#include <glib.h>
+-#include <glib/gi18n.h>
+-#include <gio/gio.h>
+-#include <gdk/gdk.h>
+-#include <gdk/gdkx.h>
+-#include <gtk/gtk.h>
+-#include <gio/gdesktopappinfo.h>
+-#include <gio/gunixfdlist.h>
+-
+-#ifdef HAVE_GUDEV
+-#include <gudev/gudev.h>
+-#endif
+-
+-#include "mpris-controller.h"
+-#include "cinnamon-settings-profile.h"
+-#include "csd-marshal.h"
+-#include "csd-media-keys-manager.h"
+-
+-#include "csd-power-helper.h"
+-#include "csd-input-helper.h"
+-#include "csd-enums.h"
+-
+-#include <canberra.h>
+-#include <libcvc/gvc-mixer-control.h>
+-
+-#include <libcinnamon-desktop/cdesktop-enums.h>
+-
+-#include <libnotify/notify.h>
+-
+-/* For media keys, we need to keep using org.gnome because
+-   that's what apps are looking for */
+-#define GNOME_DBUS_PATH "/org/gnome/SettingsDaemon"
+-#define GNOME_DBUS_NAME "org.gnome.SettingsDaemon"
+-#define CSD_MEDIA_KEYS_DBUS_PATH GNOME_DBUS_PATH "/MediaKeys"
+-#define CSD_MEDIA_KEYS_DBUS_NAME GNOME_DBUS_NAME ".MediaKeys"
+-
+-#define CINNAMON_DBUS_PATH "/org/cinnamon/SettingsDaemon"
+-#define CINNAMON_DBUS_NAME "org.cinnamon.SettingsDaemon"
+-
+-#define CINNAMON_SHELL_DBUS_PATH "/org/Cinnamon"
+-#define CINNAMON_SHELL_DBUS_NAME "org.Cinnamon"
+-
+-#define CINNAMON_KEYBINDINGS_PATH CINNAMON_DBUS_PATH "/KeybindingHandler"
+-#define CINNAMON_KEYBINDINGS_NAME CINNAMON_DBUS_NAME ".KeybindingHandler"
+-
+-#define GNOME_SESSION_DBUS_NAME "org.gnome.SessionManager"
+-#define GNOME_SESSION_DBUS_PATH "/org/gnome/SessionManager"
+-#define GNOME_SESSION_DBUS_INTERFACE "org.gnome.SessionManager"
+-
+-#define GNOME_KEYRING_DBUS_NAME "org.gnome.keyring"
+-#define GNOME_KEYRING_DBUS_PATH "/org/gnome/keyring/daemon"
+-#define GNOME_KEYRING_DBUS_INTERFACE "org.gnome.keyring.Daemon"
+-
+-#define OSD_ALL_OUTPUTS -1
+-
+-static const gchar introspection_xml[] =
+-"<node>"
+-"  <interface name='org.gnome.SettingsDaemon.MediaKeys'>"
+-"    <annotation name='org.freedesktop.DBus.GLib.CSymbol' value='csd_media_keys_manager'/>"
+-"    <method name='GrabMediaPlayerKeys'>"
+-"      <arg name='application' direction='in' type='s'/>"
+-"      <arg name='time' direction='in' type='u'/>"
+-"    </method>"
+-"    <method name='ReleaseMediaPlayerKeys'>"
+-"      <arg name='application' direction='in' type='s'/>"
+-"    </method>"
+-"    <signal name='MediaPlayerKeyPressed'>"
+-"      <arg name='application' type='s'/>"
+-"      <arg name='key' type='s'/>"
+-"    </signal>"
+-"  </interface>"
+-"</node>";
+-
+-static const gchar kb_introspection_xml[] =
+-"<node>"
+-"  <interface name='org.cinnamon.SettingsDaemon.KeybindingHandler'>"
+-"    <annotation name='org.freedesktop.DBus.GLib.CSymbol' value='csd_media_keys_manager'/>"
+-"    <method name='HandleKeybinding'>"
+-"      <arg name='type' direction='in' type='u'/>"
+-"    </method>"
+-"  </interface>"
+-"</node>";
+-
+-#define SETTINGS_INTERFACE_DIR "org.cinnamon.desktop.interface"
+-#define SETTINGS_POWER_DIR "org.cinnamon.settings-daemon.plugins.power"
+-#define SETTINGS_XSETTINGS_DIR "org.cinnamon.settings-daemon.plugins.xsettings"
+-#define SETTINGS_TOUCHPAD_DIR "org.cinnamon.settings-daemon.peripherals.touchpad"
+-#define TOUCHPAD_ENABLED_KEY "touchpad-enabled"
+-#define HIGH_CONTRAST "HighContrast"
+-
+-#define VOLUME_STEP 5           /* percents for one volume button press */
+-#define MAX_VOLUME 65536.0
+-
+-#define LOGIND_DBUS_NAME                       "org.freedesktop.login1"
+-#define LOGIND_DBUS_PATH                       "/org/freedesktop/login1"
+-#define LOGIND_DBUS_INTERFACE                  "org.freedesktop.login1.Manager"
+-
+-#define CSD_MEDIA_KEYS_MANAGER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CSD_TYPE_MEDIA_KEYS_MANAGER, CsdMediaKeysManagerPrivate))
+-
+-typedef struct {
+-        char   *application;
+-        char   *name;
+-        guint32 time;
+-        guint   watch_id;
+-} MediaPlayer;
+-
+-struct CsdMediaKeysManagerPrivate
+-{
+-        /* Volume bits */
+-        GvcMixerControl *volume;
+-        GvcMixerStream  *stream;
+-        GvcMixerStream  *source_stream; /* Microphone */
+-        ca_context      *ca;
+-
+-#ifdef HAVE_GUDEV
+-        GHashTable      *streams; /* key = X device ID, value = stream id */
+-        GUdevClient     *udev_client;
+-#endif /* HAVE_GUDEV */
+-
+-        GtkWidget       *dialog;
+-
+-        /* HighContrast theme settings */
+-        GSettings       *interface_settings;
+-        char            *icon_theme;
+-        char            *gtk_theme;
+-
+-        /* Power stuff */
+-        GSettings       *power_settings;
+-        GDBusProxy      *upower_proxy;
+-        GDBusProxy      *power_screen_proxy;
+-        GDBusProxy      *power_keyboard_proxy;
+-
+-        /* OSD stuff */
+-        GDBusProxy      *cinnamon_proxy;
+-        GCancellable    *cinnamon_cancellable;
+-
+-        /* logind stuff */
+-        GDBusProxy      *logind_proxy;
+-        gint             inhibit_keys_fd;
+-        GSettings        *session_settings;
+-        gboolean         use_logind;
+-
+-        /* Multihead stuff */
+-        GdkScreen       *current_screen;
+-        GSList          *screens;
+-        int              opcode;
+-
+-        GList           *media_players;
+-
+-        GDBusNodeInfo   *introspection_data;
+-        GDBusNodeInfo   *kb_introspection_data;
+-        GDBusConnection *connection;
+-        GCancellable    *bus_cancellable;
+-        GDBusProxy      *xrandr_proxy;
+-        GCancellable    *cancellable;
+-
+-        guint            start_idle_id;
+-
+-        MprisController *mpris_controller;
+-
+-        /* Ubuntu notifications */
+-        NotifyNotification *volume_notification;
+-        NotifyNotification *brightness_notification;
+-        NotifyNotification *kb_backlight_notification;
+-};
+-
+-static void     csd_media_keys_manager_class_init  (CsdMediaKeysManagerClass *klass);
+-static void     csd_media_keys_manager_init        (CsdMediaKeysManager      *media_keys_manager);
+-static void     csd_media_keys_manager_finalize    (GObject                  *object);
+-static void     register_manager                   (CsdMediaKeysManager      *manager);
+-static gboolean do_action (CsdMediaKeysManager *manager,
+-                           guint                deviceid,
+-                           CDesktopMediaKeyType type,
+-                           gint64               timestamp);
+-
+-G_DEFINE_TYPE (CsdMediaKeysManager, csd_media_keys_manager, G_TYPE_OBJECT)
+-
+-static gpointer manager_object = NULL;
+-
+-#define NOTIFY_CAP_PRIVATE_SYNCHRONOUS "x-canonical-private-synchronous"
+-#define NOTIFY_CAP_PRIVATE_ICON_ONLY "x-canonical-private-icon-only"
+-#define NOTIFY_HINT_TRUE "true"
+-
+-typedef struct {
+-        CsdMediaKeysManager *manager;
+-        CDesktopMediaKeyType type;
+-        guint old_percentage;
+-
+-} CsdBrightnessActionData;
+-
+-static void
+-init_screens (CsdMediaKeysManager *manager)
+-{
+-        GdkDisplay *display;
+-        int i;
+-
+-        display = gdk_display_get_default ();
+-        for (i = 0; i < gdk_display_get_n_screens (display); i++) {
+-                GdkScreen *screen;
+-
+-                screen = gdk_display_get_screen (display, i);
+-                if (screen == NULL) {
+-                        continue;
+-                }
+-                manager->priv->screens = g_slist_append (manager->priv->screens, screen);
+-        }
+-
+-        manager->priv->current_screen = manager->priv->screens->data;
+-}
+-
+-static char *
+-get_term_command (CsdMediaKeysManager *manager)
+-{
+-        char *cmd_term, *cmd_args;;
+-        char *cmd = NULL;
+-        GSettings *settings;
+-
+-        settings = g_settings_new ("org.cinnamon.desktop.default-applications.terminal");
+-        cmd_term = g_settings_get_string (settings, "exec");
+-        if (cmd_term[0] == '\0')
+-                cmd_term = g_strdup ("gnome-terminal");
+-
+-        cmd_args = g_settings_get_string (settings, "exec-arg");
+-        if (strcmp (cmd_term, "") != 0) {
+-                cmd = g_strdup_printf ("%s %s -e", cmd_term, cmd_args);
+-        } else {
+-                cmd = g_strdup_printf ("%s -e", cmd_term);
+-        }
+-
+-        g_free (cmd_args);
+-        g_free (cmd_term);
+-        g_object_unref (settings);
+-
+-        return cmd;
+-}
+-
+-static char **
+-get_keyring_env (CsdMediaKeysManager *manager)
+-{
+-	GError *error = NULL;
+-	GVariant *variant, *item;
+-	GVariantIter *iter;
+-	char **envp;
+-
+-	variant = g_dbus_connection_call_sync (manager->priv->connection,
+-					       GNOME_KEYRING_DBUS_NAME,
+-					       GNOME_KEYRING_DBUS_PATH,
+-					       GNOME_KEYRING_DBUS_INTERFACE,
+-					       "GetEnvironment",
+-					       NULL,
+-					       NULL,
+-					       G_DBUS_CALL_FLAGS_NONE,
+-					       -1,
+-					       NULL,
+-					       &error);
+-	if (variant == NULL) {
+-		g_warning ("Failed to call GetEnvironment on keyring daemon: %s", error->message);
+-		g_error_free (error);
+-		return NULL;
+-	}
+-
+-	envp = g_get_environ ();
+-
+-	g_variant_get (variant, "(a{ss})", &iter);
+-
+-	while ((item = g_variant_iter_next_value (iter))) {
+-		char *key;
+-		char *value;
+-
+-		g_variant_get (item,
+-			       "{ss}",
+-			       &key,
+-			       &value);
+-
+-		envp = g_environ_setenv (envp, key, value, TRUE);
+-
+-		g_variant_unref (item);
+-		g_free (key);
+-		g_free (value);
+-	}
+-
+-	g_variant_iter_free (iter);
+-	g_variant_unref (variant);
+-
+-	return envp;
+-}
+-
+-static void
+-execute (CsdMediaKeysManager *manager,
+-         char                *cmd,
+-         gboolean             need_term)
+-{
+-        gboolean retval;
+-        char   **argv;
+-        int      argc;
+-        char    *exec;
+-        char    *term = NULL;
+-        GError  *error = NULL;
+-
+-        retval = FALSE;
+-
+-        if (need_term)
+-                term = get_term_command (manager);
+-
+-        if (term) {
+-                exec = g_strdup_printf ("%s %s", term, cmd);
+-                g_free (term);
+-        } else {
+-                exec = g_strdup (cmd);
+-        }
+-
+-        if (g_shell_parse_argv (exec, &argc, &argv, NULL)) {
+-		char   **envp;
+-
+-		envp = get_keyring_env (manager);
+-
+-                retval = g_spawn_async (g_get_home_dir (),
+-                                        argv,
+-                                        envp,
+-                                        G_SPAWN_SEARCH_PATH,
+-                                        NULL,
+-                                        NULL,
+-                                        NULL,
+-                                        &error);
+-
+-                g_strfreev (argv);
+-                g_strfreev (envp);
+-        }
+-
+-        if (retval == FALSE && error != NULL) {
+-                g_warning ("Couldn't execute command: %s: %s", exec, error->message);
+-                g_error_free (error);
+-        }
+-        g_free (exec);
+-}
+-
+-static void 
+-ensure_cancellable (GCancellable **cancellable)
+-{
+-        if (*cancellable == NULL) {
+-                *cancellable = g_cancellable_new ();
+-                g_object_add_weak_pointer (G_OBJECT (*cancellable),
+-                                           (gpointer *)cancellable);
+-        } else {
+-                g_object_ref (*cancellable);
+-        }
+-}
+-
+-static void
+-cinnamon_proxy_complete (GObject      *source,
+-                         GAsyncResult *result,
+-                         gpointer     data)
+-{
+-        CsdMediaKeysManager *manager = data;
+-        g_object_unref (manager->priv->cinnamon_cancellable);
+-}
+-
+-static void
+-show_osd (CsdMediaKeysManager *manager,
+-          const char          *icon,
+-          int                  level,
+-          int                  monitor)
+-{
+-        GVariantBuilder builder;
+-
+-        if (manager->priv->connection == NULL ||
+-            manager->priv->cinnamon_proxy == NULL) {
+-                g_warning ("No existing D-Bus connection trying to handle osd");
+-                return;
+-        }
+-
+-        g_variant_builder_init (&builder, G_VARIANT_TYPE_TUPLE);
+-        g_variant_builder_open (&builder, G_VARIANT_TYPE_VARDICT);
+-        if (icon)
+-                g_variant_builder_add (&builder, "{sv}",
+-                                       "icon", g_variant_new_string (icon));
+-        if (level >= 0)
+-                g_variant_builder_add (&builder, "{sv}",
+-                                       "level", g_variant_new_int32 (level));
+-        if (monitor >= 0)
+-                g_variant_builder_add (&builder, "{sv}",
+-                                       "monitor", g_variant_new_int32 (monitor));
+-        g_variant_builder_close (&builder);
+-
+-        ensure_cancellable (&manager->priv->cinnamon_cancellable);
+-
+-        g_dbus_proxy_call (manager->priv->cinnamon_proxy,
+-                           "ShowOSD",
+-                           g_variant_builder_end (&builder),
+-                           G_DBUS_CALL_FLAGS_NO_AUTO_START,
+-                           -1,
+-                           manager->priv->cinnamon_cancellable,
+-                           cinnamon_proxy_complete,
+-                           manager);
+-}
+-
+-static const char *
+-get_icon_name_for_volume (gboolean muted,
+-                          int volume,
+-                          gboolean is_mic)
+-{
+-    static const char *icon_names[] = {
+-        "audio-volume-muted-symbolic",
+-        "audio-volume-low-symbolic",
+-        "audio-volume-medium-symbolic",
+-        "audio-volume-high-symbolic",
+-        "microphone-sensitivity-muted-symbolic",
+-        "microphone-sensitivity-low-symbolic",
+-        "microphone-sensitivity-medium-symbolic",
+-        "microphone-sensitivity-high-symbolic",
+-        NULL
+-    };
+-    int n;
+-
+-    if (muted) {
+-        n = 0;
+-    } else {
+-        n = 3 * volume / 100 + 1;
+-        if (n < 1) {
+-            n = 1;
+-        } else if (n > 3) {
+-            n = 3;
+-        }
+-    }
+-    if (is_mic) {
+-      n += 4;
+-    }
+-
+-    return icon_names[n];
+-}
+-
+-static void
+-launch_app (GAppInfo *app_info,
+-	    gint64    timestamp)
+-{
+-	GError *error = NULL;
+-        GdkAppLaunchContext *launch_context;
+-
+-        /* setup the launch context so the startup notification is correct */
+-        launch_context = gdk_display_get_app_launch_context (gdk_display_get_default ());
+-        gdk_app_launch_context_set_timestamp (launch_context, timestamp);
+-
+-	if (!g_app_info_launch (app_info, NULL, G_APP_LAUNCH_CONTEXT (launch_context), &error)) {
+-		g_warning ("Could not launch '%s': %s",
+-			   g_app_info_get_commandline (app_info),
+-			   error->message);
+-		g_error_free (error);
+-	}
+-        g_object_unref (launch_context);
+-}
+-
+-static void
+-do_url_action (CsdMediaKeysManager *manager,
+-               const char          *scheme,
+-               gint64               timestamp)
+-{
+-        GAppInfo *app_info;
+-
+-        app_info = g_app_info_get_default_for_uri_scheme (scheme);
+-        if (app_info != NULL) {
+-                launch_app (app_info, timestamp);
+-                g_object_unref (app_info);
+-        } else {
+-                g_warning ("Could not find default application for '%s' scheme", scheme);
+-	}
+-}
+-
+-static void
+-do_media_action (CsdMediaKeysManager *manager,
+-		 gint64               timestamp)
+-{
+-        GAppInfo *app_info;
+-
+-        app_info = g_app_info_get_default_for_type ("audio/x-vorbis+ogg", FALSE);
+-        if (app_info != NULL) {
+-                launch_app (app_info, timestamp);
+-                g_object_unref (app_info);
+-        } else {
+-                g_warning ("Could not find default application for '%s' mime-type", "audio/x-vorbis+ogg");
+-        }
+-}
+-
+-static void
+-do_terminal_action (CsdMediaKeysManager *manager)
+-{
+-        GSettings *settings;
+-        char *term;
+-
+-        settings = g_settings_new ("org.cinnamon.desktop.default-applications.terminal");
+-        term = g_settings_get_string (settings, "exec");
+-
+-        if (term)
+-        execute (manager, term, FALSE);
+-
+-        g_free (term);
+-        g_object_unref (settings);
+-}
+-
+-static void
+-cinnamon_session_shutdown (CsdMediaKeysManager *manager)
+-{
+-	GError *error = NULL;
+-	GVariant *variant;
+-
+-	/* Shouldn't happen, but you never know */
+-	if (manager->priv->connection == NULL) {
+-		execute (manager, "cinnamon-session-quit --logout", FALSE);
+-		return;
+-	}
+-
+-	variant = g_dbus_connection_call_sync (manager->priv->connection,
+-					       GNOME_SESSION_DBUS_NAME,
+-					       GNOME_SESSION_DBUS_PATH,
+-					       GNOME_SESSION_DBUS_INTERFACE,
+-					       "Shutdown",
+-					       NULL,
+-					       NULL,
+-					       G_DBUS_CALL_FLAGS_NONE,
+-					       -1,
+-					       NULL,
+-					       &error);
+-	if (variant == NULL) {
+-		g_warning ("Failed to call Shutdown on session manager: %s", error->message);
+-		g_error_free (error);
+-		return;
+-	}
+-	g_variant_unref (variant);
+-}
+-
+-static void
+-do_logout_action (CsdMediaKeysManager *manager)
+-{
+-        execute (manager, "cinnamon-session-quit --logout", FALSE);
+-}
+-
+-static void
+-do_eject_action_cb (GDrive              *drive,
+-                    GAsyncResult        *res,
+-                    CsdMediaKeysManager *manager)
+-{
+-        g_drive_eject_with_operation_finish (drive, res, NULL);
+-}
+-
+-#define NO_SCORE 0
+-#define SCORE_CAN_EJECT 50
+-#define SCORE_HAS_MEDIA 100
+-static void
+-do_eject_action (CsdMediaKeysManager *manager)
+-{
+-        GList *drives, *l;
+-        GDrive *fav_drive;
+-        guint score;
+-        GVolumeMonitor *volume_monitor;
+-
+-        volume_monitor = g_volume_monitor_get ();
+-
+-
+-        /* Find the best drive to eject */
+-        fav_drive = NULL;
+-        score = NO_SCORE;
+-        drives = g_volume_monitor_get_connected_drives (volume_monitor);
+-        for (l = drives; l != NULL; l = l->next) {
+-                GDrive *drive = l->data;
+-
+-                if (g_drive_can_eject (drive) == FALSE)
+-                        continue;
+-                if (g_drive_is_media_removable (drive) == FALSE)
+-                        continue;
+-                if (score < SCORE_CAN_EJECT) {
+-                        fav_drive = drive;
+-                        score = SCORE_CAN_EJECT;
+-                }
+-                if (g_drive_has_media (drive) == FALSE)
+-                        continue;
+-                if (score < SCORE_HAS_MEDIA) {
+-                        fav_drive = drive;
+-                        score = SCORE_HAS_MEDIA;
+-                        break;
+-                }
+-        }
+-
+-        /* Show the dialogue */
+-        show_osd (manager, "media-eject-symbolic", -1, OSD_ALL_OUTPUTS);
+-
+-        /* Clean up the drive selection and exit if no suitable
+-         * drives are found */
+-        if (fav_drive != NULL)
+-                fav_drive = g_object_ref (fav_drive);
+-
+-        g_list_foreach (drives, (GFunc) g_object_unref, NULL);
+-        if (fav_drive == NULL)
+-                return;
+-
+-        /* Eject! */
+-        g_drive_eject_with_operation (fav_drive, G_MOUNT_UNMOUNT_FORCE,
+-                                      NULL, NULL,
+-                                      (GAsyncReadyCallback) do_eject_action_cb,
+-                                      manager);
+-        g_object_unref (fav_drive);
+-        g_object_unref (volume_monitor);
+-}
+-
+-static void
+-do_home_key_action (CsdMediaKeysManager *manager,
+-		    gint64               timestamp)
+-{
+-	GFile *file;
+-	GError *error = NULL;
+-	char *uri;
+-
+-	file = g_file_new_for_path (g_get_home_dir ());
+-	uri = g_file_get_uri (file);
+-	g_object_unref (file);
+-
+-	if (gtk_show_uri (NULL, uri, timestamp, &error) == FALSE) {
+-		g_warning ("Failed to launch '%s': %s", uri, error->message);
+-		g_error_free (error);
+-	}
+-	g_free (uri);
+-}
+-
+-static void
+-do_execute_desktop (CsdMediaKeysManager *manager,
+-		    const char          *desktop,
+-		    gint64               timestamp)
+-{
+-        GDesktopAppInfo *app_info;
+-
+-        app_info = g_desktop_app_info_new (desktop);
+-        if (app_info != NULL) {
+-                launch_app (G_APP_INFO (app_info), timestamp);
+-                g_object_unref (app_info);
+-        } else {
+-                g_warning ("Could not find application '%s'", desktop);
+-	}
+-}
+-
+-static void
+-do_touchpad_osd_action (CsdMediaKeysManager *manager, gboolean state)
+-{
+-    show_osd (manager,
+-              state ? "input-touchpad-symbolic" : "touchpad-disabled-symbolic",
+-              -1, OSD_ALL_OUTPUTS);
+-}
+-
+-static void
+-do_touchpad_action (CsdMediaKeysManager *manager)
+-{
+-        GSettings *settings;
+-        gboolean state;
+-
+-        if (touchpad_is_present () == FALSE) {
+-                do_touchpad_osd_action (manager, FALSE);
+-                return;
+-        }
+-
+-        settings = g_settings_new (SETTINGS_TOUCHPAD_DIR);
+-        state = g_settings_get_boolean (settings, TOUCHPAD_ENABLED_KEY);
+-
+-        do_touchpad_osd_action (manager, !state);
+-
+-        g_settings_set_boolean (settings, TOUCHPAD_ENABLED_KEY, !state);
+-        g_object_unref (settings);
+-}
+-
+-static void
+-update_dialog (CsdMediaKeysManager *manager,
+-               GvcMixerStream      *stream,
+-               gboolean             is_mic,
+-               gint                 vol,
+-               gboolean             muted,
+-               gboolean             sound_changed,
+-               gboolean             quiet)
+-{
+-    const char *icon;
+-    vol = CLAMP (vol, 0, 100);
+-    icon = get_icon_name_for_volume (muted, vol, is_mic);
+-    show_osd (manager, icon, vol, OSD_ALL_OUTPUTS);
+-    if (quiet == FALSE && sound_changed != FALSE && muted == FALSE) {
+-        GSettings *settings = g_settings_new ("org.cinnamon.desktop.sound");
+-        gboolean enabled = g_settings_get_boolean (settings, "volume-sound-enabled");
+-        char *sound = g_settings_get_string (settings, "volume-sound-file");
+-        if (enabled) {
+-            ca_context_change_device (manager->priv->ca, gvc_mixer_stream_get_name (stream));
+-            ca_context_play (manager->priv->ca, 1, CA_PROP_MEDIA_FILENAME, sound, NULL);
+-        }
+-        g_free(sound);
+-        g_object_unref (settings);
+-    }
+-}
+-
+-#ifdef HAVE_GUDEV
+-/* PulseAudio gives us /devices/... paths, when udev
+- * expects /sys/devices/... paths. */
+-static GUdevDevice *
+-get_udev_device_for_sysfs_path (CsdMediaKeysManager *manager,
+-				const char *sysfs_path)
+-{
+-	char *path;
+-	GUdevDevice *dev;
+-
+-	path = g_strdup_printf ("/sys%s", sysfs_path);
+-	dev = g_udev_client_query_by_sysfs_path (manager->priv->udev_client, path);
+-	g_free (path);
+-
+-	return dev;
+-}
+-
+-static GvcMixerStream *
+-get_stream_for_device_id (CsdMediaKeysManager *manager,
+-			  guint                deviceid,
+-			  gboolean             is_source_stream)
+-{
+-	char *devnode;
+-	gpointer id_ptr;
+-	GvcMixerStream *res;
+-	GUdevDevice *dev, *parent;
+-	GSList *streams, *l;
+-
+-	id_ptr = g_hash_table_lookup (manager->priv->streams, GUINT_TO_POINTER (deviceid));
+-	if (id_ptr != NULL) {
+-		if (GPOINTER_TO_UINT (id_ptr) == (guint) -1)
+-			return NULL;
+-		else
+-			return gvc_mixer_control_lookup_stream_id (manager->priv->volume, GPOINTER_TO_UINT (id_ptr));
+-	}
+-
+-	devnode = xdevice_get_device_node (deviceid);
+-	if (devnode == NULL) {
+-		g_debug ("Could not find device node for XInput device %d", deviceid);
+-		return NULL;
+-	}
+-
+-	dev = g_udev_client_query_by_device_file (manager->priv->udev_client, devnode);
+-	if (dev == NULL) {
+-		g_debug ("Could not find udev device for device path '%s'", devnode);
+-		g_free (devnode);
+-		return NULL;
+-	}
+-	g_free (devnode);
+-
+-	if (g_strcmp0 (g_udev_device_get_property (dev, "ID_BUS"), "usb") != 0) {
+-		g_debug ("Not handling XInput device %d, not USB", deviceid);
+-		g_hash_table_insert (manager->priv->streams,
+-				     GUINT_TO_POINTER (deviceid),
+-				     GUINT_TO_POINTER ((guint) -1));
+-		g_object_unref (dev);
+-		return NULL;
+-	}
+-
+-	parent = g_udev_device_get_parent_with_subsystem (dev, "usb", "usb_device");
+-	if (parent == NULL) {
+-		g_warning ("No USB device parent for XInput device %d even though it's USB", deviceid);
+-		g_object_unref (dev);
+-		return NULL;
+-	}
+-
+-	res = NULL;
+-	if (is_source_stream) {
+-		streams = gvc_mixer_control_get_sinks (manager->priv->volume);
+-	} else {
+-		streams = gvc_mixer_control_get_sources (manager->priv->volume);
+-	}
+-	for (l = streams; l; l = l->next) {
+-		GvcMixerStream *stream = l->data;
+-		const char *sysfs_path;
+-		GUdevDevice *stream_dev, *stream_parent;
+-
+-		sysfs_path = gvc_mixer_stream_get_sysfs_path (stream);
+-		stream_dev = get_udev_device_for_sysfs_path (manager, sysfs_path);
+-		if (stream_dev == NULL)
+-			continue;
+-		stream_parent = g_udev_device_get_parent_with_subsystem (stream_dev, "usb", "usb_device");
+-		g_object_unref (stream_dev);
+-		if (stream_parent == NULL)
+-			continue;
+-
+-		if (g_strcmp0 (g_udev_device_get_sysfs_path (stream_parent),
+-			       g_udev_device_get_sysfs_path (parent)) == 0) {
+-			res = stream;
+-		}
+-		g_object_unref (stream_parent);
+-		if (res != NULL)
+-			break;
+-	}
+-
+-	if (res)
+-		g_hash_table_insert (manager->priv->streams,
+-				     GUINT_TO_POINTER (deviceid),
+-				     GUINT_TO_POINTER (gvc_mixer_stream_get_id (res)));
+-	else
+-		g_hash_table_insert (manager->priv->streams,
+-				     GUINT_TO_POINTER (deviceid),
+-				     GUINT_TO_POINTER ((guint) -1));
+-
+-	return res;
+-}
+-#endif /* HAVE_GUDEV */
+-
+-static void
+-do_sound_action (CsdMediaKeysManager *manager,
+-		 guint                deviceid,
+-                 int                  type,
+-                 gboolean             quiet)
+-{
+-	GvcMixerStream *stream;
+-        gboolean old_muted, new_muted;
+-        guint old_vol, new_vol, norm_vol_step, osd_vol;
+-        gboolean sound_changed;
+-
+-        /* Find the stream that corresponds to the device, if any */
+-        gboolean is_source_stream =
+-            type == C_DESKTOP_MEDIA_KEY_MIC_MUTE ? TRUE : FALSE;
+-#ifdef HAVE_GUDEV
+-        stream = get_stream_for_device_id (manager, deviceid, is_source_stream);
+-        if (stream == NULL)
+-#endif /* HAVE_GUDEV */
+-        {
+-                if (is_source_stream) {
+-                        stream = manager->priv->source_stream;
+-                } else {
+-                        stream = manager->priv->stream;
+-                }
+-        }
+-        if (stream == NULL)
+-                return;
+-
+-        norm_vol_step = PA_VOLUME_NORM * VOLUME_STEP / 100;
+-
+-        /* FIXME: this is racy */
+-        new_vol = old_vol = gvc_mixer_stream_get_volume (stream);
+-        new_muted = old_muted = gvc_mixer_stream_get_is_muted (stream);
+-        sound_changed = FALSE;
+-
+-        switch (type) {
+-        case C_DESKTOP_MEDIA_KEY_MUTE:
+-        case C_DESKTOP_MEDIA_KEY_MIC_MUTE:
+-                new_muted = !old_muted;
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_VOLUME_DOWN:
+-                if (old_vol <= norm_vol_step) {
+-                        new_vol = 0;
+-                        new_muted = TRUE;
+-                } else {
+-                        new_vol = old_vol - norm_vol_step;
+-                }
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_VOLUME_UP:
+-                new_muted = FALSE;
+-                /* When coming out of mute only increase the volume if it was 0 */
+-                if (!old_muted || old_vol == 0)
+-                        new_vol = MIN (old_vol + norm_vol_step, MAX_VOLUME);
+-                break;
+-        }
+-
+-        if (old_muted != new_muted) {
+-                gvc_mixer_stream_change_is_muted (stream, new_muted);
+-                sound_changed = TRUE;
+-        }
+-
+-        if (old_vol != new_vol) {
+-                if (gvc_mixer_stream_set_volume (stream, new_vol) != FALSE) {
+-                        gvc_mixer_stream_push_volume (stream);
+-                        sound_changed = TRUE;
+-                }
+-        }
+-
+-        if (type == C_DESKTOP_MEDIA_KEY_VOLUME_DOWN && old_vol == 0 && old_muted)
+-                osd_vol = -1;
+-        else if (type == C_DESKTOP_MEDIA_KEY_VOLUME_UP && old_vol == PA_VOLUME_NORM && !old_muted)
+-                osd_vol = 101;
+-        else if (!new_muted)
+-                osd_vol = (int) (100 * (double) new_vol / PA_VOLUME_NORM);
+-        else
+-                osd_vol = 0;
+-        update_dialog (manager, stream, is_source_stream, osd_vol, new_muted, sound_changed, quiet);
+-}
+-
+-static void
+-update_default_sink (CsdMediaKeysManager *manager)
+-{
+-        GvcMixerStream *stream;
+-
+-        stream = gvc_mixer_control_get_default_sink (manager->priv->volume);
+-        if (stream == manager->priv->stream)
+-                return;
+-
+-        if (manager->priv->stream != NULL) {
+-                g_object_unref (manager->priv->stream);
+-                manager->priv->stream = NULL;
+-        }
+-
+-        if (stream != NULL) {
+-                manager->priv->stream = g_object_ref (stream);
+-        } else {
+-                g_warning ("Unable to get default sink");
+-        }
+-}
+-
+-static void
+-update_default_source (CsdMediaKeysManager *manager)
+-{
+-        GvcMixerStream *stream;
+-
+-        stream = gvc_mixer_control_get_default_source (manager->priv->volume);
+-        if (stream == manager->priv->source_stream)
+-                return;
+-
+-        if (manager->priv->source_stream != NULL) {
+-                g_object_unref (manager->priv->source_stream);
+-                manager->priv->source_stream = NULL;
+-        }
+-
+-        if (stream != NULL) {
+-                manager->priv->source_stream = g_object_ref (stream);
+-        } else {
+-                g_warning ("Unable to get default source");
+-        }
+-}
+-
+-
+-
+-static void
+-on_control_state_changed (GvcMixerControl     *control,
+-                          GvcMixerControlState new_state,
+-                          CsdMediaKeysManager *manager)
+-{
+-        update_default_sink (manager);
+-        update_default_source (manager);
+-}
+-
+-static void
+-on_control_default_sink_changed (GvcMixerControl     *control,
+-                                 guint                id,
+-                                 CsdMediaKeysManager *manager)
+-{
+-        update_default_sink (manager);
+-}
+-
+-static void
+-on_control_default_source_changed (GvcMixerControl     *control,
+-                                   guint                id,
+-                                   CsdMediaKeysManager *manager)
+-{
+-        update_default_source (manager);
+-}
+-
+-#ifdef HAVE_GUDEV
+-static gboolean
+-remove_stream (gpointer key,
+-	       gpointer value,
+-	       gpointer id)
+-{
+-	if (GPOINTER_TO_UINT (value) == GPOINTER_TO_UINT (id))
+-		return TRUE;
+-	return FALSE;
+-}
+-#endif /* HAVE_GUDEV */
+-
+-static void
+-on_control_stream_removed (GvcMixerControl     *control,
+-                           guint                id,
+-                           CsdMediaKeysManager *manager)
+-{
+-        if (manager->priv->stream != NULL) {
+-		if (gvc_mixer_stream_get_id (manager->priv->stream) == id) {
+-	                g_object_unref (manager->priv->stream);
+-			manager->priv->stream = NULL;
+-		}
+-        }
+-        if (manager->priv->source_stream != NULL) {
+-                if (gvc_mixer_stream_get_id (manager->priv->source_stream) == id) {
+-                        g_object_unref (manager->priv->source_stream);
+-                        manager->priv->source_stream = NULL;
+-                }
+-        }
+-
+-#ifdef HAVE_GUDEV
+-	g_hash_table_foreach_remove (manager->priv->streams, (GHRFunc) remove_stream, GUINT_TO_POINTER (id));
+-#endif
+-}
+-
+-static void
+-free_media_player (MediaPlayer *player)
+-{
+-        if (player->watch_id > 0) {
+-                g_bus_unwatch_name (player->watch_id);
+-                player->watch_id = 0;
+-        }
+-        g_free (player->application);
+-        g_free (player->name);
+-        g_free (player);
+-}
+-
+-static gint
+-find_by_application (gconstpointer a,
+-                     gconstpointer b)
+-{
+-        return strcmp (((MediaPlayer *)a)->application, b);
+-}
+-
+-static gint
+-find_by_name (gconstpointer a,
+-              gconstpointer b)
+-{
+-        return strcmp (((MediaPlayer *)a)->name, b);
+-}
+-
+-static gint
+-find_by_time (gconstpointer a,
+-              gconstpointer b)
+-{
+-        return ((MediaPlayer *)a)->time < ((MediaPlayer *)b)->time;
+-}
+-
+-static void
+-name_vanished_handler (GDBusConnection     *connection,
+-                       const gchar         *name,
+-                       CsdMediaKeysManager *manager)
+-{
+-        GList *iter;
+-
+-        iter = g_list_find_custom (manager->priv->media_players,
+-                                   name,
+-                                   find_by_name);
+-
+-        if (iter != NULL) {
+-                MediaPlayer *player;
+-
+-                player = iter->data;
+-                g_debug ("Deregistering vanished %s (name: %s)", player->application, player->name);
+-                free_media_player (player);
+-                manager->priv->media_players = g_list_delete_link (manager->priv->media_players, iter);
+-        }
+-}
+-
+-/*
+- * Register a new media player. Most applications will want to call
+- * this with time = GDK_CURRENT_TIME. This way, the last registered
+- * player will receive media events. In some cases, applications
+- * may want to register with a lower priority (usually 1), to grab
+- * events only nobody is interested.
+- */
+-static void
+-csd_media_keys_manager_grab_media_player_keys (CsdMediaKeysManager *manager,
+-                                               const char          *application,
+-                                               const char          *name,
+-                                               guint32              time)
+-{
+-        GList       *iter;
+-        MediaPlayer *media_player;
+-        guint        watch_id;
+-
+-        if (time == GDK_CURRENT_TIME) {
+-                GTimeVal tv;
+-
+-                g_get_current_time (&tv);
+-                time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+-        }
+-
+-        iter = g_list_find_custom (manager->priv->media_players,
+-                                   application,
+-                                   find_by_application);
+-
+-        if (iter != NULL) {
+-                if (((MediaPlayer *)iter->data)->time < time) {
+-                        MediaPlayer *player = iter->data;
+-                        free_media_player (player);
+-                        manager->priv->media_players = g_list_delete_link (manager->priv->media_players, iter);
+-                } else {
+-                        return;
+-                }
+-        }
+-
+-        watch_id = g_bus_watch_name (G_BUS_TYPE_SESSION,
+-                                     name,
+-                                     G_BUS_NAME_WATCHER_FLAGS_NONE,
+-                                     NULL,
+-                                     (GBusNameVanishedCallback) name_vanished_handler,
+-                                     manager,
+-                                     NULL);
+-
+-        g_debug ("Registering %s at %u", application, time);
+-        media_player = g_new0 (MediaPlayer, 1);
+-        media_player->application = g_strdup (application);
+-        media_player->name = g_strdup (name);
+-        media_player->time = time;
+-        media_player->watch_id = watch_id;
+-
+-        manager->priv->media_players = g_list_insert_sorted (manager->priv->media_players,
+-                                                             media_player,
+-                                                             find_by_time);
+-}
+-
+-static void
+-csd_media_keys_manager_release_media_player_keys (CsdMediaKeysManager *manager,
+-                                                  const char          *application,
+-                                                  const char          *name)
+-{
+-        GList *iter = NULL;
+-
+-        g_return_if_fail (application != NULL || name != NULL);
+-
+-        if (application != NULL) {
+-                iter = g_list_find_custom (manager->priv->media_players,
+-                                           application,
+-                                           find_by_application);
+-        }
+-
+-        if (iter == NULL && name != NULL) {
+-                iter = g_list_find_custom (manager->priv->media_players,
+-                                           name,
+-                                           find_by_name);
+-        }
+-
+-        if (iter != NULL) {
+-                MediaPlayer *player;
+-
+-                player = iter->data;
+-                g_debug ("Deregistering %s (name: %s)", application, player->name);
+-                free_media_player (player);
+-                manager->priv->media_players = g_list_delete_link (manager->priv->media_players, iter);
+-        }
+-}
+-
+-static gboolean
+-csd_media_player_key_pressed (CsdMediaKeysManager *manager,
+-                              const char          *key)
+-{
+-        const char  *application;
+-        gboolean     have_listeners;
+-        GError      *error = NULL;
+-        MediaPlayer *player;
+-
+-        g_return_val_if_fail (key != NULL, FALSE);
+-
+-        g_debug ("Media key '%s' pressed", key);
+-
+-        have_listeners = (manager->priv->media_players != NULL);
+-
+-        if (!have_listeners) {
+-                if (!mpris_controller_key (manager->priv->mpris_controller, key)) {
+-                /* Popup a dialog with an (/) icon */
+-                    show_osd (manager, "action-unavailable-symbolic", -1, OSD_ALL_OUTPUTS);
+-                 }
+-                return TRUE;
+-        }
+-
+-        player = manager->priv->media_players->data;
+-        application = player->application;
+-
+-        if (g_dbus_connection_emit_signal (manager->priv->connection,
+-                                           player->name,
+-                                           CSD_MEDIA_KEYS_DBUS_PATH,
+-                                           CSD_MEDIA_KEYS_DBUS_NAME,
+-                                           "MediaPlayerKeyPressed",
+-                                           g_variant_new ("(ss)", application ? application : "", key),
+-                                           &error) == FALSE) {
+-                g_debug ("Error emitting signal: %s", error->message);
+-                g_error_free (error);
+-        }
+-
+-        return !have_listeners;
+-}
+-
+-static void
+-csd_media_keys_manager_handle_cinnamon_keybinding (CsdMediaKeysManager *manager,
+-                                                   guint                deviceid,
+-                                                   CDesktopMediaKeyType type,
+-                                                   gint64               timestamp)
+-{
+-    do_action (manager, deviceid, type, timestamp);
+-}
+-
+-static void
+-handle_method_call (GDBusConnection       *connection,
+-                    const gchar           *sender,
+-                    const gchar           *object_path,
+-                    const gchar           *interface_name,
+-                    const gchar           *method_name,
+-                    GVariant              *parameters,
+-                    GDBusMethodInvocation *invocation,
+-                    gpointer               user_data)
+-{
+-        CsdMediaKeysManager *manager = (CsdMediaKeysManager *) user_data;
+-
+-        g_debug ("Calling method '%s' for media-keys", method_name);
+-
+-        if (g_strcmp0 (method_name, "ReleaseMediaPlayerKeys") == 0) {
+-                const char *app_name;
+-
+-                g_variant_get (parameters, "(&s)", &app_name);
+-                csd_media_keys_manager_release_media_player_keys (manager, app_name, sender);
+-                g_dbus_method_invocation_return_value (invocation, NULL);
+-        } else if (g_strcmp0 (method_name, "GrabMediaPlayerKeys") == 0) {
+-                const char *app_name;
+-                guint32 time;
+-
+-                g_variant_get (parameters, "(&su)", &app_name, &time);
+-                csd_media_keys_manager_grab_media_player_keys (manager, app_name, sender, time);
+-                g_dbus_method_invocation_return_value (invocation, NULL);
+-        } else if (g_strcmp0 (method_name, "HandleKeybinding") == 0) {
+-                CDesktopMediaKeyType action;
+-                g_variant_get (parameters, "(u)", &action);
+-                csd_media_keys_manager_handle_cinnamon_keybinding (manager, 0, action, CurrentTime);
+-                g_dbus_method_invocation_return_value (invocation, NULL);
+-        }
+-}
+-
+-static const GDBusInterfaceVTable interface_vtable =
+-{
+-        handle_method_call,
+-        NULL, /* Get Property */
+-        NULL, /* Set Property */
+-};
+-
+-static gboolean
+-do_multimedia_player_action (CsdMediaKeysManager *manager,
+-                             const char          *icon,
+-                             const char          *key)
+-{
+-        return csd_media_player_key_pressed (manager, key);
+-}
+-
+-static void
+-on_xrandr_action_call_finished (GObject             *source_object,
+-                                GAsyncResult        *res,
+-                                CsdMediaKeysManager *manager)
+-{
+-        GError *error = NULL;
+-        GVariant *variant;
+-        char *action;
+-
+-        action = g_object_get_data (G_OBJECT (source_object),
+-                                    "csd-media-keys-manager-xrandr-action");
+-
+-        variant = g_dbus_proxy_call_finish (G_DBUS_PROXY (source_object), res, &error);
+-
+-        g_object_unref (manager->priv->cancellable);
+-        manager->priv->cancellable = NULL;
+-
+-        if (error != NULL) {
+-                g_warning ("Unable to call '%s': %s", action, error->message);
+-                g_error_free (error);
+-        } else {
+-                g_variant_unref (variant);
+-        }
+-
+-        g_free (action);
+-}
+-
+-static void
+-do_xrandr_action (CsdMediaKeysManager *manager,
+-                  const char          *action,
+-                  gint64               timestamp)
+-{
+-        CsdMediaKeysManagerPrivate *priv = manager->priv;
+-
+-        if (priv->connection == NULL || priv->xrandr_proxy == NULL) {
+-                g_warning ("No existing D-Bus connection trying to handle XRANDR keys");
+-                return;
+-        }
+-
+-        if (priv->cancellable != NULL) {
+-                g_debug ("xrandr action already in flight");
+-                return;
+-        }
+-
+-        priv->cancellable = g_cancellable_new ();
+-
+-        g_object_set_data (G_OBJECT (priv->xrandr_proxy),
+-                           "csd-media-keys-manager-xrandr-action",
+-                           g_strdup (action));
+-
+-        g_dbus_proxy_call (priv->xrandr_proxy,
+-                           action,
+-                           g_variant_new ("(x)", timestamp),
+-                           G_DBUS_CALL_FLAGS_NONE,
+-                           -1,
+-                           priv->cancellable,
+-                           (GAsyncReadyCallback) on_xrandr_action_call_finished,
+-                           manager);
+-}
+-
+-static gboolean
+-do_video_out_action (CsdMediaKeysManager *manager,
+-                     gint64               timestamp)
+-{
+-        do_xrandr_action (manager, "VideoModeSwitch", timestamp);
+-        return FALSE;
+-}
+-
+-static gboolean
+-do_video_rotate_action (CsdMediaKeysManager *manager,
+-                        gint64               timestamp)
+-{
+-        do_xrandr_action (manager, "Rotate", timestamp);
+-        return FALSE;
+-}
+-
+-static void
+-do_toggle_accessibility_key (const char *key)
+-{
+-        GSettings *settings;
+-        gboolean state;
+-
+-        settings = g_settings_new ("org.cinnamon.desktop.a11y.applications");
+-        state = g_settings_get_boolean (settings, key);
+-        g_settings_set_boolean (settings, key, !state);
+-        g_object_unref (settings);
+-}
+-
+-static void
+-do_screenreader_action (CsdMediaKeysManager *manager)
+-{
+-        do_toggle_accessibility_key ("screen-reader-enabled");
+-}
+-
+-static void
+-do_on_screen_keyboard_action (CsdMediaKeysManager *manager)
+-{
+-    if (manager->priv->connection == NULL ||
+-        manager->priv->cinnamon_proxy == NULL) {
+-            g_warning ("No existing D-Bus connection trying to handle osd");
+-            do_toggle_accessibility_key ("screen-keyboard-enabled");
+-            return;
+-    }
+-
+-    ensure_cancellable (&manager->priv->cinnamon_cancellable);
+-
+-    g_dbus_proxy_call (manager->priv->cinnamon_proxy,
+-                       "ToggleKeyboard",
+-                       NULL,
+-                       G_DBUS_CALL_FLAGS_NONE,
+-                       -1,
+-                       manager->priv->cinnamon_cancellable,
+-                       cinnamon_proxy_complete,
+-                       manager);
+-}
+-
+-static void
+-do_text_size_action (CsdMediaKeysManager *manager,
+-                     CDesktopMediaKeyType type)
+-{
+-	gdouble factor, best, distance;
+-	guint i;
+-
+-	/* Same values used in the Seeing tab of the Universal Access panel */
+-	static gdouble factors[] = {
+-		0.75,
+-		1.0,
+-		1.25,
+-		1.5
+-	};
+-
+-	/* Figure out the current DPI scaling factor */
+-	factor = g_settings_get_double (manager->priv->interface_settings, "text-scaling-factor");
+-	factor += (type == C_DESKTOP_MEDIA_KEY_INCREASE_TEXT ? 0.25 : -0.25);
+-
+-	/* Try to find a matching value */
+-	distance = 1e6;
+-	best = 1.0;
+-	for (i = 0; i < G_N_ELEMENTS(factors); i++) {
+-		gdouble d;
+-		d = fabs (factor - factors[i]);
+-		if (d < distance) {
+-			best = factors[i];
+-			distance = d;
+-		}
+-	}
+-
+-	if (best == 1.0)
+-		g_settings_reset (manager->priv->interface_settings, "text-scaling-factor");
+-	else
+-		g_settings_set_double (manager->priv->interface_settings, "text-scaling-factor", best);
+-}
+-
+-static void
+-do_toggle_contrast_action (CsdMediaKeysManager *manager)
+-{
+-	gboolean high_contrast;
+-	char *theme;
+-
+-	/* Are we using HighContrast now? */
+-	theme = g_settings_get_string (manager->priv->interface_settings, "gtk-theme");
+-	high_contrast = g_str_equal (theme, HIGH_CONTRAST);
+-	g_free (theme);
+-
+-	if (high_contrast != FALSE) {
+-		if (manager->priv->gtk_theme == NULL)
+-			g_settings_reset (manager->priv->interface_settings, "gtk-theme");
+-		else
+-			g_settings_set (manager->priv->interface_settings, "gtk-theme", manager->priv->gtk_theme);
+-		g_settings_set (manager->priv->interface_settings, "icon-theme", manager->priv->icon_theme);
+-	} else {
+-		g_settings_set (manager->priv->interface_settings, "gtk-theme", HIGH_CONTRAST);
+-		g_settings_set (manager->priv->interface_settings, "icon-theme", HIGH_CONTRAST);
+-	}
+-}
+-
+-static void
+-do_config_power_action (CsdMediaKeysManager *manager,
+-                        const gchar *config_key)
+-{
+-        CsdPowerActionType action_type;
+-
+-        action_type = g_settings_get_enum (manager->priv->power_settings,
+-                                           config_key);
+-        switch (action_type) {
+-        case CSD_POWER_ACTION_SUSPEND:
+-                csd_power_suspend (manager->priv->use_logind, manager->priv->upower_proxy);
+-                break;
+-        case CSD_POWER_ACTION_INTERACTIVE:
+-                cinnamon_session_shutdown (manager);
+-                break;
+-        case CSD_POWER_ACTION_SHUTDOWN:
+-                //FIXME: A wee bit cheating here...
+-                execute (manager, "dbus-send --dest=org.gnome.SessionManager /org/gnome/SessionManager org.gnome.SessionManager.RequestShutdown", FALSE);
+-                break;
+-        case CSD_POWER_ACTION_HIBERNATE:
+-                csd_power_hibernate (manager->priv->use_logind, manager->priv->upower_proxy);
+-                break;
+-        case CSD_POWER_ACTION_BLANK:
+-                execute (manager, "cinnamon-screensaver-command --lock", FALSE);
+-                break;
+-        case CSD_POWER_ACTION_NOTHING:
+-                /* these actions cannot be handled by media-keys and
+-                 * are not used in this context */
+-                break;
+-        }
+-}
+-
+-static void
+-update_screen_cb (GObject             *source_object,
+-                  GAsyncResult        *res,
+-                  gpointer             user_data)
+-{
+-        GError *error = NULL;
+-        guint percentage;
+-        int output_id;
+-        GVariant *variant;
+-        CsdMediaKeysManager *manager = CSD_MEDIA_KEYS_MANAGER (user_data);
+-
+-        variant = g_dbus_proxy_call_finish (G_DBUS_PROXY (source_object),
+-                                            res, &error);
+-        if (variant == NULL) {
+-                g_warning ("Failed to set new screen percentage: %s",
+-                           error->message);
+-                g_error_free (error);
+-                return;
+-        }
+-
+-        /* update the dialog with the new value */
+-        g_variant_get (variant, "(ui)", &percentage, &output_id);
+-        show_osd (manager, "display-brightness-symbolic", percentage, output_id);
+-        g_variant_unref (variant);
+-}
+-
+-static void
+-do_screen_brightness_action_real (GObject       *source_object,
+-                                  GAsyncResult  *res,
+-                                  gpointer       user_data)
+-{
+-        CsdBrightnessActionData *data = (CsdBrightnessActionData *) user_data;
+-        CsdMediaKeysManager *manager = data->manager;
+-        GError *error = NULL;
+-
+-        GVariant *old_percentage = g_dbus_proxy_call_finish (G_DBUS_PROXY (source_object),
+-                                                             res, &error);
+-        if (old_percentage == NULL) {
+-                g_warning ("Failed to get old screen percentage: %s", error->message);
+-                g_error_free (error);
+-                g_free (data);
+-                return;
+-        }
+-
+-        g_variant_get (old_percentage, "(u)", &data->old_percentage);
+-
+-        /* call into the power plugin */
+-        g_dbus_proxy_call (manager->priv->power_screen_proxy,
+-                           data->type == C_DESKTOP_MEDIA_KEY_SCREEN_BRIGHTNESS_UP ? "StepUp" : "StepDown",
+-                           NULL,
+-                           G_DBUS_CALL_FLAGS_NONE,
+-                           -1,
+-                           NULL,
+-                           update_screen_cb,
+-                           manager);
+-
+-        g_variant_unref (old_percentage);
+-}
+-
+-static void
+-do_screen_brightness_action (CsdMediaKeysManager *manager,
+-                             CDesktopMediaKeyType type)
+-{
+-        if (manager->priv->connection == NULL ||
+-            manager->priv->power_screen_proxy == NULL) {
+-                g_warning ("No existing D-Bus connection trying to handle power keys");
+-                return;
+-        }
+-
+-        CsdBrightnessActionData *data = g_new0 (CsdBrightnessActionData, 1);
+-        data->manager = manager;
+-        data->type = type;
+-
+-        g_dbus_proxy_call (manager->priv->power_screen_proxy,
+-                           "GetPercentage",
+-                           NULL,
+-                           G_DBUS_CALL_FLAGS_NONE,
+-                           -1,
+-                           NULL,
+-                           do_screen_brightness_action_real,
+-                           data);
+-}
+-
+-static void
+-update_keyboard_cb (GObject             *source_object,
+-                    GAsyncResult        *res,
+-                    gpointer             user_data)
+-{
+-        GError *error = NULL;
+-        guint percentage;
+-        GVariant *new_percentage;
+-        CsdMediaKeysManager *manager = CSD_MEDIA_KEYS_MANAGER (user_data);
+-
+-        new_percentage = g_dbus_proxy_call_finish (G_DBUS_PROXY (source_object),
+-                                                   res, &error);
+-        if (new_percentage == NULL) {
+-                g_warning ("Failed to set new keyboard percentage: %s",
+-                           error->message);
+-                g_error_free (error);
+-                return;
+-        }
+-
+-        /* update the dialog with the new value */
+-        g_variant_get (new_percentage, "(u)", &percentage);
+-        show_osd (manager, "keyboard-brightness-symbolic", percentage, OSD_ALL_OUTPUTS);
+-        g_variant_unref (new_percentage);
+-}
+-
+-static void
+-do_keyboard_brightness_action (CsdMediaKeysManager   *manager,
+-                               CDesktopMediaKeyType   type)
+-{
+-        const char *cmd;
+-
+-        if (manager->priv->connection == NULL ||
+-            manager->priv->power_keyboard_proxy == NULL) {
+-                g_warning ("No existing D-Bus connection trying to handle power keys");
+-                return;
+-        }
+-
+-        switch (type) {
+-        case C_DESKTOP_MEDIA_KEY_KEYBOARD_BRIGHTNESS_UP:
+-                cmd = "StepUp";
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_KEYBOARD_BRIGHTNESS_DOWN:
+-                cmd = "StepDown";
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_KEYBOARD_BRIGHTNESS_TOGGLE:
+-                cmd = "Toggle";
+-                break;
+-        default:
+-                g_assert_not_reached ();
+-        }
+-
+-        /* call into the power plugin */
+-        g_dbus_proxy_call (manager->priv->power_keyboard_proxy,
+-                           cmd,
+-                           NULL,
+-                           G_DBUS_CALL_FLAGS_NONE,
+-                           -1,
+-                           NULL,
+-                           update_keyboard_cb,
+-                           manager);
+-}
+-
+-static gboolean
+-do_action (CsdMediaKeysManager *manager,
+-           guint                deviceid,
+-           CDesktopMediaKeyType type,
+-           gint64               timestamp)
+-{
+-        char *cmd;
+-
+-        g_debug ("Launching action for key type '%d' (on device id %d)", type, deviceid);
+-
+-        switch (type) {
+-        case C_DESKTOP_MEDIA_KEY_TOUCHPAD:
+-                do_touchpad_action (manager);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_TOUCHPAD_ON:
+-                do_touchpad_osd_action (manager, TRUE);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_TOUCHPAD_OFF:
+-                do_touchpad_osd_action (manager, FALSE);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_MUTE:
+-        case C_DESKTOP_MEDIA_KEY_VOLUME_DOWN:
+-        case C_DESKTOP_MEDIA_KEY_VOLUME_UP:
+-        case C_DESKTOP_MEDIA_KEY_MIC_MUTE:
+-                do_sound_action (manager, deviceid, type, FALSE);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_MUTE_QUIET:
+-                do_sound_action (manager, deviceid, C_DESKTOP_MEDIA_KEY_MUTE, TRUE);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_VOLUME_DOWN_QUIET:
+-                do_sound_action (manager, deviceid, C_DESKTOP_MEDIA_KEY_VOLUME_DOWN, TRUE);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_VOLUME_UP_QUIET:
+-                do_sound_action (manager, deviceid, C_DESKTOP_MEDIA_KEY_VOLUME_UP, TRUE);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_LOGOUT:
+-                do_logout_action (manager);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_EJECT:
+-                do_eject_action (manager);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_HOME:
+-                do_home_key_action (manager, timestamp);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_SEARCH:
+-                cmd = NULL;
+-                if ((cmd = g_find_program_in_path ("tracker-search-tool")))
+-                        do_execute_desktop (manager, "tracker-needle.desktop", timestamp);
+-                else
+-                        do_execute_desktop (manager, "gnome-search-tool.desktop", timestamp);
+-                g_free (cmd);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_EMAIL:
+-                do_url_action (manager, "mailto", timestamp);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_SCREENSAVER:
+-                execute (manager, "cinnamon-screensaver-command --lock", FALSE);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_HELP:
+-                do_url_action (manager, "ghelp", timestamp);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_SCREENSHOT:
+-                execute (manager, "gnome-screenshot", FALSE);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_WINDOW_SCREENSHOT:
+-                execute (manager, "gnome-screenshot --window", FALSE);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_AREA_SCREENSHOT:
+-                execute (manager, "gnome-screenshot --area", FALSE);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_SCREENSHOT_CLIP:
+-                execute (manager, "gnome-screenshot --clipboard", FALSE);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_WINDOW_SCREENSHOT_CLIP:
+-                execute (manager, "gnome-screenshot --window --clipboard", FALSE);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_AREA_SCREENSHOT_CLIP:
+-                execute (manager, "gnome-screenshot --area --clipboard", FALSE);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_TERMINAL:
+-                do_terminal_action (manager);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_WWW:
+-                do_url_action (manager, "http", timestamp);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_MEDIA:
+-                do_media_action (manager, timestamp);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_CALCULATOR:
+-                if ((cmd = g_find_program_in_path ("gnome-calculator"))) {
+-                execute (manager, "gnome-calculator", FALSE);
+-                } else if ((cmd = g_find_program_in_path ("galculator"))) {
+-                execute (manager, "galculator", FALSE);
+-                } else {
+-                execute (manager, "mate-calc", FALSE);
+-                }
+-
+-                g_free (cmd);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_PLAY:
+-                return do_multimedia_player_action (manager, NULL, "Play");
+-        case C_DESKTOP_MEDIA_KEY_PAUSE:
+-                return do_multimedia_player_action (manager, NULL, "Pause");
+-        case C_DESKTOP_MEDIA_KEY_STOP:
+-                return do_multimedia_player_action (manager, NULL, "Stop");
+-        case C_DESKTOP_MEDIA_KEY_PREVIOUS:
+-                return do_multimedia_player_action (manager, NULL, "Previous");
+-        case C_DESKTOP_MEDIA_KEY_NEXT:
+-                return do_multimedia_player_action (manager, NULL, "Next");
+-        case C_DESKTOP_MEDIA_KEY_REWIND:
+-                return do_multimedia_player_action (manager, NULL, "Rewind");
+-        case C_DESKTOP_MEDIA_KEY_FORWARD:
+-                return do_multimedia_player_action (manager, NULL, "FastForward");
+-        case C_DESKTOP_MEDIA_KEY_REPEAT:
+-                return do_multimedia_player_action (manager, NULL, "Repeat");
+-        case C_DESKTOP_MEDIA_KEY_RANDOM:
+-                return do_multimedia_player_action (manager, NULL, "Shuffle");
+-        case C_DESKTOP_MEDIA_KEY_VIDEO_OUT:
+-                do_video_out_action (manager, timestamp);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_ROTATE_VIDEO:
+-                do_video_rotate_action (manager, timestamp);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_SCREENREADER:
+-                do_screenreader_action (manager);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_ON_SCREEN_KEYBOARD:
+-                do_on_screen_keyboard_action (manager);
+-                break;
+-	case C_DESKTOP_MEDIA_KEY_INCREASE_TEXT:
+-	case C_DESKTOP_MEDIA_KEY_DECREASE_TEXT:
+-		do_text_size_action (manager, type);
+-		break;
+-	case C_DESKTOP_MEDIA_KEY_TOGGLE_CONTRAST:
+-		do_toggle_contrast_action (manager);
+-		break;
+-        case C_DESKTOP_MEDIA_KEY_SHUTDOWN:
+-                do_config_power_action (manager, "button-power");
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_SUSPEND:
+-                do_config_power_action (manager, "button-suspend");
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_HIBERNATE:
+-                do_config_power_action (manager, "button-hibernate");
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_SCREEN_BRIGHTNESS_UP:
+-        case C_DESKTOP_MEDIA_KEY_SCREEN_BRIGHTNESS_DOWN:
+-                do_screen_brightness_action (manager, type);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_KEYBOARD_BRIGHTNESS_UP:
+-        case C_DESKTOP_MEDIA_KEY_KEYBOARD_BRIGHTNESS_DOWN:
+-        case C_DESKTOP_MEDIA_KEY_KEYBOARD_BRIGHTNESS_TOGGLE:
+-                do_keyboard_brightness_action (manager, type);
+-                break;
+-        case C_DESKTOP_MEDIA_KEY_BATTERY:
+-                do_execute_desktop (manager, "gnome-power-statistics.desktop", timestamp);
+-                break;
+-        /* Note, no default so compiler catches missing keys */
+-        case C_DESKTOP_MEDIA_KEY_SEPARATOR:
+-                g_assert_not_reached ();
+-        }
+-
+-        return FALSE;
+-}
+-
+-static void
+-update_theme_settings (GSettings           *settings,
+-		       const char          *key,
+-		       CsdMediaKeysManager *manager)
+-{
+-	char *theme;
+-
+-	theme = g_settings_get_string (manager->priv->interface_settings, key);
+-	if (g_str_equal (theme, HIGH_CONTRAST)) {
+-		g_free (theme);
+-	} else {
+-		if (g_str_equal (key, "gtk-theme")) {
+-			g_free (manager->priv->gtk_theme);
+-			manager->priv->gtk_theme = theme;
+-		} else {
+-			g_free (manager->priv->icon_theme);
+-			manager->priv->icon_theme = theme;
+-		}
+-	}
+-}
+-
+-static gboolean
+-start_media_keys_idle_cb (CsdMediaKeysManager *manager)
+-{
+-        g_debug ("Starting media_keys manager");
+-        cinnamon_settings_profile_start (NULL);
+-
+-        gvc_mixer_control_open (manager->priv->volume);
+-
+-        /* Sound events */
+-        ca_context_create (&manager->priv->ca);
+-        ca_context_set_driver (manager->priv->ca, "pulse");
+-        ca_context_change_props (manager->priv->ca, 0,
+-                                 CA_PROP_APPLICATION_ID, "org.gnome.VolumeControl",
+-                                 NULL);
+-
+-        manager->priv->session_settings = g_settings_new("org.cinnamon.desktop.session");
+-        manager->priv->use_logind = g_settings_get_boolean (manager->priv->session_settings, "settings-daemon-uses-logind");
+-
+-        /* for the power plugin interface code */
+-        manager->priv->power_settings = g_settings_new (SETTINGS_POWER_DIR);
+-
+-        /* Logic from http://git.gnome.org/browse/gnome-shell/tree/js/ui/status/accessibility.js#n163 */
+-        manager->priv->interface_settings = g_settings_new (SETTINGS_INTERFACE_DIR);
+-        g_signal_connect (G_OBJECT (manager->priv->interface_settings), "changed::gtk-theme",
+-			  G_CALLBACK (update_theme_settings), manager);
+-        g_signal_connect (G_OBJECT (manager->priv->interface_settings), "changed::icon-theme",
+-			  G_CALLBACK (update_theme_settings), manager);
+-	manager->priv->gtk_theme = g_settings_get_string (manager->priv->interface_settings, "gtk-theme");
+-	if (g_str_equal (manager->priv->gtk_theme, HIGH_CONTRAST)) {
+-		g_free (manager->priv->gtk_theme);
+-		manager->priv->gtk_theme = NULL;
+-	}
+-	manager->priv->icon_theme = g_settings_get_string (manager->priv->interface_settings, "icon-theme");
+-
+-        init_screens (manager);
+-
+-        g_debug ("Starting mpris controller");
+-        manager->priv->mpris_controller = mpris_controller_new ();
+-
+-        cinnamon_settings_profile_end (NULL);
+-
+-        manager->priv->start_idle_id = 0;
+-
+-        return FALSE;
+-}
+-
+-gboolean
+-csd_media_keys_manager_start (CsdMediaKeysManager *manager,
+-                              GError             **error)
+-{
+-        const char * const subsystems[] = { "input", "usb", "sound", NULL };
+-
+-        cinnamon_settings_profile_start (NULL);
+-
+-#ifdef HAVE_GUDEV
+-        manager->priv->streams = g_hash_table_new (g_direct_hash, g_direct_equal);
+-        manager->priv->udev_client = g_udev_client_new (subsystems);
+-#endif
+-
+-        /* initialise Volume handler
+-         *
+-         * We do this one here to force checking gstreamer cache, etc.
+-         * The rest (grabbing and setting the keys) can happen in an
+-         * idle.
+-         */
+-        cinnamon_settings_profile_start ("gvc_mixer_control_new");
+-
+-        manager->priv->volume = gvc_mixer_control_new ("Cinnamon Volume Control Media Keys");
+-
+-        g_signal_connect (manager->priv->volume,
+-                          "state-changed",
+-                          G_CALLBACK (on_control_state_changed),
+-                          manager);
+-        g_signal_connect (manager->priv->volume,
+-                          "default-sink-changed",
+-                          G_CALLBACK (on_control_default_sink_changed),
+-                          manager);
+-        g_signal_connect (manager->priv->volume,
+-                          "default-source-changed",
+-                          G_CALLBACK (on_control_default_source_changed),
+-                          manager);
+-        g_signal_connect (manager->priv->volume,
+-                          "stream-removed",
+-                          G_CALLBACK (on_control_stream_removed),
+-                          manager);
+-
+-        cinnamon_settings_profile_end ("gvc_mixer_control_new");
+-
+-        manager->priv->start_idle_id = g_idle_add ((GSourceFunc) start_media_keys_idle_cb, manager);
+-
+-        register_manager (manager_object);
+-
+-        cinnamon_settings_profile_end (NULL);
+-
+-        return TRUE;
+-}
+-
+-void
+-csd_media_keys_manager_stop (CsdMediaKeysManager *manager)
+-{
+-        CsdMediaKeysManagerPrivate *priv = manager->priv;
+-        GList *l;
+-
+-        g_debug ("Stopping media_keys manager");
+-
+-        if (priv->bus_cancellable != NULL) {
+-                g_cancellable_cancel (priv->bus_cancellable);
+-                g_object_unref (priv->bus_cancellable);
+-                priv->bus_cancellable = NULL;
+-        }
+-
+-        if (manager->priv->ca) {
+-                ca_context_destroy (manager->priv->ca);
+-                manager->priv->ca = NULL;
+-        }
+-
+-#ifdef HAVE_GUDEV
+-        if (priv->streams) {
+-                g_hash_table_destroy (priv->streams);
+-                priv->streams = NULL;
+-        }
+-        if (priv->udev_client) {
+-                g_object_unref (priv->udev_client);
+-                priv->udev_client = NULL;
+-        }
+-#endif /* HAVE_GUDEV */
+-
+-        if (priv->logind_proxy) {
+-                g_object_unref (priv->logind_proxy);
+-                priv->logind_proxy = NULL;
+-        }
+-
+-        if (priv->power_settings) {
+-                g_object_unref (priv->power_settings);
+-                priv->power_settings = NULL;
+-        }
+-
+-        if (priv->power_screen_proxy) {
+-                g_object_unref (priv->power_screen_proxy);
+-                priv->power_screen_proxy = NULL;
+-        }
+-
+-        if (priv->power_keyboard_proxy) {
+-                g_object_unref (priv->power_keyboard_proxy);
+-                priv->power_keyboard_proxy = NULL;
+-        }
+-
+-        if (priv->mpris_controller) {
+-                g_object_unref (priv->mpris_controller);
+-                priv->mpris_controller = NULL;
+-        }
+-
+-        if (priv->upower_proxy) {
+-                g_object_unref (priv->upower_proxy);
+-                priv->upower_proxy = NULL;
+-        }
+-
+-        if (priv->cinnamon_proxy) {
+-            g_object_unref (priv->cinnamon_proxy);
+-            priv->cinnamon_proxy = NULL;
+-        }
+-
+-        if (priv->cancellable != NULL) {
+-                g_cancellable_cancel (priv->cancellable);
+-                g_object_unref (priv->cancellable);
+-                priv->cancellable = NULL;
+-        }
+-
+-        if (priv->introspection_data) {
+-                g_dbus_node_info_unref (priv->introspection_data);
+-                priv->introspection_data = NULL;
+-        }
+-
+-        if (priv->kb_introspection_data) {
+-                g_dbus_node_info_unref (priv->kb_introspection_data);
+-                priv->kb_introspection_data = NULL;
+-        }
+-
+-        if (priv->connection != NULL) {
+-                g_object_unref (priv->connection);
+-                priv->connection = NULL;
+-        }
+-
+-        if (priv->volume_notification != NULL) {
+-                notify_notification_close (priv->volume_notification, NULL);
+-                g_object_unref (priv->volume_notification);
+-                priv->volume_notification = NULL;
+-        }
+-
+-        if (priv->brightness_notification != NULL) {
+-                notify_notification_close (priv->brightness_notification, NULL);
+-                g_object_unref (priv->brightness_notification);
+-                priv->brightness_notification = NULL;
+-        }
+-
+-        if (priv->kb_backlight_notification != NULL) {
+-                notify_notification_close (priv->kb_backlight_notification, NULL);
+-                g_object_unref (priv->kb_backlight_notification);
+-                priv->kb_backlight_notification = NULL;
+-        }
+-
+-        if (priv->cinnamon_cancellable != NULL) {
+-            g_cancellable_cancel (priv->cinnamon_cancellable);
+-            g_object_unref (priv->cinnamon_cancellable);
+-            priv->cinnamon_cancellable = NULL;
+-        }
+-
+-        if (priv->screens != NULL) {
+-                g_slist_free (priv->screens);
+-                priv->screens = NULL;
+-        }
+-
+-        if (priv->stream) {
+-                g_object_unref (priv->stream);
+-                priv->stream = NULL;
+-        }
+-
+-        if (priv->volume) {
+-                g_object_unref (priv->volume);
+-                priv->volume = NULL;
+-        }
+-
+-        if (priv->dialog != NULL) {
+-                gtk_widget_destroy (priv->dialog);
+-                priv->dialog = NULL;
+-        }
+-
+-        if (priv->media_players != NULL) {
+-                for (l = priv->media_players; l; l = l->next) {
+-                        MediaPlayer *mp = l->data;
+-                        g_free (mp->application);
+-                        g_free (mp);
+-                }
+-                g_list_free (priv->media_players);
+-                priv->media_players = NULL;
+-        }
+-}
+-
+-static GObject *
+-csd_media_keys_manager_constructor (GType                  type,
+-                              guint                  n_construct_properties,
+-                              GObjectConstructParam *construct_properties)
+-{
+-        CsdMediaKeysManager      *media_keys_manager;
+-
+-        media_keys_manager = CSD_MEDIA_KEYS_MANAGER (G_OBJECT_CLASS (csd_media_keys_manager_parent_class)->constructor (type,
+-                                                                                                      n_construct_properties,
+-                                                                                                      construct_properties));
+-
+-        return G_OBJECT (media_keys_manager);
+-}
+-
+-static void
+-csd_media_keys_manager_class_init (CsdMediaKeysManagerClass *klass)
+-{
+-        GObjectClass   *object_class = G_OBJECT_CLASS (klass);
+-
+-        object_class->constructor = csd_media_keys_manager_constructor;
+-        object_class->finalize = csd_media_keys_manager_finalize;
+-
+-        g_type_class_add_private (klass, sizeof (CsdMediaKeysManagerPrivate));
+-}
+-
+-static void
+-inhibit_done (GObject      *source,
+-              GAsyncResult *result,
+-              gpointer      user_data)
+-{
+-        GDBusProxy *proxy = G_DBUS_PROXY (source);
+-        CsdMediaKeysManager *manager = CSD_MEDIA_KEYS_MANAGER (user_data);
+-        GError *error = NULL;
+-        GVariant *res;
+-        GUnixFDList *fd_list = NULL;
+-        gint idx;
+-
+-        res = g_dbus_proxy_call_with_unix_fd_list_finish (proxy, &fd_list, result, &error);
+-        if (res == NULL) {
+-                g_warning ("Unable to inhibit keypresses: %s", error->message);
+-                g_error_free (error);
+-        } else {
+-                g_variant_get (res, "(h)", &idx);
+-                manager->priv->inhibit_keys_fd = g_unix_fd_list_get (fd_list, idx, &error);
+-                if (manager->priv->inhibit_keys_fd == -1) {
+-                        g_warning ("Failed to receive system inhibitor fd: %s", error->message);
+-                        g_error_free (error);
+-                }
+-                g_debug ("System inhibitor fd is %d", manager->priv->inhibit_keys_fd);
+-                g_object_unref (fd_list);
+-                g_variant_unref (res);
+-        }
+-}
+-
+-static void
+-csd_media_keys_manager_init (CsdMediaKeysManager *manager)
+-{
+-        GError *error;
+-        GDBusConnection *bus;
+-
+-        error = NULL;
+-        manager->priv = CSD_MEDIA_KEYS_MANAGER_GET_PRIVATE (manager);
+-
+-        bus = g_bus_get_sync (G_BUS_TYPE_SYSTEM, NULL, &error);
+-        if (bus == NULL) {
+-                g_warning ("Failed to connect to system bus: %s",
+-                           error->message);
+-                g_error_free (error);
+-                return;
+-        }
+-
+-        manager->priv->logind_proxy =
+-                g_dbus_proxy_new_sync (bus,
+-                                       0,
+-                                       NULL,
+-                                       LOGIND_DBUS_NAME,
+-                                       LOGIND_DBUS_PATH,
+-                                       LOGIND_DBUS_INTERFACE,
+-                                       NULL,
+-                                       &error);
+-
+-        if (manager->priv->logind_proxy == NULL) {
+-                g_warning ("Failed to connect to logind: %s",
+-                           error->message);
+-                g_error_free (error);
+-        }
+-
+-        g_object_unref (bus);
+-
+-        g_debug ("Adding system inhibitors for power keys");
+-        manager->priv->inhibit_keys_fd = -1;
+-        g_dbus_proxy_call_with_unix_fd_list (manager->priv->logind_proxy,
+-                                             "Inhibit",
+-                                             g_variant_new ("(ssss)",
+-                                                            "handle-power-key:handle-suspend-key:handle-hibernate-key",
+-                                                            g_get_user_name (),
+-                                                            "Cinnamon handling keypresses",
+-                                                            "block"),
+-                                             0,
+-                                             G_MAXINT,
+-                                             NULL,
+-                                             NULL,
+-                                             inhibit_done,
+-                                             manager);
+-
+-}
+-
+-static void
+-csd_media_keys_manager_finalize (GObject *object)
+-{
+-        CsdMediaKeysManager *media_keys_manager;
+-
+-        g_return_if_fail (object != NULL);
+-        g_return_if_fail (CSD_IS_MEDIA_KEYS_MANAGER (object));
+-
+-        media_keys_manager = CSD_MEDIA_KEYS_MANAGER (object);
+-
+-        g_return_if_fail (media_keys_manager->priv != NULL);
+-
+-        if (media_keys_manager->priv->start_idle_id != 0) {
+-            g_source_remove (media_keys_manager->priv->start_idle_id);
+-            media_keys_manager->priv->start_idle_id = 0;
+-        }
+-        if (media_keys_manager->priv->inhibit_keys_fd != -1)
+-            close (media_keys_manager->priv->inhibit_keys_fd);
+-
+-        G_OBJECT_CLASS (csd_media_keys_manager_parent_class)->finalize (object);
+-}
+-
+-static void
+-xrandr_ready_cb (GObject             *source_object,
+-                 GAsyncResult        *res,
+-                 CsdMediaKeysManager *manager)
+-{
+-        GError *error = NULL;
+-
+-        manager->priv->xrandr_proxy = g_dbus_proxy_new_finish (res, &error);
+-        if (manager->priv->xrandr_proxy == NULL) {
+-                g_warning ("Failed to get proxy for XRandR operations: %s", error->message);
+-                g_error_free (error);
+-        }
+-}
+-
+-static void
+-upower_ready_cb (GObject             *source_object,
+-                 GAsyncResult        *res,
+-                 CsdMediaKeysManager *manager)
+-{
+-        GError *error = NULL;
+-
+-        manager->priv->upower_proxy = g_dbus_proxy_new_finish (res, &error);
+-        if (manager->priv->upower_proxy == NULL) {
+-                g_warning ("Failed to get proxy for upower: %s",
+-                           error->message);
+-                g_error_free (error);
+-        }
+-}
+-
+-static void
+-power_screen_ready_cb (GObject             *source_object,
+-                       GAsyncResult        *res,
+-                       CsdMediaKeysManager *manager)
+-{
+-        GError *error = NULL;
+-
+-        manager->priv->power_screen_proxy = g_dbus_proxy_new_finish (res, &error);
+-        if (manager->priv->power_screen_proxy == NULL) {
+-                g_warning ("Failed to get proxy for power (screen): %s",
+-                           error->message);
+-                g_error_free (error);
+-        }
+-}
+-
+-static void
+-power_keyboard_ready_cb (GObject             *source_object,
+-                         GAsyncResult        *res,
+-                         CsdMediaKeysManager *manager)
+-{
+-        GError *error = NULL;
+-
+-        manager->priv->power_keyboard_proxy = g_dbus_proxy_new_finish (res, &error);
+-        if (manager->priv->power_keyboard_proxy == NULL) {
+-                g_warning ("Failed to get proxy for power (keyboard): %s",
+-                           error->message);
+-                g_error_free (error);
+-        }
+-}
+-
+-static void
+-osd_ready_cb (GObject             *source_object,
+-              GAsyncResult        *res,
+-              CsdMediaKeysManager *manager)
+-{
+-    GError *error = NULL;
+-
+-    manager->priv->cinnamon_proxy = g_dbus_proxy_new_finish (res, &error);
+-    if (manager->priv->cinnamon_proxy == NULL) {
+-        g_warning ("Failed to get proxy for OSD operations: %s", error->message);
+-        g_error_free (error);
+-    }
+-}
+-
+-static void
+-on_bus_gotten (GObject             *source_object,
+-               GAsyncResult        *res,
+-               CsdMediaKeysManager *manager)
+-{
+-        GDBusConnection *connection;
+-        GError *error = NULL;
+-
+-        if (manager->priv->bus_cancellable == NULL ||
+-            g_cancellable_is_cancelled (manager->priv->bus_cancellable)) {
+-                g_warning ("Operation has been cancelled, so not retrieving session bus");
+-                return;
+-        }
+-
+-        connection = g_bus_get_finish (res, &error);
+-        if (connection == NULL) {
+-                g_warning ("Could not get session bus: %s", error->message);
+-                g_error_free (error);
+-                return;
+-        }
+-        manager->priv->connection = connection;
+-
+-        g_dbus_connection_register_object (connection,
+-                                           CSD_MEDIA_KEYS_DBUS_PATH,
+-                                           manager->priv->introspection_data->interfaces[0],
+-                                           &interface_vtable,
+-                                           manager,
+-                                           NULL,
+-                                           NULL);
+-
+-        g_dbus_connection_register_object (connection,
+-                                           CINNAMON_KEYBINDINGS_PATH,
+-                                           manager->priv->kb_introspection_data->interfaces[0],
+-                                           &interface_vtable,
+-                                           manager,
+-                                           NULL,
+-                                           NULL);
+-
+-        g_dbus_proxy_new (manager->priv->connection,
+-                          G_DBUS_PROXY_FLAGS_NONE,
+-                          NULL,
+-                          "org.cinnamon.SettingsDaemon",
+-                          "/org/cinnamon/SettingsDaemon/XRANDR",
+-                          "org.cinnamon.SettingsDaemon.XRANDR_2",
+-                          NULL,
+-                          (GAsyncReadyCallback) xrandr_ready_cb,
+-                          manager);
+-
+-        g_dbus_proxy_new (manager->priv->connection,
+-                          G_DBUS_PROXY_FLAGS_NONE,
+-                          NULL,
+-                          "org.cinnamon.SettingsDaemon",
+-                          "/org/cinnamon/SettingsDaemon/Power",
+-                          "org.cinnamon.SettingsDaemon.Power.Screen",
+-                          NULL,
+-                          (GAsyncReadyCallback) power_screen_ready_cb,
+-                          manager);
+-
+-        g_dbus_proxy_new (manager->priv->connection,
+-                          G_DBUS_PROXY_FLAGS_NONE,
+-                          NULL,
+-                          "org.cinnamon.SettingsDaemon",
+-                          "/org/cinnamon/SettingsDaemon/Power",
+-                          "org.cinnamon.SettingsDaemon.Power.Keyboard",
+-                          NULL,
+-                          (GAsyncReadyCallback) power_keyboard_ready_cb,
+-                          manager);
+-
+-    g_dbus_proxy_new (manager->priv->connection,
+-                      G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START,
+-                      NULL,
+-                      "org.Cinnamon",
+-                      "/org/Cinnamon",
+-                      "org.Cinnamon",
+-                      NULL,
+-                      (GAsyncReadyCallback) osd_ready_cb,
+-                      manager);
+-}
+-
+-static void
+-register_manager (CsdMediaKeysManager *manager)
+-{
+-        manager->priv->introspection_data = g_dbus_node_info_new_for_xml (introspection_xml, NULL);
+-        manager->priv->kb_introspection_data = g_dbus_node_info_new_for_xml (kb_introspection_xml, NULL);
+-        manager->priv->bus_cancellable = g_cancellable_new ();
+-        g_assert (manager->priv->introspection_data != NULL);
+-        g_assert (manager->priv->kb_introspection_data != NULL);
+-
+-        g_bus_get (G_BUS_TYPE_SESSION,
+-                   manager->priv->bus_cancellable,
+-                   (GAsyncReadyCallback) on_bus_gotten,
+-                   manager);
+-
+-        g_dbus_proxy_new_for_bus (G_BUS_TYPE_SYSTEM,
+-                                  G_DBUS_PROXY_FLAGS_NONE,
+-                                  NULL,
+-                                  "org.freedesktop.UPower",
+-                                  "/org/freedesktop/UPower",
+-                                  "org.freedesktop.UPower",
+-                                  NULL,
+-                                  (GAsyncReadyCallback) upower_ready_cb,
+-                                  manager);
+-}
+-
+-CsdMediaKeysManager *
+-csd_media_keys_manager_new (void)
+-{
+-        if (manager_object != NULL) {
+-                g_object_ref (manager_object);
+-        } else {
+-                manager_object = g_object_new (CSD_TYPE_MEDIA_KEYS_MANAGER, NULL);
+-                g_object_add_weak_pointer (manager_object,
+-                                           (gpointer *) &manager_object);
+-        }
+-
+-        return CSD_MEDIA_KEYS_MANAGER (manager_object);
+-}
+diff --git a/plugins/media-keys/csd-media-keys-manager.h b/plugins/media-keys/csd-media-keys-manager.h
+deleted file mode 100644
+index 22687ee..0000000
+--- a/plugins/media-keys/csd-media-keys-manager.h
++++ /dev/null
+@@ -1,61 +0,0 @@
+-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
+- *
+- * Copyright (C) 2007 William Jon McCann <mccann@jhu.edu>
+- *
+- * This program is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published by
+- * the Free Software Foundation; either version 2 of the License, or
+- * (at your option) any later version.
+- *
+- * This program is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin Street - Suite 500, Boston, MA 02110-1335, USA.
+- *
+- */
+-
+-#ifndef __CSD_MEDIA_KEYS_MANAGER_H
+-#define __CSD_MEDIA_KEYS_MANAGER_H
+-
+-#include <glib-object.h>
+-
+-G_BEGIN_DECLS
+-
+-#define CSD_TYPE_MEDIA_KEYS_MANAGER         (csd_media_keys_manager_get_type ())
+-#define CSD_MEDIA_KEYS_MANAGER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), CSD_TYPE_MEDIA_KEYS_MANAGER, CsdMediaKeysManager))
+-#define CSD_MEDIA_KEYS_MANAGER_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), CSD_TYPE_MEDIA_KEYS_MANAGER, CsdMediaKeysManagerClass))
+-#define CSD_IS_MEDIA_KEYS_MANAGER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), CSD_TYPE_MEDIA_KEYS_MANAGER))
+-#define CSD_IS_MEDIA_KEYS_MANAGER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), CSD_TYPE_MEDIA_KEYS_MANAGER))
+-#define CSD_MEDIA_KEYS_MANAGER_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CSD_TYPE_MEDIA_KEYS_MANAGER, CsdMediaKeysManagerClass))
+-
+-typedef struct CsdMediaKeysManagerPrivate CsdMediaKeysManagerPrivate;
+-
+-typedef struct
+-{
+-        GObject                     parent;
+-        CsdMediaKeysManagerPrivate *priv;
+-} CsdMediaKeysManager;
+-
+-typedef struct
+-{
+-        GObjectClass   parent_class;
+-        void          (* media_player_key_pressed) (CsdMediaKeysManager *manager,
+-                                                    const char          *application,
+-                                                    const char          *key);
+-} CsdMediaKeysManagerClass;
+-
+-GType                 csd_media_keys_manager_get_type                  (void);
+-
+-CsdMediaKeysManager * csd_media_keys_manager_new                       (void);
+-gboolean              csd_media_keys_manager_start                     (CsdMediaKeysManager *manager,
+-                                                                        GError             **error);
+-void                  csd_media_keys_manager_stop                      (CsdMediaKeysManager *manager);
+-
+-
+-G_END_DECLS
+-
+-#endif /* __CSD_MEDIA_KEYS_MANAGER_H */
+diff --git a/plugins/media-keys/csd-media-keys-plugin.c b/plugins/media-keys/csd-media-keys-plugin.c
+deleted file mode 100644
+index e46346f..0000000
+--- a/plugins/media-keys/csd-media-keys-plugin.c
++++ /dev/null
+@@ -1,104 +0,0 @@
+-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
+- *
+- * Copyright (C) 2007 William Jon McCann <mccann@jhu.edu>
+- *
+- * This program is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published by
+- * the Free Software Foundation; either version 2, or (at your option)
+- * any later version.
+- *
+- * This program is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin Street - Suite 500, Boston, MA 02110-1335, USA.
+- *
+- */
+-
+-#include "config.h"
+-
+-#include <glib/gi18n-lib.h>
+-#include <gmodule.h>
+-
+-#include "cinnamon-settings-plugin.h"
+-#include "csd-media-keys-plugin.h"
+-#include "csd-media-keys-manager.h"
+-
+-struct CsdMediaKeysPluginPrivate {
+-        CsdMediaKeysManager *manager;
+-};
+-
+-#define CSD_MEDIA_KEYS_PLUGIN_GET_PRIVATE(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), CSD_TYPE_MEDIA_KEYS_PLUGIN, CsdMediaKeysPluginPrivate))
+-
+-CINNAMON_SETTINGS_PLUGIN_REGISTER (CsdMediaKeysPlugin, csd_media_keys_plugin)
+-
+-static void
+-csd_media_keys_plugin_init (CsdMediaKeysPlugin *plugin)
+-{
+-        plugin->priv = CSD_MEDIA_KEYS_PLUGIN_GET_PRIVATE (plugin);
+-
+-        g_debug ("CsdMediaKeysPlugin initializing");
+-
+-        plugin->priv->manager = csd_media_keys_manager_new ();
+-}
+-
+-static void
+-csd_media_keys_plugin_finalize (GObject *object)
+-{
+-        CsdMediaKeysPlugin *plugin;
+-
+-        g_return_if_fail (object != NULL);
+-        g_return_if_fail (CSD_IS_MEDIA_KEYS_PLUGIN (object));
+-
+-        g_debug ("CsdMediaKeysPlugin finalizing");
+-
+-        plugin = CSD_MEDIA_KEYS_PLUGIN (object);
+-
+-        g_return_if_fail (plugin->priv != NULL);
+-
+-        if (plugin->priv->manager != NULL) {
+-                g_object_unref (plugin->priv->manager);
+-        }
+-
+-        G_OBJECT_CLASS (csd_media_keys_plugin_parent_class)->finalize (object);
+-}
+-
+-static void
+-impl_activate (CinnamonSettingsPlugin *plugin)
+-{
+-        gboolean res;
+-        GError  *error;
+-
+-        g_debug ("Activating media_keys plugin");
+-
+-        error = NULL;
+-        res = csd_media_keys_manager_start (CSD_MEDIA_KEYS_PLUGIN (plugin)->priv->manager, &error);
+-        if (! res) {
+-                g_warning ("Unable to start media_keys manager: %s", error->message);
+-                g_error_free (error);
+-        }
+-}
+-
+-static void
+-impl_deactivate (CinnamonSettingsPlugin *plugin)
+-{
+-        g_debug ("Deactivating media_keys plugin");
+-        csd_media_keys_manager_stop (CSD_MEDIA_KEYS_PLUGIN (plugin)->priv->manager);
+-}
+-
+-static void
+-csd_media_keys_plugin_class_init (CsdMediaKeysPluginClass *klass)
+-{
+-        GObjectClass           *object_class = G_OBJECT_CLASS (klass);
+-        CinnamonSettingsPluginClass *plugin_class = CINNAMON_SETTINGS_PLUGIN_CLASS (klass);
+-
+-        object_class->finalize = csd_media_keys_plugin_finalize;
+-
+-        plugin_class->activate = impl_activate;
+-        plugin_class->deactivate = impl_deactivate;
+-
+-        g_type_class_add_private (klass, sizeof (CsdMediaKeysPluginPrivate));
+-}
+diff --git a/plugins/media-keys/csd-media-keys-plugin.h b/plugins/media-keys/csd-media-keys-plugin.h
+deleted file mode 100644
+index 6bb5dfe..0000000
+--- a/plugins/media-keys/csd-media-keys-plugin.h
++++ /dev/null
+@@ -1,59 +0,0 @@
+-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
+- *
+- * Copyright (C) 2007 William Jon McCann <mccann@jhu.edu>
+- *
+- * This program is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published by
+- * the Free Software Foundation; either version 2, or (at your option)
+- * any later version.
+- *
+- * This program is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program; if not, write to the Free Software
+- * Foundation, Inc., 51 Franklin Street - Suite 500, Boston, MA 02110-1335, USA.
+- *
+- */
+-
+-#ifndef __CSD_MEDIA_KEYS_PLUGIN_H__
+-#define __CSD_MEDIA_KEYS_PLUGIN_H__
+-
+-#include <glib.h>
+-#include <glib-object.h>
+-#include <gmodule.h>
+-
+-#include "cinnamon-settings-plugin.h"
+-
+-G_BEGIN_DECLS
+-
+-#define CSD_TYPE_MEDIA_KEYS_PLUGIN                (csd_media_keys_plugin_get_type ())
+-#define CSD_MEDIA_KEYS_PLUGIN(o)                  (G_TYPE_CHECK_INSTANCE_CAST ((o), CSD_TYPE_MEDIA_KEYS_PLUGIN, CsdMediaKeysPlugin))
+-#define CSD_MEDIA_KEYS_PLUGIN_CLASS(k)            (G_TYPE_CHECK_CLASS_CAST((k), CSD_TYPE_MEDIA_KEYS_PLUGIN, CsdMediaKeysPluginClass))
+-#define CSD_IS_MEDIA_KEYS_PLUGIN(o)               (G_TYPE_CHECK_INSTANCE_TYPE ((o), CSD_TYPE_MEDIA_KEYS_PLUGIN))
+-#define CSD_IS_MEDIA_KEYS_PLUGIN_CLASS(k)         (G_TYPE_CHECK_CLASS_TYPE ((k), CSD_TYPE_MEDIA_KEYS_PLUGIN))
+-#define CSD_MEDIA_KEYS_PLUGIN_GET_CLASS(o)        (G_TYPE_INSTANCE_GET_CLASS ((o), CSD_TYPE_MEDIA_KEYS_PLUGIN, CsdMediaKeysPluginClass))
+-
+-typedef struct CsdMediaKeysPluginPrivate CsdMediaKeysPluginPrivate;
+-
+-typedef struct
+-{
+-        CinnamonSettingsPlugin    parent;
+-        CsdMediaKeysPluginPrivate *priv;
+-} CsdMediaKeysPlugin;
+-
+-typedef struct
+-{
+-        CinnamonSettingsPluginClass parent_class;
+-} CsdMediaKeysPluginClass;
+-
+-GType   csd_media_keys_plugin_get_type            (void) G_GNUC_CONST;
+-
+-/* All the plugins must implement this function */
+-G_MODULE_EXPORT GType register_cinnamon_settings_plugin (GTypeModule *module);
+-
+-G_END_DECLS
+-
+-#endif /* __CSD_MEDIA_KEYS_PLUGIN_H__ */
+diff --git a/plugins/media-keys/media-keys.cinnamon-settings-plugin.in b/plugins/media-keys/media-keys.cinnamon-settings-plugin.in
+deleted file mode 100644
+index 5874595..0000000
+--- a/plugins/media-keys/media-keys.cinnamon-settings-plugin.in
++++ /dev/null
+@@ -1,8 +0,0 @@
+-[Cinnamon Settings Plugin]
+-Module=media-keys
+-IAge=0
+-_Name=Media keys
+-_Description=Media keys plugin
+-Authors=
+-Copyright=Copyright © 2007
+-Website=
+diff --git a/plugins/media-keys/mpris-controller.c b/plugins/media-keys/mpris-controller.c
+deleted file mode 100644
+index 00cabda..0000000
+--- a/plugins/media-keys/mpris-controller.c
++++ /dev/null
+@@ -1,214 +0,0 @@
+-/*
+- * Copyright © 2013 Intel Corporation.
+- *
+- * This program is free software; you can redistribute it and/or modify it
+- * under the terms and conditions of the GNU Lesser General Public License,
+- * version 2.1, as published by the Free Software Foundation.
+- *
+- * This program is distributed in the hope it will be useful, but WITHOUT ANY
+- * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+- * details.
+- *
+- * You should have received a copy of the GNU Lesser General Public License
+- * along with this program; if not, see <http://www.gnu.org/licenses>
+- *
+- * Author: Michael Wood <michael.g.wood@intel.com>
+- */
+-
+-#include "mpris-controller.h"
+-#include "bus-watch-namespace.h"
+-#include <gio/gio.h>
+-
+-G_DEFINE_TYPE (MprisController, mpris_controller, G_TYPE_OBJECT)
+-
+-#define CONTROLLER_PRIVATE(o) \
+-  (G_TYPE_INSTANCE_GET_PRIVATE ((o), MPRIS_TYPE_CONTROLLER, MprisControllerPrivate))
+-
+-struct _MprisControllerPrivate
+-{
+-  GCancellable *cancellable;
+-  GDBusProxy *mpris_client_proxy;
+-  guint namespace_watcher_id;
+-  GSList *other_players;
+-  gboolean connecting;
+-};
+-
+-
+-static void
+-mpris_controller_dispose (GObject *object)
+-{
+-  MprisControllerPrivate *priv = MPRIS_CONTROLLER (object)->priv;
+-
+-  g_clear_object (&priv->cancellable);
+-  g_clear_object (&priv->mpris_client_proxy);
+-
+-  if (priv->namespace_watcher_id)
+-    {
+-      bus_unwatch_namespace (priv->namespace_watcher_id);
+-      priv->namespace_watcher_id = 0;
+-    }
+-
+-  if (priv->other_players)
+-    {
+-      g_slist_free_full (priv->other_players, g_free);
+-      priv->other_players = NULL;
+-    }
+-
+-  G_OBJECT_CLASS (mpris_controller_parent_class)->dispose (object);
+-}
+-
+-static void
+-mpris_proxy_call_done (GObject      *object,
+-                       GAsyncResult *res,
+-                       gpointer      user_data)
+-{
+-  GError *error = NULL;
+-  GVariant *ret;
+-
+-  if (!(ret = g_dbus_proxy_call_finish (G_DBUS_PROXY (object), res, &error)))
+-    {
+-      g_warning ("Error calling method %s", error->message);
+-      g_clear_error (&error);
+-      return;
+-    }
+-  g_variant_unref (ret);
+-}
+-
+-gboolean
+-mpris_controller_key (MprisController *self, const gchar *key)
+-{
+-  MprisControllerPrivate *priv = MPRIS_CONTROLLER (self)->priv;
+-
+-  if (!priv->mpris_client_proxy)
+-    return FALSE;
+-
+-  if (g_strcmp0 (key, "Play") == 0)
+-    key = "PlayPause";
+-
+-  g_debug ("calling %s over dbus to mpris client %s",
+-           key, g_dbus_proxy_get_name (priv->mpris_client_proxy));
+-  g_dbus_proxy_call (priv->mpris_client_proxy,
+-                     key, NULL, 0, -1, priv->cancellable,
+-                     mpris_proxy_call_done,
+-                     NULL);
+-  return TRUE;
+-}
+-
+-static void
+-mpris_proxy_ready_cb (GObject      *object,
+-                      GAsyncResult *res,
+-                      gpointer      user_data)
+-{
+-  MprisControllerPrivate *priv = MPRIS_CONTROLLER (user_data)->priv;
+-  GError *error = NULL;
+-
+-  priv->mpris_client_proxy = g_dbus_proxy_new_for_bus_finish (res, &error);
+-
+-  if (!priv->mpris_client_proxy)
+-    g_warning ("Error connecting to mpris interface %s", error->message);
+-
+-  priv->connecting = FALSE;
+-
+-  g_clear_error (&error);
+-}
+-
+-static void
+-start_mpris_proxy (MprisController *self, const gchar *name)
+-{
+-  MprisControllerPrivate *priv = MPRIS_CONTROLLER (self)->priv;
+-
+-  g_debug ("Creating proxy for for %s", name);
+-  g_dbus_proxy_new_for_bus (G_BUS_TYPE_SESSION,
+-                            0,
+-                            NULL,
+-                            name,
+-                            "/org/mpris/MediaPlayer2",
+-                            "org.mpris.MediaPlayer2.Player",
+-                            priv->cancellable,
+-                            mpris_proxy_ready_cb,
+-                            self);
+-  priv->connecting = TRUE;
+-}
+-
+-static void
+-mpris_player_appeared (GDBusConnection *connection,
+-                       const gchar     *name,
+-                       const gchar     *name_owner,
+-                       gpointer         user_data)
+-{
+-  MprisController *self = user_data;
+-  MprisControllerPrivate *priv = MPRIS_CONTROLLER (self)->priv;
+-
+-  if (priv->mpris_client_proxy == NULL && !priv->connecting)
+-    start_mpris_proxy (self, name);
+-  else
+-    self->priv->other_players = g_slist_prepend (self->priv->other_players, g_strdup (name));
+-}
+-
+-static void
+-mpris_player_vanished (GDBusConnection *connection,
+-                       const gchar     *name,
+-                       gpointer         user_data)
+-{
+-  MprisController *self = user_data;
+-  MprisControllerPrivate *priv = MPRIS_CONTROLLER (self)->priv;
+-
+-  if (priv->mpris_client_proxy &&
+-      g_strcmp0 (name, g_dbus_proxy_get_name (priv->mpris_client_proxy)) == 0)
+-    {
+-      g_clear_object (&priv->mpris_client_proxy);
+-
+-      /* take the next one if there's one */
+-      if (self->priv->other_players && !priv->connecting)
+-        {
+-          GSList *first;
+-          gchar *name;
+-
+-          first = self->priv->other_players;
+-          name = first->data;
+-
+-          start_mpris_proxy (self, name);
+-
+-          self->priv->other_players = self->priv->other_players->next;
+-          g_free (name);
+-          g_slist_free_1 (first);
+-        }
+-    }
+-}
+-
+-static void
+-mpris_controller_constructed (GObject *object)
+-{
+-  MprisControllerPrivate *priv = MPRIS_CONTROLLER (object)->priv;
+-
+-  priv->namespace_watcher_id = bus_watch_namespace (G_BUS_TYPE_SESSION,
+-                                                    "org.mpris.MediaPlayer2",
+-                                                    mpris_player_appeared,
+-                                                    mpris_player_vanished,
+-                                                    MPRIS_CONTROLLER (object),
+-                                                    NULL);
+-}
+-
+-static void
+-mpris_controller_class_init (MprisControllerClass *klass)
+-{
+-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+-
+-  g_type_class_add_private (klass, sizeof (MprisControllerPrivate));
+-
+-  object_class->constructed = mpris_controller_constructed;
+-  object_class->dispose = mpris_controller_dispose;
+-}
+-
+-static void
+-mpris_controller_init (MprisController *self)
+-{
+-  self->priv = CONTROLLER_PRIVATE (self);
+-}
+-
+-MprisController *
+-mpris_controller_new (void)
+-{
+-  return g_object_new (MPRIS_TYPE_CONTROLLER, NULL);
+-}
+diff --git a/plugins/media-keys/mpris-controller.h b/plugins/media-keys/mpris-controller.h
+deleted file mode 100644
+index 5333d4e..0000000
+--- a/plugins/media-keys/mpris-controller.h
++++ /dev/null
+@@ -1,56 +0,0 @@
+-/*
+- * Copyright © 2013 Intel Corporation.
+- *
+- * This program is free software; you can redistribute it and/or modify it
+- * under the terms and conditions of the GNU Lesser General Public License,
+- * version 2.1, as published by the Free Software Foundation.
+- *
+- * This program is distributed in the hope it will be useful, but WITHOUT ANY
+- * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+- * details.
+- *
+- * You should have received a copy of the GNU Lesser General Public License
+- * along with this program; if not, see <http://www.gnu.org/licenses>
+- *
+- * Author: Michael Wood <michael.g.wood@intel.com>
+- */
+-
+-#ifndef __MPRIS_CONTROLLER_H__
+-#define __MPRIS_CONTROLLER_H__
+-
+-#include <glib-object.h>
+-
+-G_BEGIN_DECLS
+-
+-#define MPRIS_TYPE_CONTROLLER mpris_controller_get_type()
+-#define MPRIS_CONTROLLER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), MPRIS_TYPE_CONTROLLER, MprisController))
+-#define MPRIS_CONTROLLER_CLASS(klass)  (G_TYPE_CHECK_CLASS_CAST ((klass), MPRIS_TYPE_CONTROLLER, MprisControllerClass))
+-#define MPRIS_IS_CONTROLLER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), MPRIS_TYPE_CONTROLLER))
+-#define MPRIS_IS_CONTROLLER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), MPRIS_TYPE_CONTROLLER))
+-#define MPRIS_CONTROLLER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), MPRIS_TYPE_CONTROLLER, MprisControllerClass))
+-
+-typedef struct _MprisController MprisController;
+-typedef struct _MprisControllerClass MprisControllerClass;
+-typedef struct _MprisControllerPrivate MprisControllerPrivate;
+-
+-struct _MprisController
+-{
+-  GObject parent;
+-
+-  MprisControllerPrivate *priv;
+-};
+-
+-struct _MprisControllerClass
+-{
+-  GObjectClass parent_class;
+-};
+-
+-GType mpris_controller_get_type (void) G_GNUC_CONST;
+-
+-MprisController *mpris_controller_new (void);
+-gboolean         mpris_controller_key (MprisController *self, const gchar *key);
+-
+-G_END_DECLS
+-
+-#endif /* __MPRIS_CONTROLLER_H__ */
+diff --git a/plugins/media-keys/test-media-keys.c b/plugins/media-keys/test-media-keys.c
+deleted file mode 100644
+index 9152054..0000000
+--- a/plugins/media-keys/test-media-keys.c
++++ /dev/null
+@@ -1,7 +0,0 @@
+-#define NEW csd_media_keys_manager_new
+-#define START csd_media_keys_manager_start
+-#define STOP csd_media_keys_manager_stop
+-#define MANAGER CsdMediaKeysManager
+-#include "csd-media-keys-manager.h"
+-
+-#include "test-plugin.h"

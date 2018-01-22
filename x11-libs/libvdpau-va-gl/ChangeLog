@@ -1,0 +1,53 @@
+# ChangeLog for x11-libs/libvdpau-va-gl
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> libvdpau-va-gl-9999-r1.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> libvdpau-va-gl-9999-r1.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> libvdpau-va-gl-9999-r1.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+*libvdpau-va-gl-9999-r1 (29 Aug 2016)
+
+  29 Aug 2016; wjn <wjn@aol.jp> -libvdpau-va-gl-9999.ebuild,
+  +libvdpau-va-gl-9999-r1.ebuild:
+  Update deps
+
+   x11-libs/libvdpau and dev-libs/glib:2 are dropped
+
+   Upsteam:
+    - https://github.com/i-rinat/libvdpau-va-gl/commit/653fe02
+    - https://github.com/i-rinat/libvdpau-va-gl/commit/a8cd82f
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> libvdpau-va-gl-9999.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  25 Nov 2015; wjn <wjn@aol.jp> libvdpau-va-gl-9999.ebuild:
+  x11-libs/*: Add RESTRICT="mirror"
+
+  09 Sep 2015; wjn <wjn@aol.jp> libvdpau-va-gl-9999.ebuild:
+  Update ebuild file format from "# $Header: $" to "# $Id"
+
+   Since Gentoo changes the VCS from CVS to git, ebuild header is changed.
+
+  30 May 2015; wjn <wjn@aol.jp> libvdpau-va-gl-9999.ebuild:
+  Update to EAPI=5 and git-r3.eclass
+
+  26 Feb 2015; wjn <wjn@aol.jp> metadata.xml:
+  Fix metadata.xml
+
+  26 Feb 2015; wjn <wjn@aol.jp> libvdpau-va-gl-9999.ebuild:
+  Fix env.d config (drop "export")
+
+*libvdpau-va-gl-9999 (27 Jan 2015)
+
+  27 Jan 2015; wjn <wjn@aol.jp> +libvdpau-va-gl-9999.ebuild, +metadata.xml:
+  Commit for initializing, Move from GitHub
+

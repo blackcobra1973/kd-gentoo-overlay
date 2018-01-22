@@ -1,0 +1,32 @@
+# ChangeLog for www-client/icecat-bin
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> icecat-bin-52.1.0.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> icecat-bin-52.1.0.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+*icecat-bin-52.1.0 (06 May 2017)
+
+  06 May 2017; wjn <wjn@aol.jp> -icecat-bin-52.0.2.ebuild,
+  +icecat-bin-52.1.0.ebuild:
+  Add version 52.1.0, delete old version 52.0.2
+
+*icecat-bin-52.0.2 (16 Apr 2017)
+
+  16 Apr 2017; wjn <wjn@aol.jp> -icecat-bin-45.5.1.ebuild,
+  +icecat-bin-52.0.2.ebuild:
+  Add version 52.0.2, delete old version 45.5.1
+
+  03 Jan 2017; wjn <wjn@aol.jp> icecat-bin-45.5.1.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+*icecat-bin-45.5.1 (05 Dec 2016)
+
+  05 Dec 2016; wjn <wjn@aol.jp> +files/10icecat-bin, +files/all-gentoo-1.js,
+  +files/icecat-bin-prefs.js, +files/icecat-bin.desktop,
+  +files/local-settings.js, +icecat-bin-45.5.1.ebuild:
+  Add newly, version 45.5.1
+

@@ -1,0 +1,64 @@
+# ChangeLog for dev-python/typogrify
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> typogrify-2.0.7.ebuild:
+  [QA] Update copyright year to 2018
+
+  13 Jul 2017; wjn <wjn@aol.jp> typogrify-2.0.7.ebuild:
+  Add python3_6 to PYTHON_COMPAT
+
+  06 Jun 2017; wjn <wjn@aol.jp> typogrify-2.0.7.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> typogrify-2.0.7.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  30 Oct 2016; wjn <wjn@aol.jp> typogrify-2.0.7.ebuild:
+  Drop Python 3.3 support
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> typogrify-2.0.7.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  25 Nov 2015; wjn <wjn@aol.jp> typogrify-2.0.7.ebuild:
+  Shorten ${DESCRIPTION}
+
+  25 Nov 2015; wjn <wjn@aol.jp> typogrify-2.0.7.ebuild:
+  dev-python/*: Add RESTRICT="mirror"
+
+  25 Nov 2015; wjn <wjn@aol.jp> typogrify-2.0.7.ebuild:
+  dev-python/*: Add ${PYTHON_DEPS} to dependencies
+
+  04 Nov 2015; wjn <wjn@aol.jp> typogrify-2.0.7.ebuild:
+  Add python3_5 to $PYTHON_COMPAT.
+
+   Added Python 3.5 build, but this isn't fully tested.
+
+  09 Sep 2015; wjn <wjn@aol.jp> metadata.xml:
+  Fix metadata.xml(s)
+
+  09 Sep 2015; wjn <wjn@aol.jp> typogrify-2.0.7.ebuild:
+  Update ebuild file format from "# $Header: $" to "# $Id"
+
+   Since Gentoo changes the VCS from CVS to git, ebuild header is changed.
+
+  09 Sep 2015; wjn <wjn@aol.jp> typogrify-2.0.7.ebuild:
+  dev-python/{bbcode,phpserialize,typogrify}: Remove obsolete python ver 2.6
+  and 3.2
+
+  14 May 2015; wjn <wjn@aol.jp> -typogrify-2.0.4.ebuild:
+  Delete old version 2.0.4.
+
+  14 May 2015; wjn <wjn@aol.jp> typogrify-2.0.7.ebuild:
+  Add pypi URL to ${HOMEPAGE}.
+
+*typogrify-2.0.7 (27 Jan 2015)
+*typogrify-2.0.4 (27 Jan 2015)
+
+  27 Jan 2015; wjn <wjn@aol.jp> +metadata.xml, +typogrify-2.0.4.ebuild,
+  +typogrify-2.0.7.ebuild:
+  Commit for initializing, Move from GitHub
+

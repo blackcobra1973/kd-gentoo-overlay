@@ -1,0 +1,253 @@
+diff --git a/configure.ac b/configure.ac
+index 68e551e..a210c88 100755
+--- a/configure.ac
++++ b/configure.ac
+@@ -60,23 +60,6 @@ VNR_MODULES="gtk+-2.0 >= $GTK_REQUIRED \
+              gdk-pixbuf-2.0 >= $GDKPIXBUF_REQUIRED \
+              exiv2 >= $EXIV2_REQUIRED"
+ 
+-# ******
+-# Wallpaper support
+-# ******
+-AC_MSG_CHECKING([whether Wallpaper change functionality is enabled])
+-
+-AC_ARG_ENABLE([wallpaper],
+-    AS_HELP_STRING([--disable-wallpaper],[Disable Wallpaper change functionality]),
+-                   ,[enable_wallpaper=yes])
+-
+-AM_CONDITIONAL(ENABLE_WALLPAPER, test "x$enable_wallpaper" = xyes)
+-
+-if test x$enable_wallpaper = xyes ; then
+-    AC_DEFINE(HAVE_WALLPAPER, 1, [Define to 1 if wallpaper change functionality is included])
+-fi
+-
+-AC_MSG_RESULT([$ENABLE_WALLPAPERlpaper])
+-
+ # ****************
+ # CFLAGS/LIBS init
+ # ****************
+@@ -110,7 +93,6 @@ echo "
+     Viewnior ........... : Version $VERSION
+     Location ........... : $prefix/bin
+     CFLAGS ............. : $CFLAGS
+-    Wallpaper support .. : $enable_wallpaper
+ "
+ 
+ echo "
+diff --git a/src/vnr-prefs.c b/src/vnr-prefs.c
+index c7532d3..34947fe 100644
+--- a/src/vnr-prefs.c
++++ b/src/vnr-prefs.c
+@@ -76,8 +76,6 @@ change_zoom_mode_cb (GtkComboBox *widget, gpointer user_data)
+     vnr_prefs_save(VNR_PREFS(user_data));
+ }
+ 
+-#ifdef HAVE_WALLPAPER
+-
+ static void
+ change_desktop_env_cb (GtkComboBox *widget, gpointer user_data)
+ {
+@@ -85,8 +83,6 @@ change_desktop_env_cb (GtkComboBox *widget, gpointer user_data)
+     vnr_prefs_save(VNR_PREFS(user_data));
+ }
+ 
+-#endif /* HAVE_WALLPAPER */
+-
+ static void
+ change_jpeg_quality_cb (GtkRange *range, gpointer user_data)
+ {
+@@ -154,6 +150,7 @@ static void
+ vnr_prefs_set_default(VnrPrefs *prefs)
+ {
+     prefs->zoom = VNR_PREFS_ZOOM_SMART;
++    prefs->desktop = VNR_PREFS_DESKTOP_GNOME3;
+     prefs->show_hidden = FALSE;
+     prefs->fit_on_fullscreen = TRUE;
+     prefs->smooth_images = TRUE;
+@@ -171,9 +168,6 @@ vnr_prefs_set_default(VnrPrefs *prefs)
+     prefs->start_slideshow = FALSE;
+     prefs->start_fullscreen = FALSE;
+     prefs->auto_resize = FALSE;
+-#ifdef HAVE_WALLPAPER
+-    prefs->desktop = VNR_PREFS_DESKTOP_GNOME3;
+-#endif /* HAVE_WALLPAPER */
+ }
+ 
+ static GtkWidget *
+@@ -187,7 +181,9 @@ build_dialog (VnrPrefs *prefs)
+     GtkToggleButton *show_hidden;
+     GtkToggleButton *fit_on_fullscreen;
+     GtkBox *zoom_mode_box;
++    GtkBox *desktop_box;
+     GtkComboBox *zoom_mode;
++    GtkComboBox *desktop_env;
+     GtkToggleButton *smooth_images;
+     GtkToggleButton *confirm_delete;
+     GtkToggleButton *reload_on_save;
+@@ -199,11 +195,6 @@ build_dialog (VnrPrefs *prefs)
+     GtkRange *jpeg_scale;
+     GtkRange *png_scale;
+ 
+-#ifdef HAVE_WALLPAPER
+-    GtkBox *desktop_box;
+-    GtkComboBox *desktop_env;
+-#endif /* HAVE_WALLPAPER */
+-
+     builder = gtk_builder_new ();
+     gtk_builder_add_from_file (builder, UI_PATH, &error);
+ 
+@@ -277,7 +268,6 @@ build_dialog (VnrPrefs *prefs)
+ 
+     g_signal_connect(G_OBJECT(zoom_mode), "changed", G_CALLBACK(change_zoom_mode_cb), prefs);
+ 
+-#ifdef HAVE_WALLPAPER
+     /* Desktop combo box */
+     desktop_box = GTK_BOX (gtk_builder_get_object (builder, "desktop_box"));
+ 
+@@ -294,7 +284,6 @@ build_dialog (VnrPrefs *prefs)
+     gtk_widget_show(GTK_WIDGET(desktop_env));
+ 
+     g_signal_connect(G_OBJECT(desktop_env), "changed", G_CALLBACK(change_desktop_env_cb), prefs);
+-#endif /* HAVE_WALLPAPER */
+ 
+     /* Behavior combo boxes */
+     behavior_table = GTK_TABLE (gtk_builder_get_object (builder, "behavior_table"));
+@@ -362,6 +351,7 @@ vnr_prefs_load (VnrPrefs *prefs)
+     }
+ 
+     prefs->zoom = g_key_file_get_integer (conf, "prefs", "zoom-mode", &error);
++    prefs->desktop = g_key_file_get_integer (conf, "prefs", "desktop", &error);
+     prefs->fit_on_fullscreen = g_key_file_get_boolean (conf, "prefs", "fit-on-fullscreen", &error);
+     prefs->show_hidden = g_key_file_get_boolean (conf, "prefs", "show-hidden", &error);
+     prefs->smooth_images = g_key_file_get_boolean (conf, "prefs", "smooth-images", &error);
+@@ -377,9 +367,6 @@ vnr_prefs_load (VnrPrefs *prefs)
+     prefs->behavior_modify = g_key_file_get_integer (conf, "prefs", "behavior-modify", &error);
+     prefs->jpeg_quality = g_key_file_get_integer (conf, "prefs", "jpeg-quality", &error);
+     prefs->png_compression = g_key_file_get_integer (conf, "prefs", "png-compression", &error);
+-#ifdef HAVE_WALLPAPER
+-    prefs->desktop = g_key_file_get_integer (conf, "prefs", "desktop", &error);
+-#endif /* HAVE_WALLPAPER */
+ 
+     if(error != NULL)
+     {
+@@ -453,6 +440,7 @@ vnr_prefs_save (VnrPrefs *prefs)
+ 
+     conf = g_key_file_new();
+     g_key_file_set_integer (conf, "prefs", "zoom-mode", prefs->zoom);
++    g_key_file_set_integer (conf, "prefs", "desktop", prefs->desktop);
+     g_key_file_set_boolean (conf, "prefs", "fit-on-fullscreen", prefs->fit_on_fullscreen);
+     g_key_file_set_boolean (conf, "prefs", "show-hidden", prefs->show_hidden);
+     g_key_file_set_boolean (conf, "prefs", "smooth-images", prefs->smooth_images);
+@@ -468,11 +456,6 @@ vnr_prefs_save (VnrPrefs *prefs)
+     g_key_file_set_integer (conf, "prefs", "behavior-modify", prefs->behavior_modify);
+     g_key_file_set_integer (conf, "prefs", "jpeg-quality", prefs->jpeg_quality);
+     g_key_file_set_integer (conf, "prefs", "png-compression", prefs->png_compression);
+-#ifdef HAVE_WALLPAPER
+-    g_key_file_set_integer (conf, "prefs", "desktop", prefs->desktop);
+-#else
+-    g_key_file_set_integer (conf, "prefs", "desktop", 0);
+-#endif/* HAVE_WALLPAPER */
+ 
+     if(g_mkdir_with_parents (dir, 0700) != 0)
+         g_warning("Error creating config file's parent directory (%s)\n", dir);
+diff --git a/src/vnr-prefs.h b/src/vnr-prefs.h
+index 921484f..8c67b9c 100644
+--- a/src/vnr-prefs.h
++++ b/src/vnr-prefs.h
+@@ -44,9 +44,6 @@ typedef enum{
+     VNR_PREFS_ZOOM_LAST_USED,
+ } VnrPrefsZoom;
+ 
+-
+-#ifdef HAVE_WALLPAPER
+-
+ typedef enum{
+     VNR_PREFS_DESKTOP_GNOME2,
+     VNR_PREFS_DESKTOP_GNOME3,
+@@ -56,8 +53,6 @@ typedef enum{
+     VNR_PREFS_DESKTOP_NITROGEN,
+ } VnrPrefsDesktop;
+ 
+-#endif /* HAVE_WALLPAPER */
+-
+ typedef enum{
+     VNR_PREFS_WHEEL_NAVIGATE ,
+     VNR_PREFS_WHEEL_ZOOM ,
+@@ -80,11 +75,7 @@ struct _VnrPrefs {
+     GObject parent;
+ 
+     VnrPrefsZoom zoom;
+-
+-#ifdef HAVE_WALLPAPER
+     VnrPrefsDesktop desktop;
+-#endif /* HAVE_WALLPAPER */
+-    
+     VnrPrefsWheel behavior_wheel;
+     VnrPrefsClick behavior_click;
+     VnrPrefsModify behavior_modify;
+diff --git a/src/vnr-window.c b/src/vnr-window.c
+index 34c47c0..ca7d998 100755
+--- a/src/vnr-window.c
++++ b/src/vnr-window.c
+@@ -1382,8 +1382,6 @@ vnr_window_cmd_about (GtkAction *action, VnrWindow *window)
+                    NULL);
+ }
+ 
+-#ifdef HAVE_WALLPAPER
+-
+ static void
+ vnr_set_wallpaper(GtkAction *action, VnrWindow *win)
+ {
+@@ -1445,8 +1443,6 @@ vnr_set_wallpaper(GtkAction *action, VnrWindow *win)
+ 	}
+ }
+ 
+-#endif /* HAVE_WALLPAPER */
+-
+ static void
+ vnr_window_cmd_fullscreen (GtkAction *action, VnrWindow *window)
+ {
+@@ -1761,16 +1757,12 @@ static const GtkToggleActionEntry toggle_entry_properties[] = {
+       G_CALLBACK (vnr_window_cmd_open_menu) },
+ };
+ 
+-#ifdef HAVE_WALLPAPER
+-
+ static const GtkActionEntry action_entry_wallpaper[] = {
+     { "SetAsWallpaper", NULL, N_("Set as _Wallpaper"), "<control>F8",
+       N_("Set the selected image as the desktop background"),
+       G_CALLBACK (vnr_set_wallpaper) },
+ };
+ 
+-#endif /* HAVE_WALLPAPER */
+-
+ static const GtkActionEntry action_entries_image[] = {
+     { "FileOpenWith", NULL, N_("Open _With"), NULL,
+       N_("Open the selected image with a different application"),
+@@ -2149,7 +2141,6 @@ vnr_window_init (VnrWindow * window)
+             g_error_free (error);
+     }
+ 
+-#ifdef HAVE_WALLPAPER
+     window->action_wallpaper = gtk_action_group_new("ActionWallpaper");
+ 
+     gtk_action_group_set_translation_domain (window->action_wallpaper,
+@@ -2170,7 +2161,6 @@ vnr_window_init (VnrWindow * window)
+             g_error_free (error);
+     }
+     gtk_action_group_set_sensitive(window->action_wallpaper, FALSE);
+-#endif /* HAVE_WALPAPER */
+ 
+     gtk_action_group_set_sensitive(window->actions_collection, FALSE);
+     gtk_action_group_set_sensitive(window->actions_image, FALSE);
+@@ -2323,9 +2313,8 @@ vnr_window_open (VnrWindow * window, gboolean fit_to_screen)
+     }
+ 
+     gtk_action_group_set_sensitive(window->actions_image, TRUE);
+-#ifdef HAVE_WALLPAPER
+     gtk_action_group_set_sensitive(window->action_wallpaper, TRUE);
+-#endif /* HAVE_WALLPAPER */
++
+ 
+     format = gdk_pixbuf_get_file_info (file->path, NULL, NULL);
+ 

@@ -1,0 +1,21 @@
+diff -r -u a/Makefile b/Makefile
+--- a/Makefile	2015-07-01 00:00:00.000000000 +0900
++++ b/Makefile	2015-07-03 16:07:58.421379706 +0900
+@@ -5,7 +5,7 @@
+ # dir
+ ###########################
+ 
+-prefix := /usr/local
++prefix := /usr
+ 
+ bindir  := $(prefix)/bin
+ datadir := $(prefix)/share/azpainter
+@@ -96,8 +96,6 @@
+ 	cp -r ./files/texture $(datadir)
+ 	@install -Dv -m 644 ./files/azpainter.desktop $(menudir)/azpainter.desktop
+ 	@install -Dv -m 644 ./files/azpainter.png $(icondir)/azpainter.png
+-	@echo "Updating GTK icon cache."
+-	-gtk-update-icon-cache -f -t $(prefix)/share/icons/hicolor
+ 
+ uninstall:
+ 	-$(RM) $(bindir)/$(TARGET)

@@ -1,0 +1,216 @@
+# ChangeLog for media-sound/audacious
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> audacious-9999.ebuild:
+  [QA] Update copyright year to 2018
+
+  28 Nov 2017; wjn <wjn@aol.jp> -audacious-3.8.ebuild,
+  -audacious-3.8.1.ebuild, -audacious-3.8.2.ebuild, -audacious-3.9.ebuild:
+  Delete old versions
+
+  29 Oct 2017; wjn <wjn@aol.jp> audacious-9999.ebuild:
+  9999: Updates gnome2_icon_cache and xdg_desktop_database
+
+*audacious-3.9 (29 Oct 2017)
+
+  29 Oct 2017; wjn <wjn@aol.jp> +audacious-3.9.ebuild:
+  Add version 3.9
+
+  06 Jun 2017; wjn <wjn@aol.jp> audacious-3.8.ebuild, audacious-3.8.1.ebuild,
+  audacious-3.8.2.ebuild, audacious-9999.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+*audacious-3.8.2 (24 Jan 2017)
+
+  24 Jan 2017; wjn <wjn@aol.jp> +audacious-3.8.2.ebuild:
+  Add version 3.8.2
+
+  03 Jan 2017; wjn <wjn@aol.jp> audacious-3.8.ebuild, audacious-3.8.1.ebuild,
+  audacious-9999.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  17 Dec 2016; wjn <wjn@aol.jp> -audacious-3.7.1.ebuild,
+  -audacious-3.7.2.ebuild:
+  Delete old version 3.7.1 and 3.7.2
+
+*audacious-3.8.1 (08 Dec 2016)
+
+  08 Dec 2016; wjn <wjn@aol.jp> +audacious-3.8.1.ebuild:
+  Add version 3.8.1
+
+*audacious-3.8 (23 Sep 2016)
+
+  23 Sep 2016; wjn <wjn@aol.jp> +audacious-3.8.ebuild:
+  Add version 3.8
+
+*audacious-3.7.2 (29 Mar 2016)
+
+  29 Mar 2016; wjn <wjn@aol.jp> +audacious-3.7.2.ebuild:
+  Add version 3.7.2
+
+  19 Feb 2016; wjn <wjn@aol.jp> audacious-3.7.1.ebuild:
+  Correct for quality assurance
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  12 Feb 2016; wjn <wjn@aol.jp> -audacious-3.7.ebuild, audacious-3.7.1.ebuild,
+  audacious-9999.ebuild:
+  Delete old version 3.7, move to EAPI 6
+
+  01 Jan 2016; wjn <wjn@aol.jp> audacious-3.7.ebuild, audacious-3.7.1.ebuild,
+  audacious-9999.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+*audacious-3.7.1 (29 Dec 2015)
+
+  29 Dec 2015; wjn <wjn@aol.jp> +audacious-3.7.1.ebuild:
+  Add version 3.7.1
+
+  08 Nov 2015; wjn <wjn@aol.jp> audacious-9999.ebuild:
+  9999: Remove exporting for Qt5
+
+  08 Nov 2015; wjn <wjn@aol.jp> audacious-3.7.ebuild, audacious-9999.ebuild:
+  media-audio/audacious: Bundled libguess is BSD (3-clause) license
+
+  08 Nov 2015; wjn <wjn@aol.jp> -audacious-3.6.2.ebuild:
+  Delete version 3.6.2
+
+*audacious-3.7 (08 Nov 2015)
+
+  08 Nov 2015; wjn <wjn@aol.jp> +audacious-3.7.ebuild:
+  Add version 3.7
+
+  31 Oct 2015; wjn <wjn@aol.jp> audacious-3.6.2.ebuild:
+  Fix version 9999.
+
+   - require gtk or qt5
+
+  31 Oct 2015; wjn <wjn@aol.jp> audacious-9999.ebuild:
+  Fix version 9999.
+
+   - require gtk or qt5
+   - update DESCRIPTION to more reasonable one
+
+  06 Oct 2015; wjn <wjn@aol.jp> -audacious-3.6.ebuild,
+  -audacious-3.6.1.ebuild:
+  media-*/audacious*: Delete old version 3.6 and 3.6.1.
+
+  09 Sep 2015; wjn <wjn@aol.jp> audacious-9999.ebuild, metadata.xml:
+  Update metadata.xml(s) and IUSE(s).
+
+  09 Sep 2015; wjn <wjn@aol.jp> audacious-3.6.ebuild, audacious-3.6.1.ebuild,
+  audacious-3.6.2.ebuild, audacious-9999.ebuild, metadata.xml:
+  Trivial fixes for QA.
+
+  09 Sep 2015; wjn <wjn@aol.jp> audacious-3.6.ebuild, audacious-3.6.1.ebuild,
+  audacious-3.6.2.ebuild, audacious-9999.ebuild:
+  Update ebuild file format from "# $Header: $" to "# $Id"
+
+   Since Gentoo changes the VCS from CVS to git, ebuild header is changed.
+
+  27 Jul 2015; wjn <wjn@aol.jp> audacious-9999.ebuild:
+  Version 3.7 and later include libguess.
+
+   See http://audacious-media-player.org/news/36-ready-for-testing-
+  audacious-3-7-alpha1
+
+*audacious-3.6.2 (31 May 2015)
+
+  31 May 2015; wjn <wjn@aol.jp> +audacious-3.6.2.ebuild:
+  media-*/audacious*: Add version 3.6.2.
+
+  14 May 2015; wjn <wjn@aol.jp> audacious-3.6.ebuild, audacious-3.6.1.ebuild,
+  audacious-9999.ebuild:
+  media-*/audacious*: Add GTK+:3 support.
+
+    To build for GTK+:3, define USE="gtk +gtk3".
+
+    USE="-gtk3" is default
+   because upstream releases GTK+ 2 version as default.
+
+          modified:   media-sound/audacious/audacious-3.6.1.ebuild
+          modified:   media-sound/audacious/audacious-3.6.ebuild
+          modified:   media-sound/audacious/audacious-9999.ebuild
+          modified:   media-plugins/audacious-plugins/audacious-
+  plugins-3.6.1.ebuild
+          modified:   media-plugins/audacious-plugins/audacious-
+  plugins-3.6.ebuild
+          modified:   media-plugins/audacious-plugins/audacious-
+  plugins-9999.ebuild
+
+  14 May 2015; wjn <wjn@aol.jp> audacious-3.6.ebuild, audacious-3.6.1.ebuild:
+  media-*/audacious*: Delete unneeded substitution of ${S}.
+
+  11 May 2015; wjn <wjn@aol.jp> audacious-3.6.ebuild, audacious-3.6.1.ebuild:
+  Remove unneeded ${MY_P}, use ${P} directly.
+
+  11 May 2015; wjn <wjn@aol.jp> audacious-3.6.ebuild, audacious-3.6.1.ebuild,
+  audacious-9999.ebuild:
+  Use l10n.eclass to prevent installing unwanted *.mo files.
+
+  11 May 2015; wjn <wjn@aol.jp> audacious-9999.ebuild:
+  Use git-r3.eclass instead of deprecated git-2.eclass.
+
+  11 May 2015; wjn <wjn@aol.jp> audacious-9999.ebuild:
+  Use https:// instead of git://.
+
+*audacious-3.6.1 (05 Apr 2015)
+
+  05 Apr 2015; wjn <wjn@aol.jp> -audacious-3.5.2.ebuild,
+  +audacious-3.6.1.ebuild:
+  Add version 3.6.1, Drop old version 3.5.2.
+
+  02 Mar 2015; wjn <wjn@aol.jp> audacious-3.6.ebuild, audacious-9999.ebuild:
+  audacious: Fix DEPs, etc.
+
+  - inherit git-2 (not git-r3) in audacious-9999,
+   because git-r3 doesn't parse SRC_URI.
+
+  -  Fix dependencies.
+   e.g. qt5 and spectrum.
+
+          modified:   media-plugins/audacious-plugins/audacious-
+  plugins-3.6.ebuild
+          modified:   media-plugins/audacious-plugins/audacious-
+  plugins-9999.ebuild
+          modified:   media-sound/audacious/audacious-3.6.ebuild
+          modified:   media-sound/audacious/audacious-9999.ebuild
+
+  02 Mar 2015; wjn <wjn@aol.jp> audacious-3.5.2.ebuild, audacious-9999.ebuild,
+  metadata.xml:
+  audacious: Fix version 3.5.2 and 9999, metadata.xml.
+
+*audacious-3.6 (02 Mar 2015)
+
+  02 Mar 2015; wjn <wjn@aol.jp> +audacious-3.6.ebuild:
+  audacious: Add version 3.6.
+
+  02 Mar 2015; wjn <wjn@aol.jp> -audacious-3.5.ebuild,
+  -audacious-3.5.1.ebuild:
+  audacious*: Drop old version 3.5 and 3.5.1.
+
+          deleted:    media-sound/audacious-3.5.1.ebuild
+          deleted:    media-sound/audacious-3.5.ebuild
+          deleted:    media-plugins/audacious-plugins-3.5.1.ebuild
+          deleted:    media-plugins/audacious-plugins-3.5.ebuild
+
+  P.S. These are in the gentoo repository.
+
+  08 Feb 2015; wjn <wjn@aol.jp> audacious-9999.ebuild:
+  Use autotools.eclass (eautoreconf).
+
+   - Changed to use eautoreconf instead of ./autogen.sh .
+   - Wrote more smart PDEPEND.
+
+*audacious-9999 (27 Jan 2015)
+*audacious-3.5.2 (27 Jan 2015)
+*audacious-3.5.1 (27 Jan 2015)
+*audacious-3.5 (27 Jan 2015)
+
+  27 Jan 2015; wjn <wjn@aol.jp> +audacious-3.5.ebuild,
+  +audacious-3.5.1.ebuild, +audacious-3.5.2.ebuild, +audacious-9999.ebuild,
+  +metadata.xml:
+  Commit for initializing, Move from GitHub
+

@@ -1,0 +1,52 @@
+# ChangeLog for gnome-base/gnome-settings-daemon
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> gnome-settings-daemon-3.22.2-r1.ebuild:
+  [QA] Update copyright year to 2018
+
+  09 Jul 2017; wjn <wjn@aol.jp> gnome-settings-daemon-3.22.2-r1.ebuild:
+  Remove eautoreconf, gnome2_src_prepare does
+
+  09 Jul 2017; wjn <wjn@aol.jp>
+  -files/gnome-settings-daemon-3.16.0-optional.patch,
+  -files/gnome-settings-daemon-3.18.2-restore-deprecated-code.patch,
+  -gnome-settings-daemon-3.20.2.ebuild, -gnome-settings-daemon-3.22.1.ebuild,
+  -gnome-settings-daemon-3.22.2.ebuild:
+  Delete old 3.20.2, 3.22.1 and 3.22.2
+
+  09 Jul 2017; wjn <wjn@aol.jp> gnome-settings-daemon-3.22.2-r1.ebuild:
+  Drop defaulting deprecated upower-pm-utils
+
+*gnome-settings-daemon-3.22.2-r1 (09 Jul 2017)
+
+  09 Jul 2017; wjn <wjn@aol.jp> +files/3.22.2-udevrulesdir-configure.patch,
+  files/gnome-settings-daemon-3.22.0-optional.patch,
+  +gnome-settings-daemon-3.22.2-r1.ebuild:
+  Add 3.22.2-r1 to add gentoo's patches
+
+*gnome-settings-daemon-3.22.2 (22 Mar 2017)
+
+  22 Mar 2017; wjn <wjn@aol.jp> +gnome-settings-daemon-3.22.2.ebuild:
+  Add version 3.22.2
+
+  03 Jan 2017; wjn <wjn@aol.jp> gnome-settings-daemon-3.20.2.ebuild,
+  gnome-settings-daemon-3.22.1.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+*gnome-settings-daemon-3.22.1 (12 Nov 2016)
+
+  12 Nov 2016; wjn <wjn@aol.jp>
+  +files/gnome-settings-daemon-3.22.0-optional.patch,
+  +files/gnome-settings-daemon-3.22.1-restore-deprecated-code.patch,
+  +gnome-settings-daemon-3.22.1.ebuild:
+  Add version 3.22.1
+
+*gnome-settings-daemon-3.20.2 (10 Nov 2016)
+
+  10 Nov 2016; wjn <wjn@aol.jp>
+  +files/gnome-settings-daemon-3.16.0-optional.patch,
+  +files/gnome-settings-daemon-3.18.2-restore-deprecated-code.patch,
+  +gnome-settings-daemon-3.20.2.ebuild:
+  Add newly to omit Systemd
+

@@ -1,0 +1,30 @@
+diff --git a/src/vnr-prefs.h b/src/vnr-prefs.h
+index 921484f..87fd891 100644
+--- a/src/vnr-prefs.h
++++ b/src/vnr-prefs.h
+@@ -78,13 +78,7 @@ typedef enum{
+ 
+ struct _VnrPrefs {
+     GObject parent;
+-
+     VnrPrefsZoom zoom;
+-
+-#ifdef HAVE_WALLPAPER
+-    VnrPrefsDesktop desktop;
+-#endif /* HAVE_WALLPAPER */
+-    
+     VnrPrefsWheel behavior_wheel;
+     VnrPrefsClick behavior_click;
+     VnrPrefsModify behavior_modify;
+@@ -107,6 +101,11 @@ struct _VnrPrefs {
+     GtkWidget *vnr_win;
+ 
+     GtkSpinButton *slideshow_timeout_widget;
++
++#ifdef HAVE_WALLPAPER
++    VnrPrefsDesktop desktop;
++#endif /* HAVE_WALLPAPER */
++
+ };
+ 
+ struct _VnrPrefsClass {

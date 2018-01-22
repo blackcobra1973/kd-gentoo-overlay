@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -13,7 +13,7 @@ HOMEPAGE="https://github.com/stellar/ruby-xdr"
 
 LICENSE="Apache-2.0"
 SLOT="${PV}"
-KEYWORDS="~amd64 ~arm ~x86"
+KEYWORDS="~amd64 ~arm"
 IUSE=""
 
 ruby_add_rdepend "dev-ruby/activemodel:4.2
