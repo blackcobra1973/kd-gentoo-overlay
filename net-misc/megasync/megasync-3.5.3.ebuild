@@ -4,29 +4,34 @@
 
 EAPI=6
 
-inherit eutils multilib qmake-utils autotools versionator
+inherit eutils multilib qmake-utils autotools versionator git-r3
 
 DESCRIPTION="A Qt-based program for syncing your MEGA account in your PC. This is the official app."
 HOMEPAGE="http://mega.co.nz"
 if [[ ${PV} == *9999* ]];then
-	inherit git-r3
 	EGIT_REPO_URI="https://github.com/meganz/MEGAsync"
 	KEYWORDS=""
+	EGIT_SUBMODULES=( '*' )
 else
-	SDK_COMMIT="d7412bb8a13139600302ad9a907a10c47bdd0b52"
-	MY_PV="$(replace_all_version_separators _)"
-	SRC_URI="https://github.com/meganz/MEGAsync/archive/v${MY_PV}_0_Linux.tar.gz -> ${P}.tar.gz
-	https://github.com/meganz/sdk/archive/${SDK_COMMIT}.tar.gz -> ${PN}-sdk-20160719.tar.gz"
+	#SDK_COMMIT="e8e66e9f030febfb35c9e4dd503d69091e28fc04"
+	#MY_PV="$(replace_all_version_separators _)"
+	EGIT_REPO_URI="https://github.com/meganz/MEGAsync"
+	EGIT_COMMIT="v${PV}.0_Linux"
+	EGIT_SUBMODULES=( '*' )
+	#SRC_URI="https://github.com/meganz/MEGAsync/archive/v${PV}.0_Linux.tar.gz -> ${P}.tar.gz
+	#https://github.com/meganz/sdk/archive/${SDK_COMMIT}.tar.gz -> ${PN}-sdk-20170215.tar.gz"
 	KEYWORDS="~x86 ~amd64"
-	RESTRICT="mirror"
-	S="${WORKDIR}/MEGAsync-${MY_PV}_0_Linux"
+	#RESTRICT="mirror"
+	#S="${WORKDIR}/MEGAsync-${PV}.0_Linux"
 fi
 
 LICENSE="MEGA"
 SLOT="0"
-IUSE="+cryptopp +sqlite +zlib +curl freeimage readline examples threads qt5 nautilus"
+IUSE="+cryptopp +sqlite +zlib +curl freeimage readline examples threads qt5 java php python"
 
 DEPEND="
+	dev-lang/swig
+	app-doc/doxygen
 	!qt5? ( 
 		dev-qt/qtcore:4
 		dev-qt/qtgui:4
@@ -42,6 +47,8 @@ DEPEND="
 		dev-qt/qtdbus:5
 		)"
 RDEPEND="${DEPEND}
+		dev-libs/sni-qt
+		x11-themes/hicolor-icon-theme
 		dev-libs/openssl
 		dev-libs/libgcrypt
 		media-libs/libpng
@@ -55,15 +62,17 @@ RDEPEND="${DEPEND}
 		curl? ( net-misc/curl[ssl,curl_ssl_openssl] )
 		freeimage? ( media-libs/freeimage )
 		readline? ( sys-libs/readline:0 )
-		nautilus? (
-			>=gnome-base/nautilus-3.12.0
-			!!gnome-extra/nautilus-megasync 
-			)
 		"
+
+#PATCHES=( "${FILESDIR}/megasync-glibc2.26.patch" )
 
 if [[ ${PV} != *9999* ]];then
 	src_prepare(){
-		cp -r ../sdk-${SDK_COMMIT}/* src/MEGASync/mega
+		# Not needed, since using git submodules
+		#cp -r ../sdk-${SDK_COMMIT}/* src/MEGASync/mega
+		if [ -e "${FILESDIR}/MEGAsync-${PV}.0_Linux.patch" ]; then
+			EPATCH_OPTS="-p0" epatch "${FILESDIR}/MEGAsync-${PV}.0_Linux.patch"
+		fi
 		eapply_user
 		cd src/MEGASync/mega
 		eautoreconf
@@ -86,13 +95,17 @@ src_configure(){
 		"--with-sodium" \
 		$(use_with freeimage) \
 		$(use_with readline) \
-		$(use_enable examples)	
+		$(use_enable examples) \
+		$(use_enable java) \
+		$(use_enable php) \
+		$(use_enable python) \
+		"--enable-chat" \
+		"--enable-gcc-hardening" 
 	cd ../..
 	local myeqmakeargs=(
 		MEGA.pro
 		CONFIG+="release"
 	)
-	use nautilus && myeqmakeargs+=( CONFIG+="with_ext" )
 	if use qt5; then
 		eqmake5 ${myeqmakeargs[@]}
 		$(qt5_get_bindir)/lrelease MEGASync/MEGASync.pro
@@ -119,17 +132,4 @@ src_install(){
 	for size in 16x16 32x32 48x48 128x128 256x256;do
 		doicon -s $size $size/apps/mega.png
 	done
-	if use nautilus; then
-		cd "${S}/src/MEGAShellExtNautilus"
-		insinto usr/lib/nautilus/extensions-3.0
-		doins libMEGAShellExtNautilus.so.1.0.0
-		cd data/emblems
-		for size in 32x32 64x64;do
-			insinto usr/share/icons/hicolor/$size/emblems
-			doins $size/mega-{pending,synced,syncing,upload}.{icon,png}
-			dosym ${EPREFIX}/usr/lib/nautilus/extensions-3.0/libMEGAShellExtNautilus.so.1.0.0 ${EPREFIX}/usr/lib/nautilus/extensions-3.0/libMEGAShellExtNautilus.so.1.0
-			dosym ${EPREFIX}/usr/lib/nautilus/extensions-3.0/libMEGAShellExtNautilus.so.1.0.0 ${EPREFIX}/usr/lib/nautilus/extensions-3.0/libMEGAShellExtNautilus.so.1
-			dosym ${EPREFIX}/usr/lib/nautilus/extensions-3.0/libMEGAShellExtNautilus.so.1.0.0 ${EPREFIX}/usr/lib/nautilus/extensions-3.0/libMEGAShellExtNautilus.so
-		done
-	fi
 }
