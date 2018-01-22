@@ -1,0 +1,51 @@
+diff --git a/src/vnr-prefs.c b/src/vnr-prefs.c
+index f26a0bf..a2e2dd9 100644
+--- a/src/vnr-prefs.c
++++ b/src/vnr-prefs.c
+@@ -285,6 +285,8 @@ build_dialog (VnrPrefs *prefs)
+     gtk_combo_box_append_text(desktop_env, "GNOME 2");
+     gtk_combo_box_append_text(desktop_env, "GNOME 3");
+     gtk_combo_box_append_text(desktop_env, "XFCE");
++    gtk_combo_box_append_text(desktop_env, "CINNAMON");
++    gtk_combo_box_append_text(desktop_env, "MATE");
+     gtk_combo_box_append_text(desktop_env, "LXDE");
+     gtk_combo_box_append_text(desktop_env, "FluxBox");
+     gtk_combo_box_append_text(desktop_env, "Nitrogen");
+diff --git a/src/vnr-prefs.h b/src/vnr-prefs.h
+index e237808..6787be4 100644
+--- a/src/vnr-prefs.h
++++ b/src/vnr-prefs.h
+@@ -51,6 +51,8 @@ typedef enum{
+     VNR_PREFS_DESKTOP_GNOME2,
+     VNR_PREFS_DESKTOP_GNOME3,
+     VNR_PREFS_DESKTOP_XFCE,
++    VNR_PREFS_DESKTOP_CINNAMON,
++    VNR_PREFS_DESKTOP_MATE,
+     VNR_PREFS_DESKTOP_LXDE,
+     VNR_PREFS_DESKTOP_FLUXBOX,
+     VNR_PREFS_DESKTOP_NITROGEN,
+diff --git a/src/vnr-window.c b/src/vnr-window.c
+index efdcbff..53ad568 100755
+--- a/src/vnr-window.c
++++ b/src/vnr-window.c
+@@ -1420,6 +1420,20 @@ vnr_set_wallpaper(GtkAction *action, VnrWindow *win)
+ 						VNR_FILE(win->file_list->data)->path, 
+ 						NULL);
+ 				break;
++			case VNR_PREFS_DESKTOP_CINNAMON:
++				tmp = g_strdup_printf("file://%s", VNR_FILE(win->file_list->data)->path);
++				execlp("gsettings", "gsettings", 
++						"set", "org.cinnamon.desktop.background", 
++						"picture-uri", tmp, 
++						NULL);
++				break;
++			case VNR_PREFS_DESKTOP_MATE:
++				execlp("gsettings", "gsettings", 
++						"set", "org.mate.background", 
++						"picture-filename",
++						VNR_FILE(win->file_list->data)->path, 
++						NULL);
++				break;
+ 			case VNR_PREFS_DESKTOP_LXDE:
+ 				execlp("pcmanfm", "pcmanfm", 
+ 						"--set-wallpaper",

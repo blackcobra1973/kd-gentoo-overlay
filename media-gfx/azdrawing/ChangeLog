@@ -1,0 +1,71 @@
+# ChangeLog for media-gfx/azdrawing
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> azdrawing-1.5.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> azdrawing-1.5.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> azdrawing-1.5.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> azdrawing-1.5.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  25 Nov 2015; wjn <wjn@aol.jp> azdrawing-1.5.ebuild:
+  media-gfx/az{drawing,painter}: Add RESTRICT="mirror"
+
+  25 Nov 2015; wjn <wjn@aol.jp> azdrawing-1.5.ebuild:
+  media-gfx/az{drawing,painter}: Rename ${SF_DIR} to ${OSDN_DIR}
+
+  25 Nov 2015; wjn <wjn@aol.jp> -azdrawing-1.4.ebuild:
+  Delete version 1.4
+
+  14 Nov 2015; wjn <wjn@aol.jp> azdrawing-1.4.ebuild, azdrawing-1.5.ebuild:
+  Change dohtml to dodoc -r
+
+   dohtml will be deprecated in EAPI 6.
+
+  08 Nov 2015; wjn <wjn@aol.jp> azdrawing-1.4.ebuild, azdrawing-1.5.ebuild:
+  Update $SRC_URIs and $HOMEPAGEs from sourceforge.jp to osdn.jp
+
+  09 Sep 2015; wjn <wjn@aol.jp> +metadata.xml:
+  Add minimal metadata.xml(s) for QA.
+
+  09 Sep 2015; wjn <wjn@aol.jp> azdrawing-1.4.ebuild, azdrawing-1.5.ebuild:
+  Fix trivials such as redundant new lines etc.
+
+  09 Sep 2015; wjn <wjn@aol.jp> azdrawing-1.4.ebuild, azdrawing-1.5.ebuild:
+  Update ebuild file format from "# $Header: $" to "# $Id"
+
+   Since Gentoo changes the VCS from CVS to git, ebuild header is changed.
+
+  11 Jul 2015; wjn <wjn@aol.jp> azdrawing-1.5.ebuild:
+  1.5: Tidy up newline.
+
+*azdrawing-1.5 (03 Jul 2015)
+
+  03 Jul 2015; wjn <wjn@aol.jp> +azdrawing-1.5.ebuild,
+  +files/azdrawing-makefile.patch:
+  Add version 1.5.
+
+          FYI:
+                   Original Makefile executes gtk-update-icon-cache.
+                   But it sould be remove for Gentoo ebuild system,
+                  because ebuild system has own gnome2_icon_cache_update in
+                  gnome2-utils.eclass.
+                   So patched to Makefile.
+
+  17 Jun 2015; wjn <wjn@aol.jp> azdrawing-1.4.ebuild:
+  Tidy up, remove needless (implicit) deps.
+
+*azdrawing-1.4 (27 Jan 2015)
+
+  27 Jan 2015; wjn <wjn@aol.jp> +azdrawing-1.4.ebuild:
+  Commit for initializing, Move from GitHub
+

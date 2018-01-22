@@ -1,0 +1,45 @@
+diff --git a/configure.ac b/configure.ac
+index 38f518b..0da1d6d 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -109,7 +109,6 @@ LIBS=$saved_LIBS
+ PKG_CHECK_MODULES(ST, clutter-1.0 gtk+-3.0 libcroco-0.6 >= 0.6.2 cinnamon-desktop >= 2.4.0 x11)
+ PKG_CHECK_MODULES(GDMUSER, dbus-glib-1 gtk+-3.0)
+ PKG_CHECK_MODULES(TRAY, gtk+-3.0)
+-PKG_CHECK_MODULES(GVC, libpulse libpulse-mainloop-glib gobject-2.0)
+ PKG_CHECK_MODULES(DESKTOP_SCHEMAS, cinnamon-desktop >= 2.4.0)
+ 
+ AC_MSG_CHECKING([for bluetooth support])
+diff --git a/src/Makefile.am b/src/Makefile.am
+index e6e54a9..65cd74f 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -74,7 +74,6 @@ CLEANFILES += cinnamon $(bin_SCRIPTS)
+ 
+ include Makefile-st.am
+ include Makefile-tray.am
+-include Makefile-gvc.am
+ include Makefile-hotplug-sniffer.am
+ 
+ cinnamon_cflags =				\
+@@ -282,7 +281,6 @@ libcinnamon_la_LIBADD =		\
+ 	$(BLUETOOTH_LIBS)	\
+ 	libst-1.0.la       	\
+ 	libtray.la		\
+-	libgvc.la		\
+ 	$(NULL)
+ 
+ libcinnamon_la_CPPFLAGS = $(cinnamon_cflags)
+diff --git a/src/main.c b/src/main.c
+index a6d9144..7ed7a7a 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -310,8 +310,6 @@ main (int argc, char **argv)
+ #endif
+ 
+   /* Disable debug spew from various libraries */
+-  g_log_set_handler ("Gvc", G_LOG_LEVEL_DEBUG,
+-                     muted_log_handler, NULL);
+   g_log_set_handler ("AccountsService", G_LOG_LEVEL_DEBUG,
+                      muted_log_handler, NULL);
+   g_log_set_handler ("Bluetooth", G_LOG_LEVEL_DEBUG | G_LOG_LEVEL_MESSAGE,

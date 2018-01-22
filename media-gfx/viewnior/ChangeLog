@@ -1,0 +1,81 @@
+# ChangeLog for media-gfx/viewnior
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> viewnior-1.5.ebuild, viewnior-1.6.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> viewnior-1.5.ebuild, viewnior-1.6.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> viewnior-1.5.ebuild, viewnior-1.6.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> viewnior-1.5.ebuild, viewnior-1.6.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+*viewnior-1.6 (18 Dec 2015)
+
+  18 Dec 2015; wjn <wjn@aol.jp> +viewnior-1.6.ebuild:
+  Add version 1.6
+
+   Upstream's release note is at
+  http://siyanpanayotov.com/project/viewnior/news/
+
+  06 Oct 2015; wjn <wjn@aol.jp> viewnior-1.5.ebuild:
+  Fix exif2 dependency to be rebuilt.
+
+  09 Sep 2015; wjn <wjn@aol.jp> viewnior-1.5.ebuild:
+  Update ebuild file format from "# $Header: $" to "# $Id"
+
+   Since Gentoo changes the VCS from CVS to git, ebuild header is changed.
+
+  24 May 2015; wjn <wjn@aol.jp>
+  +files/viewnior-1.5-background-mate-cinnamon.patch, viewnior-1.5.ebuild:
+  Add Cinnamon and MATE to the wallpaper change func.
+
+  23 May 2015; wjn <wjn@aol.jp>
+  +files/viewnior-1.5-move-vnr-prefs-desktop.patch, viewnior-1.5.ebuild:
+  Update patch to fix "Add switch to disable wallpaper functionality".
+
+    Since detected the reason of bug (see commit d31a2be ),
+   updated the patch to correct preprocessing.
+
+    Though source codes seems to be valid,
+   preprocessor (GCC/cpp) makes bug around the "#ifdef"s in src/vnr-prefs.h .
+
+    This patch solves it temporarily.
+   Wait a fix by upstream or GCC.
+
+  20 May 2015; wjn <wjn@aol.jp>
+  +files/viewnior-1.5-revert-wallpaper-conf.patch, viewnior-1.5.ebuild:
+  Add patch to revert "Add switch to disable wallpaper functionality".
+
+    "Add switch to disable wallpaper functionality"
+   (Upstream:xsisqox/Viewnior fc0f5cb) seems to have a side-effect
+   that makes wrong behavior about preferences.
+    Added temporarily a patch to revert the commit.
+
+    configure で壁紙の設定を無効化を可能にする改変により
+   設定項目がズレる弊害が生ずるようなので、
+   この改変から戻すパッチを追加した。
+
+*viewnior-1.5 (13 May 2015)
+
+  13 May 2015; wjn <wjn@aol.jp> +metadata.xml, +viewnior-1.5.ebuild:
+  Add newly. version 1.5.
+
+   Since the official maintainer doesn't respond for the version bump,
+  I add this ebuild file to my overlay.
+
+   About viewnior, see..
+    - http://siyanpanayotov.com/project/viewnior/
+    - https://github.com/xsisqox/Viewnior
+
+   This ebuild file also fixes..
+    - dependencies versions
+    - gdk-pixbuf is added to rumtime depend (RDEPEND)
+

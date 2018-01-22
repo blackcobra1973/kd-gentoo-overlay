@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>wjn@aol.jp</email>
+	</maintainer>
+	<use>
+		<flag name="celt">Support CELT low delay audio codec
+			(<pkg>media-libs/celt</pkg>)</flag>
+		<flag name="opus">Support <pkg>media-libs/opus</pkg></flag>
+		<flag name="pam">Add basic realime configuration via
+			<pkg>sys-auth/realtime-base</pkg></flag>
+	</use>
+</pkgmetadata>

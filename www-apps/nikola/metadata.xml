@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>wjn@aol.jp</email>
+	</maintainer>
+	<use>
+		<flag name='assets'>Support web asset management through
+			<pkg>dev-python/assets</pkg></flag>
+		<flag name='bbcode'>Support bbcode format</flag>
+		<flag name='charts'>Support chart generation through
+			<pkg>dev-python/pygal</pkg></flag>
+		<flag name='ghpages'>Support GitHub Page</flag>
+		<flag name='husl'>Add support for<pkg>dev-python/husl</pkg></flag>
+		<flag name='hyphenation'>Add hyphenation support through
+			<pkg>dev-python/pyphen</pkg></flag>
+		<flag name='ipython'>Add IPython notebook compilation and LESS
+			support</flag>
+		<flag name='jinja'>Add support for <pkg>dev-python/jinja</pkg>
+			as alternative templating engine to Mako</flag>
+		<flag name='markdown'>Add support for Markdown as alternative
+			markup language to reStructuredText</flag>
+		<flag name='micawber'>Support <pkg>dev-python/micawber</pkg></flag>
+		<flag name='php'>Support <pkg>dev-python/phpserialize</pkg></flag>
+		<flag name='typogrify'>Support <pkg>dev-python/typogrify</pkg></flag>
+		<flag name='watchdog'>Support <pkg>dev-python/watchdog</pkg>
+			to monitor file system events</flag>
+		<flag name='websocket'>Support <pkg>dev-python/ws4py</pkg></flag>
+		<flag name='yaml'>Support <pkg>dev-python/pyyaml</pkg></flag>
+	</use>
+	<upstream>
+		<remote-id type="github">getnikola/nikola</remote-id>
+	</upstream>
+</pkgmetadata>

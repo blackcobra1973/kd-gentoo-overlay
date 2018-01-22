@@ -1,0 +1,27 @@
+# ChangeLog for x11-themes/smooth-themes
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> smooth-themes-0.5.8.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> smooth-themes-0.5.8.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> smooth-themes-0.5.8.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> smooth-themes-0.5.8.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  25 Nov 2015; wjn <wjn@aol.jp> smooth-themes-0.5.8.ebuild:
+  x11-themes/* (only in wjn-overlay): Add "mirror" to ${RESTRICT}
+
+*smooth-themes-0.5.8 (09 Nov 2015)
+
+  09 Nov 2015; wjn <wjn@aol.jp> +metadata.xml, +smooth-themes-0.5.8.ebuild:
+  Add newly
+

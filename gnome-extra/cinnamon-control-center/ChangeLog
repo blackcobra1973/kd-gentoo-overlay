@@ -1,0 +1,93 @@
+# ChangeLog for gnome-extra/cinnamon-control-center
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> cinnamon-control-center-2.8.1.ebuild,
+  cinnamon-control-center-3.0.1.ebuild, cinnamon-control-center-3.2.1.ebuild,
+  cinnamon-control-center-3.4.0.ebuild:
+  [QA] Update copyright year to 2018
+
+*cinnamon-control-center-3.4.0 (02 Nov 2017)
+
+  02 Nov 2017; wjn <wjn@aol.jp> +cinnamon-control-center-3.4.0.ebuild:
+  Add version 3.4.0
+
+  06 Jun 2017; wjn <wjn@aol.jp> cinnamon-control-center-2.8.1.ebuild,
+  cinnamon-control-center-3.0.1.ebuild, cinnamon-control-center-3.2.1.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+*cinnamon-control-center-3.2.1 (14 Feb 2017)
+
+  14 Feb 2017; wjn <wjn@aol.jp> +cinnamon-control-center-3.2.1.ebuild:
+  Add version 3.2.1 for "-networkmanager"
+
+  03 Jan 2017; wjn <wjn@aol.jp> cinnamon-control-center-2.8.1.ebuild,
+  cinnamon-control-center-3.0.1.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  30 Oct 2016; wjn <wjn@aol.jp> -cinnamon-control-center-2.6.0-r1.ebuild:
+  Delete obsolete version 2.6.0-r1
+
+*cinnamon-control-center-3.0.1 (28 Aug 2016)
+
+  28 Aug 2016; wjn <wjn@aol.jp> +cinnamon-control-center-3.0.1.ebuild:
+  Add version 3.0.1
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> cinnamon-control-center-2.6.0-r1.ebuild,
+  cinnamon-control-center-2.8.1.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  30 Nov 2015; wjn <wjn@aol.jp> cinnamon-control-center-2.6.0-r1.ebuild,
+  cinnamon-control-center-2.8.1.ebuild:
+  Fix typo of ${DESCRIPTION}
+
+  17 Nov 2015; wjn <wjn@aol.jp> cinnamon-control-center-2.8.1.ebuild:
+  gnome-extra/cinnamon*: Update cinnamon components version to 2.8
+
+*cinnamon-control-center-2.8.1 (17 Nov 2015)
+
+  17 Nov 2015; wjn <wjn@aol.jp> -cinnamon-control-center-2.8.0.ebuild,
+  +cinnamon-control-center-2.8.1.ebuild:
+  Update version 2.8.0 to 2.8.1.
+
+*cinnamon-control-center-2.8.0 (17 Nov 2015)
+
+  17 Nov 2015; wjn <wjn@aol.jp> +cinnamon-control-center-2.8.0.ebuild,
+  +files/cinnamon-control-center-2.8.0-optional.patch:
+  Add version 2.8.0
+
+  17 Nov 2015; wjn <wjn@aol.jp> cinnamon-control-center-2.6.0-r1.ebuild:
+  gnome-extra/cinnamon{,control-center}: Do not KEYWORD
+
+  09 Nov 2015; wjn <wjn@aol.jp> cinnamon-control-center-2.6.0-r1.ebuild:
+  gnome-extra/cinnamon-settings-daemon: Add newly for add IUSE="pulseaudio"
+
+   Change pulseaudio to optional in cinnamon-settings-daemon.
+
+   And also,
+  cinnamon[pulseaudio=] and cinnamon-control-center[pulseaudio=] are needed.
+
+  09 Nov 2015; wjn <wjn@aol.jp> cinnamon-control-center-2.6.0-r1.ebuild,
+  +files/cinnamon-control-center-disable-pulseaudio.patch:
+  Add IUSE="pulseaudio"
+
+   cinnamon-control-center[-pulseaudio] results to omit the sound panel.
+
+   And gnome-extra/cinnamon depends on cinnamon-control-center[pulseaudio=].
+
+  03 Nov 2015; wjn <wjn@aol.jp> cinnamon-control-center-2.6.0-r1.ebuild:
+  Fix to drop nm-applet dep when -networkmanager.
+
+*cinnamon-control-center-2.6.0-r1 (02 Nov 2015)
+
+  02 Nov 2015; wjn <wjn@aol.jp> +cinnamon-control-center-2.6.0-r1.ebuild,
+  +files/cinnamon-control-center-2.6.0-optional.patch, +metadata.xml:
+  Add newly for disabling NetworkManager.
+
+   cinnamon-control-center can be built without NetworkManager (and nm-
+  applet).
+  NetworkManager has too poor functionality to be forced to install.
+

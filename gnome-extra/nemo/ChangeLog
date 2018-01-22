@@ -1,0 +1,17 @@
+# ChangeLog for gnome-extra/nemo
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> nemo-3.4.4.ebuild, nemo-3.4.7.ebuild:
+  [QA] Update copyright year to 2018
+
+*nemo-3.4.7 (02 Nov 2017)
+
+  02 Nov 2017; wjn <wjn@aol.jp> +nemo-3.4.7.ebuild:
+  Add version 3.4.7
+
+*nemo-3.4.4 (25 Jun 2017)
+
+  25 Jun 2017; wjn <wjn@aol.jp> +metadata.xml, +nemo-3.4.4.ebuild:
+  Add newly for making selinux selective
+

@@ -1,0 +1,53 @@
+# ChangeLog for x11-misc/screengrab
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> screengrab-2.9999.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> screengrab-2.9999.ebuild:
+  [QA] Update copyright year to 2017
+
+  06 Jun 2017; wjn <wjn@aol.jp> screengrab-2.9999.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  04 Feb 2016; wjn <wjn@aol.jp> screengrab-2.9999.ebuild:
+  Add gnome2_icon_cache_update
+
+  04 Feb 2016; wjn <wjn@aol.jp> screengrab-2.9999.ebuild:
+  Install html-docs and an icon
+
+  04 Feb 2016; wjn <wjn@aol.jp> metadata.xml, screengrab-2.9999.ebuild:
+  Drop IUSE="qxt"
+
+   Though "-DSG_USE_SYSTEM_QXT" remains in upstream, it's broken
+  because x11-libs/libqxt doesn't support modern Qt libraries.
+  It should not be used.
+   'LIBQXT IS NO LONGER MAINTAINED' ( https://bitbucket.org/libqxt/libqxt ).
+
+   And "-DSG_GLOBALSHORTCUTS" doesn't work without "-DSG_USE_SYSTEM_QXT".
+  It depends on "#include <QxtCore/qxtglobal.h>".
+
+   Thus, these upstream's features don't work.
+    - DSG_GLOBALSHORTCUTS
+      + Enable global shortcuts for main actions to create screenshots.
+    - DSG_USE_SYSTEM_QXT
+      + Use system version Qxt Library for global shortcuts.
+
+*screengrab-2.9999 (04 Feb 2016)
+
+  04 Feb 2016; wjn <wjn@aol.jp> +files/screengrab-1.0-detect-lib64.patch,
+  +metadata.xml, +screengrab-2.9999.ebuild:
+  Add newly, version 2.9999 (2-dev)
+
+   ScreenGrab version 2 series is Qt5-based(mandatory)
+  (Its version 1 series was Qt4-based and in gentoo repository)
+
+   Upstream: https://github.com/DOOMer/screengrab
+  (http://screengrab.doomer.org/ currently seems to be down or misconfigured)
+
+   Note: This is a desktop screen-shot software, not Firefox addon
+

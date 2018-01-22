@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>wjn@aol.jp</email>
+	</maintainer>
+	<use>
+		<flag name="menulibre">Support <pkg>x11-misc/menulibre</pkg>
+			instead of <pkg>x11-misc/mozo</pkg></flag>
+	</use>
+	<upstream>
+		<remote-id type="github">mate-desktop/mate-panel</remote-id>
+	</upstream>
+</pkgmetadata>

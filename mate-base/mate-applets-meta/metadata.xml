@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>wjn@aol.jp</email>
+	</maintainer>
+	<use>
+		<flag name="appindicator">Pull in
+			<pkg>mate-extra/mate-indicator-applet</pkg> for
+			AppIndicator applet</flag>
+		<flag name="gtk3">Build for gtk+:3 instead of gtk+:2.
+			EXPERIMENTAL</flag>
+		<flag name="sensors">Pull in <pkg>mate-extra/mate-sensors-applet</pkg>
+			for hw sensors applet</flag>
+	</use>
+</pkgmetadata>

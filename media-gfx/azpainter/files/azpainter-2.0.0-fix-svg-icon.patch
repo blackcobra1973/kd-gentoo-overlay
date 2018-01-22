@@ -1,0 +1,12 @@
+diff -ur --unidirectional-new-file -urN a/desktop/azpainter.svg b/desktop/azpainter.svg
+--- a/desktop/azpainter.svg	2017-02-06 03:27:10.447793277 +0000
++++ b/desktop/azpainter.svg	2017-02-06 03:25:42.198791579 +0000
+@@ -18,7 +18,7 @@
+    inkscape:version="0.91 r13725"
+    sodipodi:docname="azpainter.svg"
+    inkscape:export-xdpi="5.625"
+-   inkscape:export-ydpi="5.625"
++   inkscape:export-ydpi="5.625">
+   <defs
+      id="defs3338">
+     <linearGradient

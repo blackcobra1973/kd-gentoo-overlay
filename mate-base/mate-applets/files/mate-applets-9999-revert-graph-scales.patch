@@ -1,0 +1,111 @@
+diff --git a/multiload/load-graph.c b/multiload/load-graph.c
+index 5e0c16f..9683562 100644
+--- a/multiload/load-graph.c
++++ b/multiload/load-graph.c
+@@ -48,9 +48,8 @@ shift_right(LoadGraph *g)
+ static void
+ load_graph_draw (LoadGraph *g)
+ {
+-  guint i, j, k;
++  guint i, j;
+   cairo_t *cr;
+-  int load;
+ 
+   /* we might get called before the configure event so that
+    * g->disp->allocation may not have the correct size
+@@ -66,74 +65,22 @@ load_graph_draw (LoadGraph *g)
+   cairo_set_line_cap (cr, CAIRO_LINE_CAP_ROUND);
+   cairo_set_line_join (cr, CAIRO_LINE_JOIN_ROUND);
+ 
+-  /* all graphs except Load go this path */
+-  if (g->id != 4)
++  for (i = 0; i < g->draw_width; i++)
++    g->pos [i] = g->draw_height - 1;
++
++  for (j = 0; j < g->n; j++)
+   {
+-    for (i = 0; i < g->draw_width; i++)
+-      g->pos [i] = g->draw_height - 1;
++    gdk_cairo_set_source_rgba (cr, &(g->colors [j]));
+ 
+-    for (j = 0; j < g->n; j++)
+-    {
+-      gdk_cairo_set_source_rgba (cr, &(g->colors [j]));
+-
+-      for (i = 0; i < g->draw_width; i++)
+-      {
+-        if (g->data [i][j] != 0)
+-        {
+-          cairo_move_to (cr, g->draw_width - i - 0.5, g->pos[i] + 0.5);
+-          cairo_line_to (cr, g->draw_width - i - 0.5, g->pos[i] - (g->data [i][j] - 0.5));
+-        }
+-        g->pos [i] -= g->data [i][j];
+-      }
+-      cairo_stroke (cr);
+-    }
+-
+-  }
+-  /* this is Load graph */
+-  else
+-  {
+-    guint maxload =	1;
+     for (i = 0; i < g->draw_width; i++)
+     {
+-      g->pos [i] = g->draw_height - 1;
+-      /* find maximum value */
+-      if (g->data[i][0] > maxload)
+-        maxload = g->data[i][0];
+-    }
+-    load = ceil ((double) (maxload/g->draw_height)) + 1;
+-    load = MAX (load,1);
+-
+-    for (j = 0; j < g->n; j++)
+-    {
+-      gdk_cairo_set_source_rgba (cr, &(g->colors [j]));
+-
+-      for (i = 0; i < g->draw_width; i++)
++      if (g->data [i][j] != 0)
+       {
+         cairo_move_to (cr, g->draw_width - i - 0.5, g->pos[i] + 0.5);
+-        if (j == 0)
+-        {
+-          cairo_line_to (cr, g->draw_width - i - 0.5, g->pos[i] - ((g->data [i][j] - 0.5)/load));
+-        }
+-        else
+-        {
+-          cairo_line_to (cr, g->draw_width - i - 0.5, 0.5);
+-        }
+-        g->pos [i] -= g->data [i][j] / load;
++        cairo_line_to (cr, g->draw_width - i - 0.5, g->pos[i] - (g->data [i][j] - 0.5));
++        g->pos [i] -= g->data [i][j];
+       }
+-      cairo_stroke (cr);
+     }
+-
+-    /* draw grid lines in Load graph if needed */
+-    gdk_cairo_set_source_rgba (cr, &(g->colors [2]));
+-
+-    double spacing = 0;
+-    for (k = 0; k < load - 1; k++)
+-    {
+-      spacing = ((double) g->draw_height/load) * (k+1);
+-      cairo_move_to (cr, 0.5, spacing);
+-      cairo_line_to (cr, g->draw_width-0.5, spacing);
+-		}
+-
+     cairo_stroke (cr);
+   }
+   gtk_widget_queue_draw (g->disp);
+diff --git a/multiload/main.c b/multiload/main.c
+index 151c3dc..9c97c89 100644
+--- a/multiload/main.c
++++ b/multiload/main.c
+@@ -365,7 +365,7 @@ multiload_create_graphs(MultiloadApplet *ma)
+ 			{ _("Memory Load"),  "memload",  5, GetMemory },
+ 			{ _("Net Load"),     "netload2",  4, GetNet },
+ 			{ _("Swap Load"),    "swapload", 2, GetSwap },
+-			{ _("Load Average"), "loadavg",  3, GetLoadAvg },
++			{ _("Load Average"), "loadavg",  2, GetLoadAvg },
+ 			{ _("Disk Load"),    "diskload", 3, GetDiskLoad }
+ 		};
+ 

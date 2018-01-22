@@ -1,0 +1,21 @@
+diff -r -u a/Makefile b/Makefile
+--- a/Makefile	2015-07-01 00:00:00.000000000 +0900
++++ b/Makefile	2015-07-03 15:44:49.248411883 +0900
+@@ -6,7 +6,7 @@
+ # dir
+ ###########################
+ 
+-prefix := /usr/local
++prefix := /usr
+ 
+ bindir  := $(prefix)/bin
+ datadir := $(prefix)/share/azdrawing
+@@ -95,8 +95,6 @@
+ 	cp -r ./files/texture $(datadir)
+ 	@install -Dv -m 644 ./files/azdrawing.desktop $(menudir)/azdrawing.desktop
+ 	@install -Dv -m 644 ./files/azdrawing.png $(icondir)/azdrawing.png
+-	@echo "Updating GTK icon cache."
+-	-gtk-update-icon-cache -f -t $(prefix)/share/icons/hicolor
+ 
+ uninstall:
+ 	-$(RM) $(bindir)/$(TARGET)

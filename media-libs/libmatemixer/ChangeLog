@@ -1,0 +1,36 @@
+# ChangeLog for media-libs/libmatemixer
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> libmatemixer-9999.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> libmatemixer-9999.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> libmatemixer-9999.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  25 Nov 2016; wjn <wjn@aol.jp> libmatemixer-9999.ebuild:
+  Update dependencies
+
+  10 Apr 2016; wjn <wjn@aol.jp> libmatemixer-9999.ebuild:
+  Add ChangeLog to DOCS, move to EAPI 6
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  10 Feb 2016; wjn <wjn@aol.jp> libmatemixer-9999.ebuild:
+  MATE Desktop: Improve ${HOMEPAGE} and ${EGIT_REPO_URI}
+
+   - Add github repositories to ${HOMEPAGE}
+   - Change git:// to https:// in ${EGIT_REPO_URI}
+
+*libmatemixer-9999 (10 Feb 2016)
+
+  10 Feb 2016; wjn <wjn@aol.jp> +libmatemixer-9999.ebuild, +metadata.xml:
+  mate-extra/libmatemixer: Move to media-libs/
+
+   The offcial gentoo repository added this to the category of media-libs
+  https://gitweb.gentoo.org/repo/gentoo.git/commit/?id=3359a44
+

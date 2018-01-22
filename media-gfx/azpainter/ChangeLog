@@ -1,0 +1,197 @@
+# ChangeLog for media-gfx/azpainter
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> azpainter-1.0.7.ebuild,
+  azpainter-2.0.1.ebuild, azpainter-2.0.2.ebuild, azpainter-2.0.3.ebuild,
+  azpainter-2.0.4.ebuild, azpainter-2.0.5.ebuild, azpainter-2.0.6.ebuild,
+  azpainter-2.1.1.ebuild:
+  [QA] Update copyright year to 2018
+
+*azpainter-2.1.1 (30 Oct 2017)
+
+  30 Oct 2017; wjn <wjn@aol.jp> +azpainter-2.1.1.ebuild:
+  Add version 2.1.1
+
+  06 Jun 2017; wjn <wjn@aol.jp> azpainter-1.0.7.ebuild,
+  azpainter-2.0.1.ebuild, azpainter-2.0.2.ebuild, azpainter-2.0.3.ebuild,
+  azpainter-2.0.4.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+*azpainter-2.0.6 (03 Jun 2017)
+
+  03 Jun 2017; wjn <wjn@aol.jp> +azpainter-2.0.6.ebuild:
+  Add version 2.0.6
+
+*azpainter-2.0.5 (20 May 2017)
+
+  20 May 2017; wjn <wjn@aol.jp> +azpainter-2.0.5.ebuild:
+  Add version 2.0.5
+
+*azpainter-2.0.4 (15 Mar 2017)
+
+  15 Mar 2017; wjn <wjn@aol.jp> +azpainter-2.0.4.ebuild:
+  Add version 2.0.4
+
+  06 Mar 2017; wjn <wjn@aol.jp> -azpainter-2.0.0-r1.ebuild:
+  Delete old version 2.0.0-r1
+
+*azpainter-2.0.3 (05 Mar 2017)
+
+  05 Mar 2017; wjn <wjn@aol.jp> +azpainter-2.0.3.ebuild:
+  Add version 2.0.3
+
+*azpainter-2.0.2 (23 Feb 2017)
+
+  23 Feb 2017; wjn <wjn@aol.jp> +azpainter-2.0.2.ebuild:
+  Add version 2.0.2
+
+*azpainter-2.0.1 (07 Feb 2017)
+
+  07 Feb 2017; wjn <wjn@aol.jp> +azpainter-2.0.1.ebuild:
+  Add version 2.0.1
+
+   AzPainter 2.0.1 is fixed for a SVG icon bug
+
+   Note:
+     Because that bug is already fixed by 2.0.0-r1 in this overlay,
+    upgrading is not neccessary
+
+  06 Feb 2017; wjn <wjn@aol.jp> -files/azpainter-1.0.5-rulepos.patch:
+  Delete an unused patch
+
+*azpainter-2.0.0-r1 (06 Feb 2017)
+
+  06 Feb 2017; wjn <wjn@aol.jp> -azpainter-2.0.0.ebuild,
+  +azpainter-2.0.0-r1.ebuild, +files/azpainter-2.0.0-fix-svg-icon.patch:
+  Revision up to fix SVG icon
+
+   There is a typo in a SVG icon, so it can't be opened properly
+
+  05 Feb 2017; wjn <wjn@aol.jp> -azpainter-2.0.0_beta8.ebuild:
+  Delete old version 2.0.0_beta8
+
+*azpainter-2.0.0 (05 Feb 2017)
+
+  05 Feb 2017; wjn <wjn@aol.jp> +azpainter-2.0.0.ebuild:
+  Add version 2.0.0
+
+  05 Feb 2017; wjn <wjn@aol.jp> -azpainter-1.0.6.ebuild:
+  Delete old version 1.0.6
+
+*azpainter-2.0.0_beta8 (23 Jan 2017)
+
+  23 Jan 2017; wjn <wjn@aol.jp> -azpainter-2.0.0_beta7.ebuild,
+  +azpainter-2.0.0_beta8.ebuild:
+  Add version 2.0.0_beta8, delete old 2.0.0_beta7
+
+*azpainter-2.0.0_beta7 (22 Jan 2017)
+
+  22 Jan 2017; wjn <wjn@aol.jp> -azpainter-2.0.0_beta6.ebuild,
+  +azpainter-2.0.0_beta7.ebuild:
+  Add version2.0.0_beta7, delete old 2.0.0_beta7
+
+*azpainter-2.0.0_beta6 (17 Jan 2017)
+
+  17 Jan 2017; wjn <wjn@aol.jp> -azpainter-2.0.0_beta5.ebuild,
+  +azpainter-2.0.0_beta6.ebuild:
+  Add version 2.0.0_beta6, delete 2.0.0_beta5
+
+*azpainter-2.0.0_beta5 (13 Jan 2017)
+
+  13 Jan 2017; wjn <wjn@aol.jp> -azpainter-2.0.0_beta4.ebuild,
+  +azpainter-2.0.0_beta5.ebuild:
+  Add version 2.0.0_beta5, delete old 2.0.0_beta4
+
+*azpainter-2.0.0_beta4 (08 Jan 2017)
+
+  08 Jan 2017; wjn <wjn@aol.jp> -azpainter-2.0.0_beta3.ebuild,
+  +azpainter-2.0.0_beta4.ebuild:
+  Add version 2.0.0_beta4, delete old version 2.0.0_beta3
+
+*azpainter-2.0.0_beta3 (07 Jan 2017)
+
+  07 Jan 2017; wjn <wjn@aol.jp> -azpainter-2.0.0_beta.ebuild,
+  +azpainter-2.0.0_beta3.ebuild:
+  Add version 2.0.0_beta3, remove 2.0.0_beta
+
+*azpainter-2.0.0_beta (04 Jan 2017)
+
+  04 Jan 2017; wjn <wjn@aol.jp> +azpainter-2.0.0_beta.ebuild:
+  Add version 2.0.0_beta
+
+  03 Jan 2017; wjn <wjn@aol.jp> azpainter-1.0.6.ebuild,
+  azpainter-1.0.7.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+*azpainter-1.0.7 (04 Feb 2016)
+
+  04 Feb 2016; wjn <wjn@aol.jp> +azpainter-1.0.7.ebuild:
+  Add version 1.0.7
+
+  01 Jan 2016; wjn <wjn@aol.jp> azpainter-1.0.6.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  25 Nov 2015; wjn <wjn@aol.jp> azpainter-1.0.6.ebuild:
+  media-gfx/az{drawing,painter}: Add RESTRICT="mirror"
+
+  25 Nov 2015; wjn <wjn@aol.jp> azpainter-1.0.6.ebuild:
+  media-gfx/az{drawing,painter}: Rename ${SF_DIR} to ${OSDN_DIR}
+
+  25 Nov 2015; wjn <wjn@aol.jp> -azpainter-1.0.5-r1.ebuild:
+  Delete version 1.0.5-r1
+
+  08 Nov 2015; wjn <wjn@aol.jp> azpainter-1.0.5-r1.ebuild,
+  azpainter-1.0.6.ebuild:
+  Update $SRC_URIs and $HOMEPAGEs from sourceforge.jp to osdn.jp
+
+  09 Sep 2015; wjn <wjn@aol.jp> +metadata.xml:
+  Add minimal metadata.xml(s) for QA.
+
+  09 Sep 2015; wjn <wjn@aol.jp> azpainter-1.0.5-r1.ebuild:
+  Trivial fixes for QA.
+
+  09 Sep 2015; wjn <wjn@aol.jp> azpainter-1.0.5-r1.ebuild,
+  azpainter-1.0.6.ebuild:
+  Fix trivials such as redundant new lines etc.
+
+  09 Sep 2015; wjn <wjn@aol.jp> azpainter-1.0.5-r1.ebuild,
+  azpainter-1.0.6.ebuild:
+  Update ebuild file format from "# $Header: $" to "# $Id"
+
+   Since Gentoo changes the VCS from CVS to git, ebuild header is changed.
+
+  03 Jul 2015; wjn <wjn@aol.jp> azpainter-1.0.6.ebuild,
+  +files/azpainter-makefile.patch:
+  1.0.6: Fix to update icon-cache.
+
+    Original Makefile executes gtk-update-icon-cache.
+    But it sould be remove for Gentoo ebuild system,
+   because ebuild system has own gnome2_icon_cache_update in
+  gnome2-utils.eclass.
+    So patched to Makefile.
+
+*azpainter-1.0.6 (03 Jul 2015)
+
+  03 Jul 2015; wjn <wjn@aol.jp> +azpainter-1.0.6.ebuild:
+  Add version 1.0.6.
+
+  17 Jun 2015; wjn <wjn@aol.jp> -azpainter-1.0.4.ebuild,
+  -azpainter-1.0.5.ebuild:
+  Delete old version 1.0.4 and 1.0.5.
+
+  17 Jun 2015; wjn <wjn@aol.jp> azpainter-1.0.5-r1.ebuild:
+  1.0.5-r1: Tidy up, remove needless (implicit) deps.
+
+*azpainter-1.0.5-r1 (27 Jan 2015)
+*azpainter-1.0.5 (27 Jan 2015)
+*azpainter-1.0.4 (27 Jan 2015)
+
+  27 Jan 2015; wjn <wjn@aol.jp> +azpainter-1.0.4.ebuild,
+  +azpainter-1.0.5.ebuild, +azpainter-1.0.5-r1.ebuild,
+  +files/azpainter-1.0.5-rulepos.patch:
+  Commit for initializing, Move from GitHub
+

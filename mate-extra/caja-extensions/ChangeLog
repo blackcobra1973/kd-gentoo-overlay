@@ -1,0 +1,195 @@
+# ChangeLog for mate-extra/caja-extensions
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  25 Nov 2016; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  Update for gtk+:3 support
+
+  10 Apr 2016; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  Remove eutils from inherit
+
+  09 Apr 2016; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  Add ChangeLog to DOCS, move to EAPI 6
+
+  10 Mar 2016; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  MATE desktop environment: Remove obsolete package blockers
+
+  10 Mar 2016; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  Fix to add imagemagick to RDEPEND
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  Correct more for quality assurance
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  14 Feb 2016; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  MATE Desktop Environment: Correct [gtk3?] constraint to [gtk3=] or none
+
+   Note:
+     caja-extentions doesn't need any [gtk3] probably.
+    To others, [gtk3=] is added
+
+  13 Feb 2016; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  MATE Desktop Environment: Fix mate-desktop[gtk3=] dependency
+
+  10 Feb 2016; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  MATE Desktop: Improve ${HOMEPAGE} and ${EGIT_REPO_URI}
+
+   - Add github repositories to ${HOMEPAGE}
+   - Change git:// to https:// in ${EGIT_REPO_URI}
+
+  01 Jan 2016; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  14 Sep 2015; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  MATE Desktop Environment: Add gtk+:3 build
+
+          modified:   app-arch/engrampa/engrampa-9999.ebuild
+          modified:   app-editors/pluma/pluma-9999.ebuild
+          modified:   app-text/atril/atril-9999.ebuild
+          modified:   dev-libs/libmateweather/libmateweather-9999.ebuild
+          modified:   dev-python/python-caja/python-caja-9999.ebuild
+          modified:   mate-base/caja/caja-9999.ebuild
+          modified:   mate-base/libmatekbd/libmatekbd-9999.ebuild
+          modified:   mate-base/mate-applets/mate-applets-9999.ebuild
+          modified:   mate-base/mate-control-center/mate-control-
+  center-9999.ebuild
+          modified:   mate-base/mate-desktop/mate-desktop-9999.ebuild
+          modified:   mate-base/mate-menus/mate-menus-9999.ebuild
+          modified:   mate-base/mate-panel/mate-panel-9999.ebuild
+          modified:   mate-base/mate-session-manager/mate-session-
+  manager-9999.ebuild
+          modified:   mate-base/mate-settings-daemon/mate-settings-
+  daemon-9999.ebuild
+          modified:   mate-extra/caja-dropbox/caja-dropbox-9999.ebuild
+          modified:   mate-extra/caja-extensions/caja-extensions-9999.ebuild
+          modified:   mate-extra/libmatemixer/libmatemixer-9999.ebuild
+          modified:   mate-extra/mate-indicator-applet/mate-indicator-
+  applet-9999.ebuild
+          modified:   mate-extra/mate-media/mate-media-9999.ebuild
+          modified:   mate-extra/mate-polkit/mate-polkit-9999.ebuild
+          modified:   mate-extra/mate-power-manager/mate-power-
+  manager-9999.ebuild
+          modified:   mate-extra/mate-screensaver/mate-screensaver-9999.ebuild
+          modified:   mate-extra/mate-sensors-applet/mate-sensors-
+  applet-9999.ebuild
+          modified:   mate-extra/mate-system-monitor/mate-system-
+  monitor-9999.ebuild
+          modified:   mate-extra/mate-user-share/mate-user-share-9999.ebuild
+          modified:   mate-extra/mate-utils/mate-utils-9999.ebuild
+          modified:   media-gfx/eom/eom-9999.ebuild
+          modified:   net-analyzer/mate-netspeed/mate-netspeed-9999.ebuild
+          modified:   x11-misc/mate-notification-daemon/mate-notification-
+  daemon-9999.ebuild
+          modified:   x11-terms/mate-terminal/mate-terminal-9999.ebuild
+          modified:   x11-wm/marco/marco-9999.ebuild
+          modified:   mate-base/mate/mate-9999.ebuild
+
+  09 Sep 2015; wjn <wjn@aol.jp> caja-extensions-9999.ebuild, +metadata.xml:
+  MATE environment: Update dependencies, delete needless, etc.
+          modified:   app-arch/engrampa/engrampa-9999.ebuild
+          modified:   app-editors/pluma/pluma-9999.ebuild
+          modified:   dev-libs/libmateweather/libmateweather-9999.ebuild
+          modified:   mate-base/caja/caja-9999.ebuild
+          modified:   mate-base/libmatekbd/libmatekbd-9999.ebuild
+          deleted:    mate-base/mate-applets/Manifest
+          deleted:    mate-base/mate-applets/mate-applets-1.8.0-r1.ebuild
+          modified:   mate-base/mate-applets/mate-applets-9999.ebuild
+          modified:   mate-base/mate-common/mate-common-9999.ebuild
+          modified:   mate-base/mate-control-center/mate-control-
+  center-9999.ebuild
+          modified:   mate-base/mate-desktop/mate-desktop-9999.ebuild
+          modified:   mate-base/mate-menus/mate-menus-9999.ebuild
+          modified:   mate-base/mate-panel/mate-panel-9999.ebuild
+          modified:   mate-base/mate-session-manager/mate-session-
+  manager-9999.ebuild
+          modified:   mate-base/mate-settings-daemon/mate-settings-
+  daemon-9999.ebuild
+          modified:   mate-base/mate/mate-9999.ebuild
+          modified:   mate-extra/caja-dropbox/caja-dropbox-9999.ebuild
+          modified:   mate-extra/caja-extensions/caja-extensions-9999.ebuild
+          new file:   mate-extra/caja-extensions/metadata.xml
+          modified:   mate-extra/libmatemixer/libmatemixer-9999.ebuild
+          modified:   mate-extra/mate-indicator-applet/mate-indicator-
+  applet-9999.ebuild
+          modified:   mate-extra/mate-media/mate-media-9999.ebuild
+          modified:   mate-extra/mate-polkit/mate-polkit-9999.ebuild
+          modified:   mate-extra/mate-power-manager/mate-power-
+  manager-9999.ebuild
+          modified:   mate-extra/mate-screensaver/mate-screensaver-9999.ebuild
+          modified:   mate-extra/mate-sensors-applet/mate-sensors-
+  applet-9999.ebuild
+          modified:   mate-extra/mate-system-monitor/mate-system-
+  monitor-9999.ebuild
+          modified:   mate-extra/mate-user-guide/mate-user-guide-9999.ebuild
+          modified:   mate-extra/mate-user-share/mate-user-share-9999.ebuild
+          modified:   mate-extra/mate-utils/mate-utils-9999.ebuild
+          modified:   media-gfx/eom/eom-9999.ebuild
+          modified:   net-analyzer/mate-netspeed/mate-netspeed-9999.ebuild
+          modified:   x11-misc/mate-notification-daemon/mate-notification-
+  daemon-9999.ebuild
+          modified:   x11-misc/mozo/mozo-9999.ebuild
+          modified:   x11-terms/mate-terminal/mate-terminal-9999.ebuild
+          modified:   x11-themes/mate-backgrounds/mate-backgrounds-9999.ebuild
+          modified:   x11-themes/mate-icon-theme-faenza/mate-icon-theme-
+  faenza-9999.ebuild
+          modified:   x11-themes/mate-icon-theme/mate-icon-theme-9999.ebuild
+          modified:   x11-themes/mate-themes/mate-themes-9999.ebuild
+          modified:   app-text/atril/atril-9999.ebuild
+          modified:   x11-wm/marco/marco-9999.ebuild
+
+*caja-extensions-9999 (08 Feb 2015)
+
+  08 Feb 2015; wjn <wjn@aol.jp> +caja-extensions-9999.ebuild:
+  Add MATE Desktop Environment ver.9999.
+
+          new file:   app-arch/engrampa/engrampa-9999.ebuild
+          new file:   app-editors/pluma/pluma-9999.ebuild
+          new file:   app-text/atril/atril-9999.ebuild
+          new file:   dev-libs/libmateweather/libmateweather-9999.ebuild
+          new file:   mate-base/caja/caja-9999.ebuild
+          new file:   mate-base/libmatekbd/libmatekbd-9999.ebuild
+          new file:   mate-base/mate-applets/mate-applets-9999.ebuild
+          new file:   mate-base/mate-common/mate-common-9999.ebuild
+          new file:   mate-base/mate-desktop/mate-desktop-9999.ebuild
+          new file:   mate-base/mate-menus/mate-menus-9999.ebuild
+          new file:   mate-base/mate-panel/mate-panel-9999.ebuild
+          new file:   mate-base/mate-session-manager/mate-session-
+  manager-9999.ebuild
+          new file:   mate-base/mate-settings-daemon/mate-settings-
+  daemon-9999.ebuild
+          new file:   mate-base/mate/mate-9999.ebuild
+          new file:   mate-extra/caja-dropbox/caja-dropbox-9999.ebuild
+          new file:   mate-extra/caja-extensions/caja-extensions-9999.ebuild
+          new file:   mate-extra/libmatemixer/libmatemixer-9999.ebuild
+          new file:   mate-extra/mate-media/mate-media-9999.ebuild
+          new file:   mate-extra/mate-polkit/mate-polkit-1.8.0.ebuild
+          new file:   mate-extra/mate-polkit/mate-polkit-9999.ebuild
+          new file:   mate-extra/mate-power-manager/mate-power-
+  manager-9999.ebuild
+          new file:   mate-extra/mate-screensaver/mate-screensaver-9999.ebuild
+          new file:   mate-extra/mate-sensors-applet/mate-sensors-
+  applet-9999.ebuild
+          new file:   mate-extra/mate-system-monitor/mate-system-
+  monitor-9999.ebuild
+          new file:   mate-extra/mate-user-guide/mate-user-guide-9999.ebuild
+          new file:   mate-extra/mate-user-share/mate-user-share-9999.ebuild
+          new file:   mate-extra/mate-utils/mate-utils-9999.ebuild
+          new file:   media-gfx/eom/eom-9999.ebuild
+          new file:   net-analyzer/mate-netspeed/mate-netspeed-9999.ebuild
+          new file:   x11-misc/mate-notification-daemon/mate-notification-
+  daemon-9999.ebuild
+          new file:   x11-terms/mate-terminal/mate-terminal-9999.ebuild
+          new file:   x11-themes/mate-backgrounds/mate-backgrounds-9999.ebuild
+          new file:   x11-wm/marco/marco-9999.ebuild
+

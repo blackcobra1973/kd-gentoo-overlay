@@ -1,0 +1,16 @@
+diff -ur --unidirectional-new-file -ur paludis.orig/paludis/repositories/e/ebuild/write_vdb_entry.bash paludis/paludis/repositories/e/ebuild/write_vdb_entry.bash
+--- paludis.orig/paludis/repositories/e/ebuild/write_vdb_entry.bash	2016-02-23 06:57:52.126873619 +0000
++++ paludis/paludis/repositories/e/ebuild/write_vdb_entry.bash	2016-02-23 06:58:03.195873362 +0000
+@@ -154,6 +154,12 @@
+         fi
+     done
+ 
++	# Save the file of REPOSITORY also as repository
++	if [[ -e "${vdbdir}/REPOSITORY" ]] && [[ ! -e "${vdbdir}/repository" ]]
++	then
++		cp "${vdbdir}/REPOSITORY" "${vdbdir}/repository"
++	fi
++
+     ebuild_section "Generating saved ebuild and environment..."
+ 
+     [[ -f "${EBUILD}" ]] && cp "${EBUILD}" ${vdbdir}/

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>wjn@aol.jp</email>
+	</maintainer>
+	<longdescription lang="en">
+		Viewnior is a fast and simple image viewer for GNU/Linux.
+		Created to be simple and elegant.
+		It’s minimalistic interface provides more screen space for your images. 
+	</longdescription>
+</pkgmetadata>

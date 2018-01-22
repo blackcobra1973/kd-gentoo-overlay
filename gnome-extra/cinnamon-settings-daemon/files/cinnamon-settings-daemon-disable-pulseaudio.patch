@@ -1,0 +1,46 @@
+diff --git a/configure.ac b/configure.ac
+index 89acbef..ef48606 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -218,13 +218,6 @@ dnl ---------------------------------------------------------------------------
+ PKG_CHECK_MODULES(GIOUNIX, [gio-unix-2.0])
+ 
+ dnl ---------------------------------------------------------------------------
+-dnl - media-keys plugin stuff
+-dnl ---------------------------------------------------------------------------
+-
+-PKG_CHECK_MODULES(MEDIA_KEYS, [gio-unix-2.0 libpulse >= $PA_REQUIRED_VERSION $GUDEV_PKG libpulse-mainloop-glib >= $PA_REQUIRED_VERSION
+-			       libcanberra libnotify cinnamon-desktop >= $CINNAMON_DESKTOP_REQUIRED_VERSION])
+-
+-dnl ---------------------------------------------------------------------------
+ dnl - xrandr plugin stuff
+ dnl ---------------------------------------------------------------------------
+ 
+@@ -238,12 +231,6 @@ if test x$have_gudev != xno; then
+ 	PKG_CHECK_MODULES(ORIENTATION, [cinnamon-desktop >= $CINNAMON_DESKTOP_REQUIRED_VERSION gudev-1.0])
+ fi
+ 
+-dnl ---------------------------------------------------------------------------
+-dnl - sound plugin stuff
+-dnl ---------------------------------------------------------------------------
+-
+-PKG_CHECK_MODULES(SOUND, [libpulse >= $PA_REQUIRED_VERSION $GUDEV_PKG libpulse-mainloop-glib >= $PA_REQUIRED_VERSION] libcanberra)
+-
+ # ---------------------------------------------------------------------------
+ # Power
+ # ---------------------------------------------------------------------------
+diff --git a/plugins/Makefile.am b/plugins/Makefile.am
+index b9cb3a6..73f2b56 100644
+--- a/plugins/Makefile.am
++++ b/plugins/Makefile.am
+@@ -13,10 +13,8 @@ enabled_plugins =	\
+ 	power		\
+ 	housekeeping    \
+ 	keyboard	\
+-	media-keys	\
+ 	mouse		\
+ 	screensaver-proxy \
+-	sound		\
+ 	xrandr		\
+ 	xsettings	\
+ 	$(NULL)

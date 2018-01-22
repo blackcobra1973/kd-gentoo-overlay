@@ -1,0 +1,36 @@
+# ChangeLog for app-admin/pass-import
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> pass-import-0.1_p20170312.ebuild,
+  pass-import-0.2_p20171001.ebuild:
+  [QA] Update copyright year to 2018
+
+*pass-import-0.2_p20171001 (30 Oct 2017)
+
+  30 Oct 2017; wjn <wjn@aol.jp> +pass-import-0.2_p20171001.ebuild:
+  Add version 0.2_p20171001
+
+  16 Mar 2017; wjn <wjn@aol.jp> pass-import-0.1_p20170312.ebuild:
+  Fix dependencies
+
+*pass-import-0.1_p20170312 (14 Mar 2017)
+
+  14 Mar 2017; wjn <wjn@aol.jp> +metadata.xml,
+  +pass-import-0.1_p20170312.ebuild:
+  Add newly, version is as of 2017-03-12
+
+   Import helper scripts for ZX2C4's pass (app-admin/pass)
+  See https://github.com/roddhjav/pass-import
+   This version is as of the commit 3e50d6d
+
+   envvar 'PASSWORD_STORE_ENABLE_EXTENSIONS=true' is neccessary to run.
+  e.g. '$ PASSWORD_STORE_ENABLE_EXTENSIONS=true pass import --help'
+
+   And see also `man 1 pass-import`
+
+   Some scripts depend on Python2, Some Python3, Some Ruby, Some Perl
+   This package does not parse such dependencies,
+  please install the depended interpreter before running your favorite
+  importer
+

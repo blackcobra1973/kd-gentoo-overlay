@@ -1,0 +1,12 @@
+# NOTE:
+# Copy chromium-launcher.sh as /usr/lib/chromium-browser/chromium-launcher.sh
+# Then copy this chromium.default as /etc/chromium/default
+
+# Default settings for chromium. This file is sourced by /bin/bash from
+# the chromium launcher.
+
+# Options to pass to chromium.
+# CAUTION: flags must be seperated by nevlines because of IFS=$'\n'
+#CHROMIUM_FLAGS="
+#	
+#	"

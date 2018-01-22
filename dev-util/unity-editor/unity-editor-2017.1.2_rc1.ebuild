@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -66,11 +66,11 @@ RDEPEND="
 		virtual/ffmpeg
 		app-arch/gzip
 		dev-util/android-sdk-update-manager
-		virtual/jre:1.7
+		virtual/jre
 	)
 
 	webgl? (
-		virtual/jdk:1.7
+		virtual/jdk
 	)
 "
 

@@ -1,0 +1,34 @@
+# ChangeLog for mate-base/mate-applets-meta
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> mate-applets-meta-9999.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> mate-applets-meta-9999.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> mate-applets-meta-9999.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  25 Nov 2016; wjn <wjn@aol.jp> mate-applets-meta-9999.ebuild:
+  Update for gtk+:3 support
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  Correct more for quality assurance
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+*mate-applets-meta-9999 (10 Feb 2016)
+
+  10 Feb 2016; wjn <wjn@aol.jp> +mate-applets-meta-9999.ebuild, +metadata.xml:
+  Add newly
+
+   - The official gentoo repository added this
+    https://gitweb.gentoo.org/repo/gentoo.git/commit/?id=81bcdc7
+
+   also modified mate-base/mate to update this dependency
+   - Add some flags to IUSE
+   - Fixed dependencies' USE flags
+

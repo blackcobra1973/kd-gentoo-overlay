@@ -1,0 +1,92 @@
+# ChangeLog for media-sound/yoshimi
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> yoshimi-1.5.4.1.ebuild:
+  [QA] Update copyright year to 2018
+
+*yoshimi-1.5.4.1 (31 Oct 2017)
+
+  31 Oct 2017; wjn <wjn@aol.jp> -yoshimi-1.4.1.ebuild, -yoshimi-1.5.0.ebuild,
+  -yoshimi-1.5.1.1.ebuild, +yoshimi-1.5.4.1.ebuild:
+  Add version 1.5.4.1, delete old versions
+
+  06 Jun 2017; wjn <wjn@aol.jp> yoshimi-1.4.1.ebuild, yoshimi-1.5.0.ebuild,
+  yoshimi-1.5.1.1.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+*yoshimi-1.5.1.1 (24 Apr 2017)
+
+  24 Apr 2017; wjn <wjn@aol.jp> +yoshimi-1.5.1.1.ebuild:
+  Add version 1.5.1.1
+
+  03 Jan 2017; wjn <wjn@aol.jp> yoshimi-1.4.1.ebuild, yoshimi-1.5.0.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+*yoshimi-1.5.0 (29 Dec 2016)
+
+  29 Dec 2016; wjn <wjn@aol.jp> -files/yoshimi-1.1.0-desktop-version.patch,
+  -files/yoshimi-1.3.8.2-underlinking.patch, -yoshimi-1.3.8.2-r1.ebuild,
+  -yoshimi-1.3.9.ebuild, +yoshimi-1.5.0.ebuild:
+  Add version 1.5.0, delete old version 1.3.8-r1 and 1.3.9
+
+*yoshimi-1.4.1 (22 Sep 2016)
+
+  22 Sep 2016; wjn <wjn@aol.jp> +files/yoshimi-1.4.1-underlinking.patch,
+  +yoshimi-1.4.1.ebuild:
+  Add version 1.4.1
+
+*yoshimi-1.3.9 (07 Mar 2016)
+
+  07 Mar 2016; wjn <wjn@aol.jp> -yoshimi-1.3.7.1.ebuild,
+  -yoshimi-1.3.8.2.ebuild, yoshimi-1.3.8.2-r1.ebuild, +yoshimi-1.3.9.ebuild:
+  Add version 1.3.9, delete olds
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+*yoshimi-1.3.8.2-r1 (27 Jan 2016)
+
+  27 Jan 2016; wjn <wjn@aol.jp> +files/yoshimi-1.3.8.2-underlinking.patch,
+  +yoshimi-1.3.8.2-r1.ebuild:
+  Add version -1.3.8.2-r1
+
+   Yoshimi still needs -pthread. Added it by flag-o-matic.eclass
+
+*yoshimi-1.3.8.2 (22 Jan 2016)
+
+  22 Jan 2016; wjn <wjn@aol.jp> +yoshimi-1.3.8.2.ebuild:
+  Add version 1.3.8.2
+
+  01 Jan 2016; wjn <wjn@aol.jp> yoshimi-1.3.7.1.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+*yoshimi-1.3.7.1 (15 Dec 2015)
+
+  15 Dec 2015; wjn <wjn@aol.jp> -yoshimi-1.3.5.2.ebuild,
+  +yoshimi-1.3.7.1.ebuild:
+  Add version 1.3.7.1, delete version 1.3.5.2
+
+   Yoshimi had updated from 1.3.5.2 to 1.3.6, 1.3.7 and 1.3.7.1.
+  Gentoo repository doesn't have this Yoshimi version as of today.
+
+   Changelog of Yoshimi is available at
+  http://sourceforge.net/projects/yoshimi/files/1.3/
+
+   Have fun with Yoshimi!
+
+   Note: Yoshimi still needs "-pthread" to compile.
+
+  09 Sep 2015; wjn <wjn@aol.jp> +metadata.xml:
+  Add metadata.xml(s) for QA.
+
+*yoshimi-1.3.5.2 (08 Sep 2015)
+
+  08 Sep 2015; wjn <wjn@aol.jp> +files/yoshimi-1.1.0-desktop-version.patch,
+  +yoshimi-1.3.5.2.ebuild:
+  Add version 1.3.5.2 for adding LDFLAGS+="-lpthread".
+
+   See https://bugs.gentoo.org/show_bug.cgi?id=538832
+
+   The ebuild should add "-lpthread" to LDFLAGS by flag-o-matic.eclass.
+

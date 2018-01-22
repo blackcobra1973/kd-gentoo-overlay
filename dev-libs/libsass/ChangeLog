@@ -1,0 +1,19 @@
+# ChangeLog for dev-libs/libsass
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> libsass-3.4.7.ebuild:
+  [QA] Update copyright year to 2018
+
+*libsass-3.4.7 (15 Nov 2017)
+
+  15 Nov 2017; wjn <wjn@aol.jp> -libsass-3.4.5.ebuild, +libsass-3.4.7.ebuild:
+  Add version 3.4.7, delete old
+
+*libsass-3.4.5 (31 Oct 2017)
+
+  31 Oct 2017; wjn <wjn@aol.jp> +libsass-3.4.5.ebuild, +metadata.xml:
+  Add newly
+
+   This ebuild is derived from Gentoo Haskell repository
+

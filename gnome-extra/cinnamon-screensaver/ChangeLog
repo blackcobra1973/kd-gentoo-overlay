@@ -1,0 +1,31 @@
+# ChangeLog for gnome-extra/cinnamon-screensaver
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> cinnamon-screensaver-3.0.1.ebuild,
+  cinnamon-screensaver-3.4.1.ebuild, cinnamon-screensaver-3.4.2.ebuild:
+  [QA] Update copyright year to 2018
+
+*cinnamon-screensaver-3.4.2 (02 Nov 2017)
+
+  02 Nov 2017; wjn <wjn@aol.jp> +cinnamon-screensaver-3.4.2.ebuild:
+  Add version 3.4.2
+
+*cinnamon-screensaver-3.4.1 (25 Jun 2017)
+
+  25 Jun 2017; wjn <wjn@aol.jp> +cinnamon-screensaver-3.4.1.ebuild:
+  Add version 3.4.1
+
+  06 Jun 2017; wjn <wjn@aol.jp> cinnamon-screensaver-3.0.1.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> cinnamon-screensaver-3.0.1.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+*cinnamon-screensaver-3.0.1 (30 Oct 2016)
+
+  30 Oct 2016; wjn <wjn@aol.jp> +cinnamon-screensaver-3.0.1.ebuild,
+  +files/cinnamon-screensaver-2.8.0-webkit4.patch,
+  +files/cinnamon-screensaver-3.0.1-automagic-logind.patch:
+  Add newly, ver 3.0.1. Support USE="-webkit"
+

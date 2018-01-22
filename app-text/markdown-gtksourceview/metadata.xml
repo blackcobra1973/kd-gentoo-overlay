@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>wjn@aol.jp</email>
+	</maintainer>
+	<use>
+		<flag name='gedit'>Install plugins for
+			<pkg>app-editors/gedit</pkg></flag>
+		<flag name='pluma'>Install plugins for
+			<pkg>app-editors/pluma</pkg></flag>
+		<flag name='webkit'>Install preview plugin powered by
+			<pkg>net-libs/webkit-gtk</pkg></flag>
+	</use>
+</pkgmetadata>

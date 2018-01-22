@@ -21,7 +21,7 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 COMMON_DEPEND="${PYTHON_DEPS}
 	>=dev-python/dill-0.2.3[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.5.0[${PYTHON_USEDEP}]
-	>=dev-python/numpy-1.8.0[${PYTHON_USEDEP}]
+	>=dev-python/numpy-1.8.2[${PYTHON_USEDEP}]
 	>=dev-python/pillow-2.3.0[${PYTHON_USEDEP}]
 	>=dev-python/setuptools-3.3[${PYTHON_USEDEP}]
 	>=dev-python/six-1.5.2[${PYTHON_USEDEP}]
@@ -117,7 +117,7 @@ pkg_pretend() {
 		ewarn 'BLAS and LAPACK stack published by the "science" overlay.'
 		ewarn 'Although installation of this stack is non-trivial, failing to'
 		ewarn 'do so will reduce BETSE to unoptimized single-core operation.'
-		ewarn 'To install this stack, consider following the instructions at:'
+		ewarn 'To install this stack, follow the instructions at:'
 		ewarn 'https://wiki.gentoo.org/wiki/User_talk:Houseofsuns'
 	else
 		ewarn 'Symmetric multiprocessing (SMP) support disabled, reducing BETSE'
