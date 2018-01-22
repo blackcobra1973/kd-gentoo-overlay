@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>wjn@aol.jp</email>
+	</maintainer>
+	<use>
+		<flag name="gtk3">Build with GTK+ 3 instead of GTK+ 2</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">i-rinat/freshplayerplugin</remote-id>
+	</upstream>
+</pkgmetadata>

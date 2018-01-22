@@ -1,6 +1,10 @@
 # ChangeLog for gnome-extra/budgie-desktop
-# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> budgie-desktop-10.2.9.ebuild,
+  budgie-desktop-10.3.1-r1.ebuild, budgie-desktop-10.4.ebuild:
+  [QA] Update copyright year to 2018
 
   15 Nov 2017; wjn <wjn@aol.jp> budgie-desktop-10.4.ebuild:
   Depend on dev-lang/sassc instead of dev-libs/sassc

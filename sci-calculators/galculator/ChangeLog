@@ -1,0 +1,29 @@
+# ChangeLog for sci-calculators/galculator
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> galculator-2.1.4.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> galculator-2.1.4.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> galculator-2.1.4.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  Correct more for quality assurance
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> galculator-2.1.4.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+*galculator-2.1.4 (28 Oct 2015)
+
+  28 Oct 2015; wjn <wjn@aol.jp> +galculator-2.1.4.ebuild, +metadata.xml:
+  Newly add for version 2.1.4.
+
+   but gentoo repository will be fixed soon.
+

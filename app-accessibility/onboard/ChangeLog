@@ -1,0 +1,107 @@
+# ChangeLog for app-accessibility/onboard
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> onboard-1.3.0.ebuild, onboard-1.4.1.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> onboard-1.3.0.ebuild, onboard-1.4.1.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+*onboard-1.4.1 (05 Apr 2017)
+
+  05 Apr 2017; wjn <wjn@aol.jp>
+  +files/onboard-1.4.1-remove-duplicated-docs.patch, -onboard-1.2.0-r1.ebuild,
+  +onboard-1.4.1.ebuild:
+  Add version 1.4.1, delete old version 1.2.0-r1
+
+  03 Jan 2017; wjn <wjn@aol.jp> onboard-1.2.0-r1.ebuild, onboard-1.3.0.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  28 Aug 2016; wjn <wjn@aol.jp> -onboard-1.1.2-r1.ebuild:
+  Delete old 1.1.2-r1
+
+*onboard-1.3.0 (28 Aug 2016)
+
+  28 Aug 2016; wjn <wjn@aol.jp>
+  +files/onboard-1.3.0-remove-duplicated-docs.patch, +onboard-1.3.0.ebuild:
+  Add version 1.3.0
+
+  28 Jul 2016; wjn <wjn@aol.jp> onboard-1.1.2-r1.ebuild,
+  onboard-1.2.0-r1.ebuild:
+  Move app-text/hunspell dep to C_DEPEND from RDEPEND
+
+*onboard-1.2.0-r1 (28 Jul 2016)
+*onboard-1.1.2-r1 (28 Jul 2016)
+
+  28 Jul 2016; wjn <wjn@aol.jp> -onboard-1.1.2.ebuild,
+  +onboard-1.1.2-r1.ebuild, -onboard-1.2.0.ebuild, +onboard-1.2.0-r1.ebuild:
+  Bind slotting of app-text/hunspell
+
+   Since Hunspell 1.4.0 changes ABI, app-text/hunspell has subslots
+  Dependents are needed to rebuild
+
+  13 Mar 2016; wjn <wjn@aol.jp> onboard-1.1.2.ebuild, onboard-1.2.0.ebuild:
+  Fix to add libappindicator:3 to $RDEPEND
+
+  28 Feb 2016; wjn <wjn@aol.jp>
+  files/onboard-1.2.0-remove-duplicated-docs.patch, onboard-1.1.2.ebuild,
+  onboard-1.2.0.ebuild:
+  Move to EAPI 6
+
+*onboard-1.2.0 (28 Feb 2016)
+
+  28 Feb 2016; wjn <wjn@aol.jp>
+  +files/onboard-1.2.0-remove-duplicated-docs.patch, +onboard-1.2.0.ebuild:
+  Add version 1.2.0
+
+  19 Feb 2016; wjn <wjn@aol.jp> onboard-1.1.2.ebuild:
+  Correct for quality assurance
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> onboard-1.1.2.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  24 Nov 2015; wjn <wjn@aol.jp> +files/onboard-remove-duplicated-docs.patch,
+  onboard-1.1.2.ebuild:
+  Improve to remove duplicated docs and fix some
+
+  Changes
+   - Duplicated documents installd by setup.py are removed
+   - Icon cache is refreshed by gnome_icon_* functions
+   - ${DESCRIPTION} is shortened
+   - RESTRICT="mirror" because Onboard isn't in GENTOO_MIRRORS
+   - x11-libs/libxkbfile is added to ${RDEPEND}
+
+  22 Oct 2015; wjn <wjn@aol.jp> -onboard-1.0.1.ebuild, -onboard-1.1.1.ebuild:
+  Delete old version 1.0.1 and 1.1.1.
+
+  22 Oct 2015; wjn <wjn@aol.jp> onboard-1.1.2.ebuild:
+  Add Python 3.5 support.
+
+*onboard-1.1.2 (21 Oct 2015)
+
+  21 Oct 2015; wjn <wjn@aol.jp> +onboard-1.1.2.ebuild:
+  Add version 1.1.2.
+
+  09 Sep 2015; wjn <wjn@aol.jp> onboard-1.0.1.ebuild, onboard-1.1.1.ebuild:
+  Update ebuild file format from "# $Header: $" to "# $Id"
+
+   Since Gentoo changes the VCS from CVS to git, ebuild header is changed.
+
+*onboard-1.1.1 (27 Feb 2015)
+
+  27 Feb 2015; wjn <wjn@aol.jp> metadata.xml, onboard-1.0.1.ebuild,
+  +onboard-1.1.1.ebuild:
+  Add version 1.1.1
+
+   Version bump.
+   See https://launchpad.net/onboard/1.1/1.1.1
+
+*onboard-1.0.1 (27 Jan 2015)
+
+  27 Jan 2015; wjn <wjn@aol.jp> +metadata.xml, +onboard-1.0.1.ebuild:
+  Commit for initializing, Move from GitHub
+

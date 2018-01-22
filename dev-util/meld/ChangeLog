@@ -1,0 +1,46 @@
+# ChangeLog for dev-util/meld
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> meld-3.16.1.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> meld-3.16.1.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> meld-3.16.1.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+*meld-3.16.1 (30 Jun 2016)
+
+  30 Jun 2016; wjn <wjn@aol.jp> -meld-3.16.0.ebuild, +meld-3.16.1.ebuild:
+  Add version 3.16.1, delete old 3.16.0
+
+*meld-3.16.0 (06 May 2016)
+
+  06 May 2016; wjn <wjn@aol.jp> -meld-3.15.2.ebuild, +meld-3.16.0.ebuild:
+  Add version 3.16.0, delete 3.15.2
+
+*meld-3.15.2 (28 Mar 2016)
+
+  28 Mar 2016; wjn <wjn@aol.jp> -meld-3.15.1.ebuild, +meld-3.15.2.ebuild:
+  Add version 3.15.2, delete old 3.15.1
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> meld-3.15.1.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+*meld-3.15.1 (15 Dec 2015)
+
+  15 Dec 2015; wjn <wjn@aol.jp> -files/meld-3.15.0-gtk-errors.patch,
+  -meld-3.15.0.ebuild, +meld-3.15.1.ebuild:
+  Add version 3.15.1, delete old 3.15.0
+
+*meld-3.15.0 (08 Nov 2015)
+
+  08 Nov 2015; wjn <wjn@aol.jp> +files/meld-3.15.0-gtk-errors.patch,
+  +meld-3.15.0.ebuild, +metadata.xml:
+  Add newly, version 3.15.0.
+

@@ -1,0 +1,28 @@
+ This two files in the directory
+ - chromium-launcher.sh
+ - chromium.default
+are for avoid the bug that happens when chromium flags have space charcters,
+such as "--user-agent=foo bar".
+
+ Copy chromium-launcher.sh to /usr/lib/chromium-browser/
+and chromium.default as /etc/chromium/default
+
+ CHROMIUM_FLAGS in /etc/chromium/default like ...
+#########
+CHROMIUM_FLAGS="
+        ${CHROMIUM_FLAGS}
+        --user-agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36
+        --high-dpi-support=1
+        --force-device-scale-factor=1
+        "
+#########
+ Only newlines take effect.
+TAB and SPACE doesn't have any sense, so **DO NOT ESCAPE SPACE CHARACTERS**.
+
+ Be sure to edit /etc/chromium/pepper-flash if you have it.
+Like ...
+#########
+CHROMIUM_FLAGS="${CHROMIUM_FLAGS}
+    --ppapi-flash-path=/usr/lib/chromium-browser/PepperFlash/libpepflashplayer.so
+    --ppapi-flash-version=20.0.0.228"
+#########

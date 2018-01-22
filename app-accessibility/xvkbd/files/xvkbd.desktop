@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=xvkbd
+Name[ja]=xvkbd
+GenericName=Virtual Keyboard for X Window System
+GenericName[ja]=X Window System 用仮想キーボード
+Comment=Virtual (graphical) keyboard program for X Window System
+Comment[ja]=X Window System 用の 仮想 (グラフィカル) キーボード・プログラム
+Exec=xvkbd -secure
+Terminal=false
+Type=Application
+Categories=Utility;Accessibility;
+NoDisplay=false
+

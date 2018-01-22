@@ -1,0 +1,71 @@
+# ChangeLog for x11-misc/lightdm-gtk-greeter-settings
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> lightdm-gtk-greeter-settings-1.2.1.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> lightdm-gtk-greeter-settings-1.2.1.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> lightdm-gtk-greeter-settings-1.2.1.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  30 Oct 2016; wjn <wjn@aol.jp> lightdm-gtk-greeter-settings-1.2.1.ebuild:
+  Drop Python 3.3 support
+
+*lightdm-gtk-greeter-settings-1.2.1 (13 Apr 2016)
+
+  13 Apr 2016; wjn <wjn@aol.jp> -lightdm-gtk-greeter-settings-1.1.0.ebuild,
+  -lightdm-gtk-greeter-settings-1.2.0.ebuild,
+  +lightdm-gtk-greeter-settings-1.2.1.ebuild:
+  Add version 1.2.1, delete olds
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> lightdm-gtk-greeter-settings-1.1.0.ebuild,
+  lightdm-gtk-greeter-settings-1.2.0.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  25 Nov 2015; wjn <wjn@aol.jp> lightdm-gtk-greeter-settings-1.1.0.ebuild,
+  lightdm-gtk-greeter-settings-1.2.0.ebuild:
+  x11-misc/{lightdm-gtk-greeter-settings,mate-tweak}: Add RESTRICT="mirror"
+
+  09 Sep 2015; wjn <wjn@aol.jp> +metadata.xml:
+  Add minimal metadata.xml(s) for QA.
+
+  09 Sep 2015; wjn <wjn@aol.jp> lightdm-gtk-greeter-settings-1.1.0.ebuild,
+  lightdm-gtk-greeter-settings-1.2.0.ebuild:
+  Update ebuild file format from "# $Header: $" to "# $Id"
+
+   Since Gentoo changes the VCS from CVS to git, ebuild header is changed.
+
+  30 May 2015; wjn <wjn@aol.jp> lightdm-gtk-greeter-settings-1.1.0.ebuild:
+  Add "nls" to ${IUSE}.
+
+*lightdm-gtk-greeter-settings-1.2.0 (30 May 2015)
+
+  30 May 2015; wjn <wjn@aol.jp> +lightdm-gtk-greeter-settings-1.2.0.ebuild:
+  Add version 1.2.0.
+
+  17 May 2015; wjn <wjn@aol.jp> lightdm-gtk-greeter-settings-1.1.0.ebuild:
+  Add polkit to ${RDEPEND}.
+
+  17 May 2015; wjn <wjn@aol.jp> lightdm-gtk-greeter-settings-1.1.0.ebuild:
+  Add ${DOCS}.
+
+  17 May 2015; wjn <wjn@aol.jp> lightdm-gtk-greeter-settings-1.1.0.ebuild:
+  Fix ${HOMEPAGE}.
+
+  14 May 2015; wjn <wjn@aol.jp> lightdm-gtk-greeter-settings-1.1.0.ebuild:
+  Remove needless inherit flag-o-matic.
+
+*lightdm-gtk-greeter-settings-1.1.0 (13 May 2015)
+
+  13 May 2015; wjn <wjn@aol.jp> +lightdm-gtk-greeter-settings-1.1.0.ebuild:
+  Add newly. version 1.1.0.
+
+   Settings editor for LightDM GTK+ Greeter.
+  See https://launchpad.net/lightdm-gtk-greeter-settings
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>wjn@aol.jp</email>
+	</maintainer>
+	<upstream>
+		<maintainer type="person">
+			<email>xian@mintchaos.com</email>
+			<name>Christian Metts</name>
+		</maintainer>
+		<maintainer type="person">
+			<email>chris@tiltshiftstudio.com</email>
+			<name>Chris Drackett</name>
+		</maintainer>
+		<remote-id type="github">mintchaos/typogrify</remote-id>
+	</upstream>
+</pkgmetadata>

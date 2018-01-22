@@ -1,0 +1,26 @@
+# ChangeLog for gnome-extra/cinnamon-desktop
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> cinnamon-desktop-3.0.2.ebuild,
+  cinnamon-desktop-3.2.4.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> cinnamon-desktop-3.0.2.ebuild,
+  cinnamon-desktop-3.2.4.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+*cinnamon-desktop-3.2.4 (14 Feb 2017)
+
+  14 Feb 2017; wjn <wjn@aol.jp> +cinnamon-desktop-3.2.4.ebuild,
+  +files/cinnamon-desktop-2.6.4.systemd.gschema.override:
+  Add version 3.2.4 for USE="-pulseaudio"
+
+  03 Jan 2017; wjn <wjn@aol.jp> cinnamon-desktop-3.0.2.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+*cinnamon-desktop-3.0.2 (30 Oct 2016)
+
+  30 Oct 2016; wjn <wjn@aol.jp> +cinnamon-desktop-3.0.2.ebuild:
+  Add newly, ver 3.0.2. Support USE="-pulseaudio"
+

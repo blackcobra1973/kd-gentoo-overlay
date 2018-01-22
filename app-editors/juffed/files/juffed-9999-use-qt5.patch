@@ -1,0 +1,34 @@
+diff -ur --unidirectional-new-file -ur juffed-9999.orig/CMakeLists.txt juffed-9999/CMakeLists.txt
+--- juffed-9999.orig/CMakeLists.txt	2016-02-04 13:14:31.256986308 +0000
++++ juffed-9999/CMakeLists.txt	2016-02-04 13:15:15.616985130 +0000
+@@ -92,7 +92,6 @@
+ 
+ set (CMAKE_AUTOMOC ON)
+ 
+-if (USE_QT5)
+     find_package ( Qt5 COMPONENTS Widgets Xml Network PrintSupport LinguistTools CONFIG REQUIRED )
+     set (JUFF_QT_IMPORTED_TARGETS Qt5::Widgets Qt5::Xml Qt5::Network Qt5::PrintSupport)
+ 
+@@ -107,22 +106,6 @@
+     macro(qt_add_translation)
+       qt5_add_translation(${ARGN})
+     endmacro()
+-else (USE_QT5)
+-    find_package ( Qt4 COMPONENTS QtCore QtGui QtXml QtNetwork REQUIRED )
+-    set (JUFF_QT_IMPORTED_TARGETS Qt4::QtCore Qt4::QtGui Qt4::QtXml Qt4::QtNetwork)
+-
+-    macro(qt_wrap_ui)
+-      qt4_wrap_ui(${ARGN})
+-    endmacro()
+-
+-    macro(qt_add_resources)
+-      qt4_add_resources(${ARGN})
+-    endmacro()
+-
+-    macro(qt_add_translation)
+-      qt4_add_translation(${ARGN})
+-    endmacro()
+-endif (USE_QT5)
+ 
+ # this is mandatory for Apple builds to load plugin correctly
+ add_definitions(-DQT_NO_DEBUG)

@@ -1,0 +1,36 @@
+# ChangeLog for gnome-extra/gnome-tweak-tool
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> gnome-tweak-tool-3.22.0.ebuild,
+  gnome-tweak-tool-3.24.1.ebuild:
+  [QA] Update copyright year to 2018
+
+*gnome-tweak-tool-3.24.1 (02 Nov 2017)
+
+  02 Nov 2017; wjn <wjn@aol.jp> -gnome-tweak-tool-3.20.1.ebuild,
+  +gnome-tweak-tool-3.24.1.ebuild:
+  Add version 3.24.1, delete old 3.20.1
+
+  06 Jun 2017; wjn <wjn@aol.jp> gnome-tweak-tool-3.20.1.ebuild,
+  gnome-tweak-tool-3.22.0.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> gnome-tweak-tool-3.20.1.ebuild,
+  gnome-tweak-tool-3.22.0.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+*gnome-tweak-tool-3.22.0 (12 Nov 2016)
+
+  12 Nov 2016; wjn <wjn@aol.jp> +gnome-tweak-tool-3.22.0.ebuild:
+  Add version 3.22.0
+
+*gnome-tweak-tool-3.20.1 (10 Nov 2016)
+
+  10 Nov 2016; wjn <wjn@aol.jp>
+  +files/gnome-tweak-tool-3.10.1-gentoo-cursor-themes.patch,
+  +files/gnome-tweak-tool-3.18.1-libsoup.patch,
+  +files/gnome-tweak-tool-3.8.1-wm-preferences.patch,
+  +gnome-tweak-tool-3.20.1.ebuild:
+  Add newly to omit gnome-shell
+

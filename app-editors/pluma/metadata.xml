@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>wjn@aol.jp</email>
+	</maintainer>
+	<use>
+		<flag name="spell">Enable spell checker with
+			<pkg>app-text/enchant</pkg></flag>
+	</use>
+	<upstream>
+		<remote-id type="github">mate-desktop/pluma</remote-id>
+	</upstream>
+</pkgmetadata>

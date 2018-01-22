@@ -1,0 +1,85 @@
+# ChangeLog for media-gfx/azpainterb
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> azpainterb-1.0.4.ebuild,
+  azpainterb-1.0.5.ebuild, azpainterb-1.0.6.ebuild, azpainterb-1.0.7.ebuild,
+  azpainterb-1.0.8.ebuild, azpainterb-1.0.9.ebuild, azpainterb-1.1.0.ebuild:
+  [QA] Update copyright year to 2018
+
+*azpainterb-1.1.0 (30 Oct 2017)
+
+  30 Oct 2017; wjn <wjn@aol.jp> +azpainterb-1.1.0.ebuild:
+  Add version 1.1.0
+
+  06 Jun 2017; wjn <wjn@aol.jp> azpainterb-1.0.4.ebuild,
+  azpainterb-1.0.5.ebuild, azpainterb-1.0.6.ebuild, azpainterb-1.0.7.ebuild,
+  azpainterb-1.0.8.ebuild, azpainterb-1.0.9.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+*azpainterb-1.0.9 (03 Jun 2017)
+
+  03 Jun 2017; wjn <wjn@aol.jp> +azpainterb-1.0.9.ebuild:
+  Add version 1.0.9
+
+*azpainterb-1.0.8 (21 May 2017)
+
+  21 May 2017; wjn <wjn@aol.jp> +azpainterb-1.0.8.ebuild:
+  Add version 1.0.8
+
+*azpainterb-1.0.7 (15 Mar 2017)
+
+  15 Mar 2017; wjn <wjn@aol.jp> +azpainterb-1.0.7.ebuild:
+  Add version 1.0.7
+
+*azpainterb-1.0.6 (06 Mar 2017)
+
+  06 Mar 2017; wjn <wjn@aol.jp> +azpainterb-1.0.6.ebuild:
+  Add version 1.0.6
+
+  29 Jan 2017; wjn <wjn@aol.jp> azpainterb-1.0.4.ebuild:
+  Update ${DESCRIPTION}
+
+*azpainterb-1.0.5 (29 Jan 2017)
+
+  29 Jan 2017; wjn <wjn@aol.jp> -azpainterb-1.0.1.ebuild,
+  -azpainterb-1.0.2.ebuild, -azpainterb-1.0.3.ebuild,
+  +azpainterb-1.0.5.ebuild:
+  Add version 1.0.5, delete old version 1.0.{1,2,3}
+
+  03 Jan 2017; wjn <wjn@aol.jp> azpainterb-1.0.1.ebuild,
+  azpainterb-1.0.2.ebuild, azpainterb-1.0.3.ebuild, azpainterb-1.0.4.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+*azpainterb-1.0.4 (04 Dec 2016)
+
+  04 Dec 2016; wjn <wjn@aol.jp> +azpainterb-1.0.4.ebuild:
+  Add version 1.0.4
+
+*azpainterb-1.0.3 (27 Oct 2016)
+
+  27 Oct 2016; wjn <wjn@aol.jp> +azpainterb-1.0.3.ebuild:
+  Add version 1.0.3
+
+*azpainterb-1.0.2 (02 Jul 2016)
+
+  02 Jul 2016; wjn <wjn@aol.jp> -azpainterb-1.0.0.ebuild,
+  +azpainterb-1.0.2.ebuild:
+  Add version 1.0.2, delete old 1.0.0
+
+*azpainterb-1.0.1 (16 Jun 2016)
+
+  16 Jun 2016; wjn <wjn@aol.jp> +azpainterb-1.0.1.ebuild:
+  Add version 1.0.1
+
+*azpainterb-1.0.0 (15 May 2016)
+
+  15 May 2016; wjn <wjn@aol.jp> -azpainterb-0.9.2_beta.ebuild,
+  +azpainterb-1.0.0.ebuild:
+  Add version 1.0.0, delete old 0.9.2_beta
+
+*azpainterb-0.9.2_beta (06 May 2016)
+
+  06 May 2016; wjn <wjn@aol.jp> +azpainterb-0.9.2_beta.ebuild, +metadata.xml:
+  Add newly, version 0.9.2_beta
+

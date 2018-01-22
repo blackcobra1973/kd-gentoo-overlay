@@ -1,0 +1,47 @@
+# ChangeLog for x11-themes/gion-icon-theme
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> gion-icon-theme-0.1.2.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> gion-icon-theme-0.1.2.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  03 Jan 2017; wjn <wjn@aol.jp> gion-icon-theme-0.1.2.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  29 Nov 2016; wjn <wjn@aol.jp> gion-icon-theme-0.1.2.ebuild:
+  Change $HOMEPAGE and mirror the archive
+
+   Because the Upstream http://www.silvestre.com.ar/ no longer lives,
+  change $HOMEPAGE to point gnome-look.org and mirror the archive at my site
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> gion-icon-theme-0.1.2.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  25 Nov 2015; wjn <wjn@aol.jp> gion-icon-theme-0.1.2.ebuild:
+  x11-themes/* (only in wjn-overlay): Add "mirror" to ${RESTRICT}
+
+  09 Sep 2015; wjn <wjn@aol.jp> gion-icon-theme-0.1.2.ebuild:
+  Update ebuild file format from "# $Header: $" to "# $Id"
+
+   Since Gentoo changes the VCS from CVS to git, ebuild header is changed.
+
+  08 Feb 2015; wjn <wjn@aol.jp> gion-icon-theme-0.1.2.ebuild, metadata.xml:
+  x11-themes/*: Tidy up ebuilds and metadatas.
+
+          modified:   faience-icon-theme/faience-icon-theme-0.5.1.ebuild
+          modified:   gion-icon-theme/gion-icon-theme-0.1.2.ebuild
+          modified:   gion-icon-theme/metadata.xml
+          modified:   neu-icon-theme/metadata.xml
+          modified:   neu-icon-theme/neu-icon-theme-0.6.ebuild
+
+*gion-icon-theme-0.1.2 (27 Jan 2015)
+
+  27 Jan 2015; wjn <wjn@aol.jp> +gion-icon-theme-0.1.2.ebuild, +metadata.xml:
+  Commit for initializing, Move from GitHub
+

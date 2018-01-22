@@ -1,0 +1,30 @@
+# ChangeLog for media-gfx/fbida
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> fbida-2.12.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> fbida-2.12.ebuild:
+  [QA] Update copyright year to 2017
+
+  06 Jun 2017; wjn <wjn@aol.jp> fbida-2.12.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  01 Aug 2016; wjn <wjn@aol.jp> fbida-2.12.ebuild:
+  Drop needless dep of app-text/ghostscript-gpl
+
+*fbida-2.12 (15 Apr 2016)
+
+  15 Apr 2016; wjn <wjn@aol.jp> +fbida-2.12.ebuild,
+  +files/fbida-2.10-fprintf-format.patch, +files/fbida-2.10-giflib-4.2.patch,
+  +files/fbida-2.12-drop-fbpdf.patch, +files/ida-desktop.patch, +metadata.xml:
+  Add newly to fix version 2.12 when USE="fbcon -pdf"
+
+   fbpdf was added to fbi in version 2.12
+
+   But if install fbi (USE="fbcon") and USE="-pdf", fbpdf is not needed.
+   fbpdf should be removed from GNUmakefile for USE="fbcon -pdf",
+  because fbpdf pulls additonal dependencies.
+   See https://www.kraxel.org/cgit/fbida/tree/GNUmakefile?h=2.12#n17
+

@@ -1,0 +1,95 @@
+# ChangeLog for mail-client/sylpheed
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> sylpheed-3.5.1.ebuild, sylpheed-3.6.0.ebuild:
+  [QA] Update copyright year to 2018
+
+*sylpheed-3.6.0 (07 Jul 2017)
+
+  07 Jul 2017; wjn <wjn@aol.jp> +sylpheed-3.6.0.ebuild:
+  Add version 3.6.0
+
+  06 Jun 2017; wjn <wjn@aol.jp> sylpheed-3.5.1.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+  22 Mar 2017; wjn <wjn@aol.jp> sylpheed-3.5.1.ebuild:
+  Revert removing multi-lingualization
+
+   Manual and FAQ are multi-lingualized and refered by GUI "Help" interface.
+  So it's clean to keep them as-is
+
+  22 Mar 2017; wjn <wjn@aol.jp> -sylpheed-3.5.0.ebuild:
+  Delete old version 3.5.0
+
+  03 Jan 2017; wjn <wjn@aol.jp> sylpheed-3.5.0.ebuild, sylpheed-3.5.1.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+*sylpheed-3.5.1 (11 Aug 2016)
+
+  11 Aug 2016; wjn <wjn@aol.jp> +sylpheed-3.5.1.ebuild:
+  Add version 3.5.1
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  metadata.xml: Remove a needless comment
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  28 Jan 2016; wjn <wjn@aol.jp> -sylpheed-3.5.0_rc2.ebuild:
+  Delete version 3.5.0_rc2
+
+   Please update to 3.5.0 (release version)
+
+*sylpheed-3.5.0 (28 Jan 2016)
+
+  28 Jan 2016; wjn <wjn@aol.jp> +sylpheed-3.5.0.ebuild:
+  Add version 3.5.0
+
+   Upstream's NEWS:
+          http://sylpheed.sraoss.jp/en/news.html
+          http://sylpheed.sraoss.jp/ja/news.html
+
+  06 Jan 2016; wjn <wjn@aol.jp> -sylpheed-3.5.0_rc.ebuild:
+  Delete version 3.5.0_rc
+
+*sylpheed-3.5.0_rc2 (06 Jan 2016)
+
+  06 Jan 2016; wjn <wjn@aol.jp> +sylpheed-3.5.0_rc2.ebuild:
+  Add version 3.5.0_rc2
+
+  01 Jan 2016; wjn <wjn@aol.jp> sylpheed-3.5.0_rc.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  28 Nov 2015; wjn <wjn@aol.jp> sylpheed-3.5.0_rc.ebuild:
+  Avoid installing unwanted files
+
+   - Only install documents in selected language and English
+   - Convert Japanese documents from EUC-JP to UTF-8
+   - Drop installing needless *.la files
+
+*sylpheed-3.5.0_rc (27 Nov 2015)
+
+  27 Nov 2015; wjn <wjn@aol.jp> -sylpheed-3.5.0_beta3.ebuild,
+  +sylpheed-3.5.0_rc.ebuild:
+  Add version 3.5.0_rc, delete 3.5.0_beta3
+
+   Release candidate of Sylpheed 3.5.0 is released,
+  distributing 3.5.0 beta is ended.
+
+  03 Oct 2015; wjn <wjn@aol.jp> sylpheed-3.5.0_beta3.ebuild:
+  Add libressl support.
+
+  09 Sep 2015; wjn <wjn@aol.jp> sylpheed-3.5.0_beta3.ebuild:
+  Trivial fixes for QA.
+
+  09 Sep 2015; wjn <wjn@aol.jp> sylpheed-3.5.0_beta3.ebuild:
+  Update ebuild file format from "# $Header: $" to "# $Id"
+
+   Since Gentoo changes the VCS from CVS to git, ebuild header is changed.
+
+*sylpheed-3.5.0_beta3 (11 Jul 2015)
+
+  11 Jul 2015; wjn <wjn@aol.jp> +metadata.xml, +sylpheed-3.5.0_beta3.ebuild:
+  Add version 3.5.0_beta3.
+

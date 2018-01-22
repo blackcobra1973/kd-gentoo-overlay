@@ -1,0 +1,179 @@
+# ChangeLog for gnome-extra/cinnamon
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> cinnamon-2.8.8.ebuild,
+  cinnamon-3.0.7-r1.ebuild, cinnamon-3.2.7-r1.ebuild,
+  cinnamon-3.4.2-r1.ebuild, cinnamon-3.4.6.ebuild:
+  [QA] Update copyright year to 2018
+
+*cinnamon-3.4.6 (02 Nov 2017)
+
+  02 Nov 2017; wjn <wjn@aol.jp> +cinnamon-3.4.6.ebuild:
+  Add version 3.4.6
+
+*cinnamon-3.4.2-r1 (28 Jul 2017)
+
+  28 Jul 2017; wjn <wjn@aol.jp> -cinnamon-3.4.2.ebuild,
+  +cinnamon-3.4.2-r1.ebuild:
+  Increase version dependency of x11-wm/muffin
+
+*cinnamon-3.4.2 (25 Jun 2017)
+
+  25 Jun 2017; wjn <wjn@aol.jp> +cinnamon-3.4.2.ebuild:
+  Add version 3.4.2
+
+  06 Jun 2017; wjn <wjn@aol.jp> cinnamon-2.8.8.ebuild,
+  cinnamon-3.0.7-r1.ebuild, cinnamon-3.2.7-r1.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+*cinnamon-3.2.7-r1 (14 Feb 2017)
+
+  14 Feb 2017; wjn <wjn@aol.jp> +cinnamon-3.2.7-r1.ebuild:
+  Add version 3.2.7-r1 to fix USE="-networkmanager"
+
+   When USE="-networkmanager",
+  "nm-applet" must be removed from *.session and statusIconDispatcher.js
+
+  03 Jan 2017; wjn <wjn@aol.jp> cinnamon-2.8.8.ebuild,
+  cinnamon-3.0.7-r1.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  30 Oct 2016; wjn <wjn@aol.jp> cinnamon-2.8.8.ebuild:
+  Drop Python 3.3 support
+
+  30 Oct 2016; wjn <wjn@aol.jp> -cinnamon-2.6.13-r1.ebuild,
+  -cinnamon-2.8.4-r1.ebuild, -cinnamon-2.8.5.ebuild, -cinnamon-2.8.6.ebuild,
+  -cinnamon-2.8.7.ebuild:
+  Delete obsolete versions <=2.8.7
+
+*cinnamon-3.0.7-r1 (30 Oct 2016)
+
+  30 Oct 2016; wjn <wjn@aol.jp> +cinnamon-3.0.7-r1.ebuild:
+  Add version 3.0.7-r1
+
+*cinnamon-2.8.8 (02 Apr 2016)
+
+  02 Apr 2016; wjn <wjn@aol.jp> +cinnamon-2.8.8.ebuild:
+  Add version 2.8.8
+
+*cinnamon-2.8.7 (08 Mar 2016)
+
+  08 Mar 2016; wjn <wjn@aol.jp> +cinnamon-2.8.7.ebuild:
+  Add version 2.8.7
+
+  19 Feb 2016; wjn <wjn@aol.jp> cinnamon-2.6.13-r1.ebuild,
+  cinnamon-2.8.4-r1.ebuild, cinnamon-2.8.5.ebuild, cinnamon-2.8.6.ebuild:
+  Correct for quality assurance
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  01 Jan 2016; wjn <wjn@aol.jp> cinnamon-2.6.13-r1.ebuild,
+  cinnamon-2.8.4-r1.ebuild, cinnamon-2.8.5.ebuild, cinnamon-2.8.6.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+  30 Nov 2015; wjn <wjn@aol.jp> cinnamon-2.6.13-r1.ebuild,
+  cinnamon-2.8.4-r1.ebuild, cinnamon-2.8.5.ebuild, cinnamon-2.8.6.ebuild:
+  gnome-extral/cinnamon: Add newlines to tidy up
+
+*cinnamon-2.8.6 (27 Nov 2015)
+
+  27 Nov 2015; wjn <wjn@aol.jp> +cinnamon-2.8.6.ebuild:
+  Add version 2.8.6
+
+*cinnamon-2.8.5 (20 Nov 2015)
+
+  20 Nov 2015; wjn <wjn@aol.jp> +cinnamon-2.8.5.ebuild:
+  settings: Add version 2.8.5
+
+*cinnamon-2.8.4-r1 (17 Nov 2015)
+
+  17 Nov 2015; wjn <wjn@aol.jp> -cinnamon-2.8.4.ebuild,
+  +cinnamon-2.8.4-r1.ebuild, +files/cinnamon-2.8.4-path-is-symlink.patch:
+  2.8.4: Support /usr/lib symlink
+
+   /usr/lib can be a symlink on Gentoo systems.
+  This commit fixes to support /usr/lib symlink.
+   See https://github.com/linuxmint/Cinnamon/issues/4767
+
+  17 Nov 2015; wjn <wjn@aol.jp> cinnamon-2.8.4.ebuild:
+  Update cinnamon components version to 2.8
+
+*cinnamon-2.8.4 (17 Nov 2015)
+
+  17 Nov 2015; wjn <wjn@aol.jp> -cinnamon-2.8.3.ebuild,
+  +cinnamon-2.8.4.ebuild:
+  Update version 2.8.3 to 2.8.4.
+
+  17 Nov 2015; wjn <wjn@aol.jp> cinnamon-2.8.3.ebuild:
+  Remove python_targets_python3_5
+
+   There isn't python_targets_python3_5 in dev-python/pygobject:3.
+
+*cinnamon-2.8.3 (17 Nov 2015)
+
+  17 Nov 2015; wjn <wjn@aol.jp> +cinnamon-2.8.3.ebuild,
+  +files/cinnamon-2.8.0-background.patch,
+  +files/cinnamon-2.8.3-gnome-3.14.patch,
+  +files/cinnamon-2.8.3-set-wheel.patch:
+  Add version 2.8.3
+
+  17 Nov 2015; wjn <wjn@aol.jp> cinnamon-2.6.13-r1.ebuild:
+  control-center}: Do not KEYWORD
+
+*cinnamon-2.6.13-r1 (11 Nov 2015)
+
+  11 Nov 2015; wjn <wjn@aol.jp> -cinnamon-2.6.13.ebuild,
+  +cinnamon-2.6.13-r1.ebuild:
+  RDEP virtual/python-imaging to dev-python/pillow
+
+   virtual/python-imaging is obsolete.
+  dev-python/pillow should be depended on.
+
+  09 Nov 2015; wjn <wjn@aol.jp> cinnamon-2.6.13.ebuild:
+  settings-daemon: Add newly for add IUSE="pulseaudio"
+
+   Change pulseaudio to optional in cinnamon-settings-daemon.
+
+   And also,
+  cinnamon[pulseaudio=] and cinnamon-control-center[pulseaudio=] are needed.
+
+  09 Nov 2015; wjn <wjn@aol.jp> cinnamon-2.6.13.ebuild:
+  control-center: Add IUSE="pulseaudio"
+
+   cinnamon-control-center[-pulseaudio] results to omit the sound panel.
+
+   And gnome-extra/cinnamon depends on cinnamon-control-center[pulseaudio=].
+
+  09 Nov 2015; wjn <wjn@aol.jp> cinnamon-2.6.13.ebuild,
+  +files/cinnamon-disable-pulseaudio.patch:
+  Add IUSE="pulseaudio" for drop depending on PulseAudio
+
+   It enables to install without PulseAudio (libpulse).
+  Its side-effect is removing GVC (GNOME volume Control).
+
+  09 Nov 2015; wjn <wjn@aol.jp> cinnamon-2.6.13.ebuild:
+  Depends on cinnamon-control-center[networkmanager=]
+
+   When -networkmanager,
+  cinnamon-control-center[-networkmanager] is also needed.
+  Vice versa when +networkmanager.
+
+*cinnamon-2.6.13 (03 Nov 2015)
+
+  03 Nov 2015; wjn <wjn@aol.jp> +cinnamon-2.6.13.ebuild,
+  +files/cinnamon-2.2.6-automagic-gnome-bluetooth.patch,
+  +files/cinnamon-2.4.5-background.patch,
+  +files/cinnamon-2.4.5-gnome-3.14.patch,
+  +files/cinnamon-2.6.13-test-recorder-includes.patch,
+  +files/cinnamon-2.6.7-optional-networkmanager.patch,
+  +files/cinnamon-2.6.7-set-wheel.patch, +files/cinnamon-screensaver.desktop,
+  +files/cinnamon2d-screensaver.desktop,
+  +files/polkit-cinnamon-authentication-agent-1.desktop, +metadata.xml:
+  Add for removing nm-applet from *.session when -networkmanager.
+
+   nm-applet should be removed from RequiredComponents in cinnamon*.session,
+  because nm-applet is not required when USE="-networkmanager".
+  Maybe most users prefering USE="-networkmanager" don't install nm-applet.
+

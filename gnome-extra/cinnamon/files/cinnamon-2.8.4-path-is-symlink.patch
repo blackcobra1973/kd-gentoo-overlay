@@ -1,0 +1,42 @@
+From a22c2249c5aa36911690fb1863a63c766b8763c2 Mon Sep 17 00:00:00 2001
+From: Michal <michal@exads.com>
+Date: Fri, 13 Nov 2015 15:49:52 +0000
+Subject: [PATCH] #4767: Handle situations when /usr/lib64 is a symlink to
+ /usr/lib and vice versa on some distributions causing modules are being
+ loaded multiple times
+
+---
+ files/usr/share/cinnamon/cinnamon-settings/bin/capi.py | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+
+diff --git a/files/usr/share/cinnamon/cinnamon-settings/bin/capi.py b/files/usr/share/cinnamon/cinnamon-settings/bin/capi.py
+index eec828d..0570c62 100644
+--- a/files/usr/share/cinnamon/cinnamon-settings/bin/capi.py
++++ b/files/usr/share/cinnamon/cinnamon-settings/bin/capi.py
+@@ -37,12 +37,13 @@ def __init__(self):
+             paths += ["/usr/lib/%s" % architecture, "/usr/lib/%s-linux-gnu" % architecture]
+ 
+         for path in paths:
+-            path = os.path.join(path, "cinnamon-control-center-1/panels")
+-            if os.path.exists(path):
+-                try:
+-                    self.modules = self.modules + Gio.io_modules_load_all_in_directory(path)
+-                except Exception, e:
+-                    print "capi failed to load multiarch modules from %s: " % path, e
++            if not os.path.islink(path):
++                path = os.path.join(path, "cinnamon-control-center-1/panels")
++                if os.path.exists(path):
++                    try:
++                        self.modules = self.modules + Gio.io_modules_load_all_in_directory(path)
++                    except Exception, e:
++                        print "capi failed to load multiarch modules from %s: " % path, e
+ 
+     def get_c_widget(self, mod_id):
+         extension = self.extension_point.get_extension_by_name(mod_id)
+@@ -58,4 +59,4 @@ def lookup_c_module(self, mod_id):
+             print("Could not find %s module; is the cinnamon-control-center package installed?" % mod_id)
+             return False
+         else:
+-            return True
+\ No newline at end of file
++            return True

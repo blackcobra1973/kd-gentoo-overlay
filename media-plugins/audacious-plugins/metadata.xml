@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+	<email>wjn@aol.jp</email>
+</maintainer>
+<upstream>
+	<remote-id type="github">audacious-media-player/audacious-plugins
+		</remote-id>
+	<doc>http://audacious-media-player.org/</doc>
+</upstream>
+<use>
+	<flag name='aac'>Support AAC decode</flag>
+	<flag name='alsa'>Support ALSA output</flag>
+	<flag name='bs2b'>Enable Bauer Bauer stereophonic-to-binaural
+		headphone filter</flag>
+	<flag name='cdda'>Support CD-DA input</flag>
+	<flag name='cue'>Support CUE sheets (<pkg>media-libs/libcue</pkg>)</flag>
+	<flag name='ffmpeg'>Support FFmpeg library <pkg>virtual/ffmpeg</pkg></flag>
+	<flag name='filewriter'>Enable outputing to file</flag>
+	<flag name='flac'>Support FLAC decode and encode</flag>
+	<flag name="gnome">Enable GNOME shortcut</flag>
+	<flag name="gtk">Enable GTK+ User Interface (<pkg>x11-libs/gtk+</pkg>)
+		</flag>
+	<flag name="gtk3">Link against version 3 of the GIMP Toolkit
+		(<pkg>x11-libs/gtk+:3</pkg>) instead of version 2</flag>
+	<flag name='http'>Support neon HTTP transport</flag>
+	<flag name='jack'>Support JACK Audio Connection Kit output</flag>
+	<flag name='lame'>Support mp3 output to file</flag>
+	<flag name='libav'>Support Libav library <pkg>media-video/libav</pkg>
+		</flag>
+	<flag name='libnotify'>Enable desktop notification</flag>
+	<flag name='libsamplerate'>Enable libsamplerate converter
+		(Secret Rabbit Code)</flag>
+	<flag name='lirc'>Support Linux Infrared Remote Control</flag>
+	<flag name='midi'>Support amidi-plug (<pkg>media-sound/fluidsynth</pkg>)
+		</flag>
+	<flag name='mms'>Support Microsoft Media Server media streaming protocol
+		</flag>
+	<flag name='modplug'>Support module (modplug) decode</flag>
+	<flag name='mp3'>Support MPEG 1/2 Audio decode</flag>
+	<flag name='pulseaudio'>Support PulseAudio output</flag>
+	<flag name="qt5">Enable experimental Qt5 UI and output
+		(<pkg>dev-qt/qtgui:5</pkg>, <pkg>dev-qt/qtmultimedia:5</pkg>)</flag>	
+	<flag name='scrobbler'>Enable scrobbler/LastFM submission support</flag>
+	<flag name='sdl'>Support Simple Direct Media Layer</flag>
+	<flag name='sid'>Support SID (Commodore 64 Audio) </flag>
+	<flag name='sndfile'>Enable <pkg>media-libs/libsndfile</pkg></flag>
+	<flag name='soxr'>Enable SoX Resampler library</flag>
+	<flag name='spectrum'>Enable OpenGL spectram analizer</flag>
+	<flag name='vorbis'>Support Volbis decode</flag>
+	<flag name='wavpack'>Support wavpack decode</flag>
+</use>
+</pkgmetadata>

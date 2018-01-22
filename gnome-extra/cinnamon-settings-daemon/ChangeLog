@@ -1,0 +1,97 @@
+# ChangeLog for gnome-extra/cinnamon-settings-daemon
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+  03 Jan 2018; wjn <wjn@aol.jp> cinnamon-settings-daemon-2.8.3.ebuild,
+  cinnamon-settings-daemon-2.8.4.ebuild,
+  cinnamon-settings-daemon-3.0.1.ebuild,
+  cinnamon-settings-daemon-3.2.0.ebuild:
+  [QA] Update copyright year to 2018
+
+  06 Jun 2017; wjn <wjn@aol.jp> cinnamon-settings-daemon-3.2.0.ebuild:
+  [QA] Update copyright year to 2017
+
+  06 Jun 2017; wjn <wjn@aol.jp> cinnamon-settings-daemon-2.8.3.ebuild,
+  cinnamon-settings-daemon-2.8.4.ebuild,
+  cinnamon-settings-daemon-3.0.1.ebuild:
+  [QA] Remove no longer needed '$Id$' lines
+
+*cinnamon-settings-daemon-3.2.0 (19 Mar 2017)
+
+  19 Mar 2017; wjn <wjn@aol.jp> +cinnamon-settings-daemon-3.2.0.ebuild,
+  +files/cinnamon-settings-daemon-remove-cvc.patch:
+  Add version 3.2.0
+
+  03 Jan 2017; wjn <wjn@aol.jp> cinnamon-settings-daemon-2.8.3.ebuild,
+  cinnamon-settings-daemon-2.8.4.ebuild,
+  cinnamon-settings-daemon-3.0.1.ebuild:
+  */*/*.ebuild: Change 2016 to 2017 in the GPLv2 copyright expressions
+
+  30 Oct 2016; wjn <wjn@aol.jp> -cinnamon-settings-daemon-2.6.3.ebuild,
+  -cinnamon-settings-daemon-2.8.1.ebuild,
+  -cinnamon-settings-daemon-2.8.2.ebuild:
+  Delete obsolete versions <=2.8.2
+
+*cinnamon-settings-daemon-3.0.1 (30 Oct 2016)
+
+  30 Oct 2016; wjn <wjn@aol.jp> +cinnamon-settings-daemon-3.0.1.ebuild,
+  +files/cinnamon-settings-daemon-3.0.1-disable-pulseaudio.patch,
+  +files/cinnamon-settings-daemon-3.0.1-optional.patch:
+  Add version 3.0.1
+
+*cinnamon-settings-daemon-2.8.4 (08 Mar 2016)
+
+  08 Mar 2016; wjn <wjn@aol.jp> +cinnamon-settings-daemon-2.8.4.ebuild:
+  Add version 2.8.4
+
+  19 Feb 2016; wjn <wjn@aol.jp> metadata.xml:
+  **/metadata.xml: Update and tidy up
+
+  11 Feb 2016; wjn <wjn@aol.jp> cinnamon-settings-daemon-2.6.3.ebuild,
+  cinnamon-settings-daemon-2.8.1.ebuild,
+  cinnamon-settings-daemon-2.8.2.ebuild,
+  cinnamon-settings-daemon-2.8.3.ebuild:
+  Correct ${LICENSE}
+
+   Its libraries has LGPLv2.1 or later (LGPL-2.1+).
+  The upstream selected LGPL-2.1+, Though forked original codes has LGPL-2+.
+  See https://github.com/linuxmint/cinnamon-settings-
+  daemon/blob/master/COPYING.LIB
+   Thus, 'LICENSE="GPL-2+ LGPL-2.1+"' is correct
+
+  01 Jan 2016; wjn <wjn@aol.jp> cinnamon-settings-daemon-2.6.3.ebuild,
+  cinnamon-settings-daemon-2.8.1.ebuild,
+  cinnamon-settings-daemon-2.8.2.ebuild,
+  cinnamon-settings-daemon-2.8.3.ebuild:
+  **/*.ebuild: Change 2015 to 2016 in the GPLv2 copyright expressions
+
+*cinnamon-settings-daemon-2.8.3 (27 Nov 2015)
+
+  27 Nov 2015; wjn <wjn@aol.jp> +cinnamon-settings-daemon-2.8.3.ebuild:
+  Add version 2.8.3
+
+*cinnamon-settings-daemon-2.8.2 (20 Nov 2015)
+
+  20 Nov 2015; wjn <wjn@aol.jp> +cinnamon-settings-daemon-2.8.2.ebuild:
+  Add version 2.8.2
+
+  17 Nov 2015; wjn <wjn@aol.jp> cinnamon-settings-daemon-2.8.1.ebuild:
+  gnome-extra/cinnamon*: Update cinnamon components version to 2.8
+
+*cinnamon-settings-daemon-2.8.1 (17 Nov 2015)
+
+  17 Nov 2015; wjn <wjn@aol.jp> +cinnamon-settings-daemon-2.8.1.ebuild:
+  Add version 2.8.1
+
+*cinnamon-settings-daemon-2.6.3 (09 Nov 2015)
+
+  09 Nov 2015; wjn <wjn@aol.jp> +cinnamon-settings-daemon-2.6.3.ebuild,
+  +files/cinnamon-settings-daemon-2.6.2-optional.patch,
+  +files/cinnamon-settings-daemon-disable-pulseaudio.patch, +metadata.xml:
+  Add newly for add IUSE="pulseaudio"
+
+   Change pulseaudio to optional in cinnamon-settings-daemon.
+
+   And also,
+  cinnamon[pulseaudio=] and cinnamon-control-center[pulseaudio=] are needed.
+

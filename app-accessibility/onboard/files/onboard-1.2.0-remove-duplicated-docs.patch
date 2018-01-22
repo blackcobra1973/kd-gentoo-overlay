@@ -1,0 +1,16 @@
+--- onboard.orig/setup.py	2015-11-24 14:25:36.219862475 +0000
++++ onboard/setup.py	2015-11-24 14:50:00.704828553 +0000
+@@ -348,13 +348,6 @@
+     packages = ['Onboard', 'Onboard.pypredict'],
+ 
+     data_files = [('share/glib-2.0/schemas', glob.glob('data/*.gschema.xml')),
+-                  ('share/onboard', glob.glob('AUTHORS')),
+-                  ('share/onboard', glob.glob('CHANGELOG')),
+-                  ('share/onboard', glob.glob('COPYING*')),
+-                  ('share/onboard', glob.glob('HACKING')),
+-                  ('share/onboard', glob.glob('NEWS')),
+-                  ('share/onboard', glob.glob('README')),
+-                  ('share/onboard', glob.glob('onboard-defaults.conf.example')),
+                   ('share/icons/hicolor/22x22/apps', glob.glob('icons/hicolor/22/*')),
+                   ('share/icons/hicolor/scalable/apps', glob.glob('icons/hicolor/scalable/*')),
+                   ('share/icons/HighContrast/scalable/apps', glob.glob('icons/HighContrast/*')),

@@ -1,0 +1,12 @@
+diff -ur --unidirectional-new-file -urN yoshimi-1.4.1.orig/src/CMakeLists.txt yoshimi-1.4.1/src/CMakeLists.txt
+--- yoshimi-1.4.1.orig/src/CMakeLists.txt	2016-09-22 03:02:38.366283006 +0000
++++ yoshimi-1.4.1/src/CMakeLists.txt	2016-09-22 03:05:21.330286141 +0000
+@@ -484,7 +484,7 @@
+ 
+ add_executable (yoshimi ${ProgSources} main.cpp)
+ 
+-target_link_libraries (yoshimi ${ExternLibraries})
++target_link_libraries (yoshimi ${ExternLibraries} ${NCURSES_LIBRARIES})
+ 
+ install (TARGETS yoshimi RUNTIME DESTINATION bin)
+ 
