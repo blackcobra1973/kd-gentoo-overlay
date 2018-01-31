@@ -2,6 +2,15 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  26 Jan 2018; wjn <wjn@aol.jp> viewnior-1.6.ebuild:
+  Remove obsolete "inherit fdo-mime"
+
+   fdo-mime.eclass is obsolete
+   FYI: https://wiki.gentoo.org/wiki/Notes_on_ebuilds_with_GUI
+
+  25 Jan 2018; wjn <wjn@aol.jp> -viewnior-1.5.ebuild:
+  Delete old version 1.5
+
   03 Jan 2018; wjn <wjn@aol.jp> viewnior-1.5.ebuild, viewnior-1.6.ebuild:
   [QA] Update copyright year to 2018
 
