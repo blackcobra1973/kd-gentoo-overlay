@@ -1,9 +1,9 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
-inherit autotools eutils fdo-mime gnome2-utils
+inherit autotools gnome2-utils xdg-utils
 
 MY_PN="Viewnior"
 
@@ -28,6 +28,7 @@ DOCS="AUTHORS ChangeLog* NEWS README TODO"
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-1.5-background-mate-cinnamon.patch"
+	default
 	eautoreconf
 }
 
@@ -36,11 +37,11 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
-	fdo-mime_desktop_database_update
+	xdg_desktop_database_update
 	gnome2_icon_cache_update
 }
 
 pkg_postrm() {
-	fdo-mime_desktop_database_update
+	xdg_desktop_database_update
 	gnome2_icon_cache_update
 }
