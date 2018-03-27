@@ -6,8 +6,6 @@
 	</maintainer>
 	<use>
 		<flag name="applet">Enable the mate dictionary applet</flag>
-		<flag name="gtk3">Build for gtk+:3 instead of gtk+:2.
-			EXPERIMENTAL</flag>
 	</use>
 	<upstream>
 		<remote-id type="github">mate-desktop/mate-utils</remote-id>

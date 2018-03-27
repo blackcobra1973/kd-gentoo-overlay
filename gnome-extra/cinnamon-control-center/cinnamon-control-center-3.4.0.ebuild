@@ -49,9 +49,10 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40.1
 	>=sys-devel/gettext-0.17
 	virtual/pkgconfig
-	x11-proto/kbproto
-	x11-proto/xf86miscproto
-	x11-proto/xproto
+	|| ( x11-base/xorg-proto
+		( x11-proto/xproto
+			x11-proto/xf86miscproto
+			x11-proto/kbproto ) )
 	nls? ( sys-devel/gettext )"
 # <gnome-color-manager-3.1.2 has file collisions with g-c-c-3.1.x
 # gnome-base/gnome-common is needed for eautoreconf

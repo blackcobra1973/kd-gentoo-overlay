@@ -21,12 +21,11 @@ KEYWORDS=""
 IUSE="debug"
 
 COMMON_DEPEND="dev-libs/atk:0
-	>=dev-libs/glib-2.36.0:2
+	>=dev-libs/glib-2.50.0:2
 	dev-python/pygtk:2[${PYTHON_USEDEP}]
-	>=mate-base/caja-1.17.1:0[-gtk3(+)]
+	>=mate-base/caja-1.17.1:0
 	media-libs/fontconfig:1.0
 	media-libs/freetype:2
-	net-misc/dropbox:0
 	x11-libs/cairo:0
 	x11-libs/gdk-pixbuf:2
 	x11-libs/gtk+:2
@@ -35,8 +34,8 @@ COMMON_DEPEND="dev-libs/atk:0
 DEPEND="${COMMON_DEPEND}
 	dev-python/docutils:0
 	virtual/pkgconfig:0"
-RDEPEND=${COMMON_DEPEND}
-
+RDEPEND="${COMMON_DEPEND}
+		net-misc/dropbox:0"
 CONFIG_CHECK="~INOTIFY_USER"
 
 DOCS=( AUTHORS ChangeLog NEWS README )

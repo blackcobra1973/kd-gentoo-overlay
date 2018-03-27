@@ -1,0 +1,9 @@
+# ChangeLog for dev-python/smartypants
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+*smartypants-2.0.1 (10 Mar 2018)
+
+  10 Mar 2018; wjn <wjn@aol.jp> +metadata.xml, +smartypants-2.0.1.ebuild:
+  Add newly, needed by dev-python/typogrify, ver 2.0.1
+

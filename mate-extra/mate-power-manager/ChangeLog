@@ -2,6 +2,20 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  02 Mar 2018; wjn <wjn@aol.jp> mate-power-manager-9999.ebuild:
+  Update the dependency on mate-base/mate-panel
+
+  02 Mar 2018; wjn <wjn@aol.jp> metadata.xml:
+  Remove USE="gtk3" from metadata.xml
+
+  02 Mar 2018; wjn <wjn@aol.jp> mate-power-manager-9999.ebuild:
+  Allow x11-base/xorg-proto as choice dependency
+
+  02 Mar 2018; wjn <wjn@aol.jp> mate-power-manager-9999.ebuild:
+  Depend on >=glib-2.50 and >=gtk+-3.22
+
+   Upstream: https://github.com/mate-desktop/mate-power-manager/commit/dac0d4e
+
   03 Jan 2018; wjn <wjn@aol.jp> mate-power-manager-9999.ebuild:
   [QA] Update copyright year to 2018
 

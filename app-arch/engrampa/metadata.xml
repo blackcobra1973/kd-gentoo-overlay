@@ -8,8 +8,6 @@
 		<flag name="caja">Enable engrampa to integrate with
 			<pkg>mate-base/caja</pkg> by providing entries
 			in its context menu</flag>
-		<flag name="gtk3">Build for gtk+:3 instead of gtk+:2.
-			EXPERIMENTAL</flag>
 	</use>
 	<upstream>
 		<remote-id type="github">mate-desktop/engrampa</remote-id>

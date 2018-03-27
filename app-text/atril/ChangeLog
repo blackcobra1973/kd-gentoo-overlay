@@ -2,6 +2,29 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  19 Mar 2018; wjn <wjn@aol.jp> atril-9999.ebuild:
+  Do xdg_desktop_database_update in postinst and postrm
+
+   Because atril.desktop file has "MimeType="
+
+  19 Mar 2018; wjn <wjn@aol.jp> atril-9999.ebuild,
+  +files/atril-9999-disable-webkit.patch:
+  Avoid using WebKit when USE="-epub"
+
+   This commits reverts Upstream's "File Edit Options Buffers Tools Help
+  app-text/atril: Avoid using WebKit when USE="-epub"
+
+   This commit reverts Upstream's "epub: fix loading epub thumbnails"
+   https://github.com/mate-desktop/atril/commit/ea3dfb1
+
+  02 Mar 2018; wjn <wjn@aol.jp> atril-9999.ebuild:
+  Update version dependencies of libraries
+
+  02 Mar 2018; wjn <wjn@aol.jp> atril-9999.ebuild:
+  Depend on >=dev-libs/glib-2.50 and >=x11-libs/gtk+-3.22
+
+   Upstream: https://github.com/mate-desktop/atril/commit/45cbbd0
+
   03 Jan 2018; wjn <wjn@aol.jp> atril-9999.ebuild:
   [QA] Update copyright year to 2018
 

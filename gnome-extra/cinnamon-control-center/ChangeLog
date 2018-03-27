@@ -2,6 +2,17 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  03 Mar 2018; wjn <wjn@aol.jp> cinnamon-control-center-3.0.1.ebuild,
+  cinnamon-control-center-3.2.1.ebuild, cinnamon-control-center-3.4.0.ebuild,
+  cinnamon-control-center-3.6.5.ebuild:
+  Allow x11-base/xorg-proto as choice deps
+
+*cinnamon-control-center-3.6.5 (02 Mar 2018)
+
+  02 Mar 2018; wjn <wjn@aol.jp> -cinnamon-control-center-2.8.1.ebuild,
+  +cinnamon-control-center-3.6.5.ebuild:
+  Add version 3.6.5, delete old 2.8.1
+
   03 Jan 2018; wjn <wjn@aol.jp> cinnamon-control-center-2.8.1.ebuild,
   cinnamon-control-center-3.0.1.ebuild, cinnamon-control-center-3.2.1.ebuild,
   cinnamon-control-center-3.4.0.ebuild:

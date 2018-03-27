@@ -19,7 +19,7 @@ KEYWORDS=""
 IUSE="debug doc +introspection xmp"
 
 COMMON_DEPEND="dev-libs/atk:0[introspection?]
-	>=dev-libs/glib-2.36.0:2
+	>=dev-libs/glib-2.50.0:2
 	>=dev-libs/libxml2-2.4.7:2
 	gnome-base/dconf:0
 	>=gnome-base/gvfs-1.10.1:0[udisks]
@@ -27,7 +27,7 @@ COMMON_DEPEND="dev-libs/atk:0[introspection?]
 	>=media-libs/libexif-0.6.14:0
 	x11-libs/cairo:0
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-3.14.0:3[introspection?]
+	>=x11-libs/gtk+-3.22.0:3[introspection?]
 	x11-libs/libICE:0
 	x11-libs/libSM:0
 	x11-libs/libX11:0

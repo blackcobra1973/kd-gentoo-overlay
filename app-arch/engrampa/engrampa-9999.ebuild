@@ -18,10 +18,10 @@ SLOT="0"
 KEYWORDS=""
 IUSE="caja debug"
 
-COMMON_DEPEND=">=dev-libs/glib-2.32.0:2
+COMMON_DEPEND=">=dev-libs/glib-2.50.0:2
 	>=dev-libs/json-glib-0.14:0
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-3.14.0:3
+	>=x11-libs/gtk+-3.22.0:3
 	x11-libs/pango:0
 	virtual/libintl:0
 	caja? ( >=mate-base/caja-1.17.1:0 )"

@@ -20,12 +20,12 @@ SLOT="0"
 KEYWORDS=""
 IUSE="debug"
 
-COMMON_DEPEND=">=dev-libs/glib-2.36.0:2[${PYTHON_USEDEP}]
+COMMON_DEPEND=">=dev-libs/glib-2.50.0:2[${PYTHON_USEDEP}]
 	>=dev-libs/libxml2-2.6.0:2
 	>=net-libs/libsoup-2.34.0:2.4
 	>=sys-libs/timezone-data-2010k:0
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-3.14.0:3
+	>=x11-libs/gtk+-3.22.0:3
 	virtual/libintl:0"
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.50.1:0

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>wjn@aol.jp</email>
+	</maintainer>
+	<upstream>
+		<maintainer type="person">
+			<email>leohemsted@gmail.com</email>
+			<name>Leo Hemsted</name>
+		</maintainer>
+		<remote-id type="github">leohemsted/smartypants.py</remote-id>
+	</upstream>
+</pkgmetadata>

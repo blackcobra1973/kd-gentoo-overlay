@@ -11,11 +11,9 @@ SRC_URI=""
 LICENSE="metapackage"
 SLOT="0"
 KEYWORDS=""
-IUSE="appindicator +gtk3 sensors"
-REQUIRED_USE="appindicator? ( gtk3 )
-	sensors? ( gtk3 )"
+IUSE="appindicator sensors"
 
 DEPEND=""
-RDEPEND="~mate-base/mate-applets-9999[gtk3(+)=]
+RDEPEND="~mate-base/mate-applets-9999
 	appindicator? ( ~mate-extra/mate-indicator-applet-9999 )
 	sensors? ( ~mate-extra/mate-sensors-applet-9999 )"

@@ -53,7 +53,8 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	dev-libs/libxml2:2
 	>=dev-util/intltool-0.37.1
-	x11-proto/kbproto
+	|| ( x11-base/xorg-proto
+		x11-proto/kbproto )
 	virtual/pkgconfig
 "
 

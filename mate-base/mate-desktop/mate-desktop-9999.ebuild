@@ -18,12 +18,11 @@ SLOT="0"
 KEYWORDS=""
 IUSE="X debug doc introspection startup-notification"
 
-COMMON_DEPEND=">=dev-libs/glib-2.36:2
-	>=dev-libs/libunique-3.0:3
+COMMON_DEPEND=">=dev-libs/glib-2.50:2
 	>=gnome-base/dconf-0.13.4:0
 	x11-libs/cairo:0
 	>=x11-libs/gdk-pixbuf-2.4:2[introspection?]
-	>=x11-libs/gtk+-3.14.0:3[introspection?]
+	>=x11-libs/gtk+-3.22.0:3[introspection?]
 	x11-libs/libX11:0
 	>=x11-libs/libXrandr-1.3:0
 	virtual/libintl:0
@@ -34,8 +33,9 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.50.1:0
 	>=gnome-base/dconf-0.10:0
 	sys-devel/gettext:0
-	>=x11-proto/randrproto-1.2:0
-	x11-proto/xproto:0
+	|| ( x11-base/xorg-proto
+		( >=x11-proto/randrproto-1.2:0
+			x11-proto/xproto:0 ) )
 	virtual/pkgconfig:0
 	doc? ( >=dev-util/gtk-doc-1.4:0 )"
 RDEPEND="${COMMON_DEPEND}"

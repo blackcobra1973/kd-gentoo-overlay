@@ -2,6 +2,9 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  10 Mar 2018; wjn <wjn@aol.jp> typogrify-2.0.7.ebuild:
+  RDEPEND on dev-python/smartypants
+
   03 Jan 2018; wjn <wjn@aol.jp> typogrify-2.0.7.ebuild:
   [QA] Update copyright year to 2018
 

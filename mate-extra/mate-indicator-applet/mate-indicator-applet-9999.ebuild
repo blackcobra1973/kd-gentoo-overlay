@@ -17,10 +17,10 @@ LICENSE="GPL-3 LGPL-2.1"
 SLOT="0"
 KEYWORDS=""
 
-COMMON_DEPEND=">=dev-libs/glib-2.2.0:2
+COMMON_DEPEND=">=dev-libs/glib-2.50.0:2
 	>=dev-libs/libindicator-0.3.90:3
 	>=mate-base/mate-panel-1.17.0
-	>=x11-libs/gtk+-3.14.0:3
+	>=x11-libs/gtk+-3.22.0:3
 	virtual/libintl:0"
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.35.0:0

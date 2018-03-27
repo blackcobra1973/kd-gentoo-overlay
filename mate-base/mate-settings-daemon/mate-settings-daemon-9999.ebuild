@@ -19,15 +19,15 @@ KEYWORDS=""
 IUSE="X debug libnotify policykit pulseaudio smartcard"
 
 COMMON_DEPEND=">=dev-libs/dbus-glib-0.74:0
-	>=dev-libs/glib-2.36.0:2
+	>=dev-libs/glib-2.50.0:2
 	>=mate-base/libmatekbd-1.17.0:0
-	>=mate-base/mate-desktop-1.19.0:0
+	>=mate-base/mate-desktop-1.20.0:0
 	media-libs/fontconfig:1.0
 	>=media-libs/libmatemixer-1.10.0:0
 	>=gnome-base/dconf-0.13.4:0
 	x11-libs/cairo:0
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-3.14.0:3
+	>=x11-libs/gtk+-3.22.0:3
 	x11-libs/libX11:0
 	x11-libs/libXi:0
 	x11-libs/libXext:0
@@ -44,8 +44,9 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.37.1:0
 	sys-devel/gettext:0
 	virtual/pkgconfig:0
-	x11-proto/inputproto:0
-	x11-proto/xproto:0"
+	|| ( x11-base/xorg-proto
+		( x11-proto/inputproto:0
+			x11-proto/xproto:0 ) )"
 RDEPEND=${COMMON_DEPEND}
 
 DOCS=( AUTHORS NEWS README )

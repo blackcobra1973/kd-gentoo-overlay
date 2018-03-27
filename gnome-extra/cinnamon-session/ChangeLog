@@ -2,6 +2,13 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+*cinnamon-session-3.6.1-r4 (02 Mar 2018)
+
+  02 Mar 2018; wjn <wjn@aol.jp> +cinnamon-session-3.6.1-r4.ebuild,
+  +files/cinnamon-session-3.6.1-elogind.patch,
+  +files/cinnamon-session-3.6.1-elogind2.patch:
+  Add version 3.6.1-r4
+
   03 Jan 2018; wjn <wjn@aol.jp> cinnamon-session-3.2.0.ebuild,
   cinnamon-session-3.4.1.ebuild, cinnamon-session-3.4.2.ebuild:
   [QA] Update copyright year to 2018

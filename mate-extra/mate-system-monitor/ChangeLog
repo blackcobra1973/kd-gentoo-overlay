@@ -2,6 +2,12 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  02 Mar 2018; wjn <wjn@aol.jp> mate-system-monitor-9999.ebuild:
+  Depend on >=glib-2.50 and >=gtk+-3.22
+
+   Upstream: https://github.com/mate-desktop/mate-system-
+  monitor/commit/a520592
+
   03 Jan 2018; wjn <wjn@aol.jp> mate-system-monitor-9999.ebuild:
   [QA] Update copyright year to 2018
 

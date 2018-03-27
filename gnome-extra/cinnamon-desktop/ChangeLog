@@ -2,6 +2,10 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  03 Mar 2018; wjn <wjn@aol.jp> cinnamon-desktop-3.0.2.ebuild,
+  cinnamon-desktop-3.2.4.ebuild:
+  Allow x11-base/xorg-proto as choice dependency
+
   03 Jan 2018; wjn <wjn@aol.jp> cinnamon-desktop-3.0.2.ebuild,
   cinnamon-desktop-3.2.4.ebuild:
   [QA] Update copyright year to 2018
