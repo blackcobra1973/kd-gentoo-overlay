@@ -2,6 +2,16 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  10 Mar 2018; wjn <wjn@aol.jp> markdown-gtksourceview-3.2.9999-r1.ebuild:
+  Add Python 3.6 support, drop Python 3.3
+
+  10 Mar 2018; wjn <wjn@aol.jp> markdown-gtksourceview-2.1.9999-r2.ebuild:
+  Fix dep of pluma version with Python support
+
+   Pluma drops Python support as of version 1.17.0
+    - https://github.com/mate-desktop/pluma/commit/65371f5
+   Version 1.16.* still supports Python
+
   03 Jan 2018; wjn <wjn@aol.jp> markdown-gtksourceview-2.1.9999-r2.ebuild,
   markdown-gtksourceview-3.2.9999-r1.ebuild:
   [QA] Update copyright year to 2018

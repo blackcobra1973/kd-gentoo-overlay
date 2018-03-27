@@ -22,7 +22,7 @@ DOC_CONTENTS="
 "
 
 COMMON_DEPEND=">=dev-libs/dbus-glib-0.71:0
-	>=dev-libs/glib-2.36.0:2
+	>=dev-libs/glib-2.50.0:2
 	gnome-base/dconf:0
 	>=mate-base/libmatekbd-1.17.0:0
 	>=mate-base/mate-desktop-1.17.0:0
@@ -31,7 +31,7 @@ COMMON_DEPEND=">=dev-libs/dbus-glib-0.71:0
 	>=x11-libs/gdk-pixbuf-2.14:2
 	>=x11-libs/libX11-1.0:0
 	x11-libs/cairo:0
-	>=x11-libs/gtk+-3.14.0:3
+	>=x11-libs/gtk+-3.22.0:3
 	x11-libs/libXext:0
 	x11-libs/libXrandr:0
 	x11-libs/libXScrnSaver:0
@@ -51,10 +51,11 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.50.1:0
 	mate-base/mate-common:0
 	sys-devel/gettext:0
-	x11-proto/randrproto:0
-	x11-proto/scrnsaverproto:0
-	x11-proto/xextproto:0
-	x11-proto/xf86miscproto:0
+	|| ( x11-base/xorg-proto
+		( x11-proto/randrproto:0
+			x11-proto/scrnsaverproto:0
+			x11-proto/xextproto:0
+			x11-proto/xf86miscproto:0 ) )
 	virtual/pkgconfig:0"
 RDEPEND="${COMMON_DEPEND}"
 

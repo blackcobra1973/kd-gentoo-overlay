@@ -19,7 +19,7 @@ DEPEND=">=dev-util/intltool-0.35.0:0
 	sys-devel/gettext:0"
 RDEPEND=""
 
-DOCS=( AUTHORS ChangeLog NEWS NEWS.GNOME README )
+DOCS=( AUTHORS ChangeLog NEWS README )
 
 src_unpack() {
 	git-r3_src_unpack

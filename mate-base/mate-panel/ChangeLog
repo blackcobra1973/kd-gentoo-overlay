@@ -2,6 +2,12 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  02 Mar 2018; wjn <wjn@aol.jp> metadata.xml:
+  Remove deleted USE="menulibre" from metadata.xml
+
+  02 Mar 2018; wjn <wjn@aol.jp> mate-panel-9999.ebuild:
+  Depend on >=dev-libs/glib-2.50 and >=x11-libs/gtk+-3.22
+
   03 Jan 2018; wjn <wjn@aol.jp> mate-panel-9999.ebuild:
   [QA] Update copyright year to 2018
 

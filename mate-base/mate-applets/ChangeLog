@@ -2,6 +2,22 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  02 Mar 2018; wjn <wjn@aol.jp> mate-applets-9999.ebuild:
+  Update version dependency of mate-panel
+
+  02 Mar 2018; wjn <wjn@aol.jp> metadata.xml:
+  Remove USE="gtk3" from metadata.xml
+
+  22 Feb 2018; wjn <wjn@aol.jp> mate-applets-9999.ebuild:
+  Depend on >=gtk+-3.22 and >=glib-2.50
+
+   Upstream: https://github.com/mate-desktop/mate-applets/commit/d102022
+
+  22 Feb 2018; wjn <wjn@aol.jp> mate-applets-9999.ebuild:
+  Remove dropped invest-applet
+
+   Upstream: https://github.com/mate-desktop/mate-applets/commit/41f7b7a
+
   03 Jan 2018; wjn <wjn@aol.jp> mate-applets-9999.ebuild:
   [QA] Update copyright year to 2018
 

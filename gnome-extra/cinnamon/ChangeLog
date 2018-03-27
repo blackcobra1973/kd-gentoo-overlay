@@ -2,6 +2,12 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+*cinnamon-3.6.6-r2 (02 Mar 2018)
+
+  02 Mar 2018; wjn <wjn@aol.jp> -cinnamon-2.8.8.ebuild,
+  +cinnamon-3.6.6-r2.ebuild, +files/cinnamon-3.6.6-wheel-sudo.patch:
+  Add version 3.6.6-r2, delete version 1.8.8
+
   03 Jan 2018; wjn <wjn@aol.jp> cinnamon-2.8.8.ebuild,
   cinnamon-3.0.7-r1.ebuild, cinnamon-3.2.7-r1.ebuild,
   cinnamon-3.4.2-r1.ebuild, cinnamon-3.4.6.ebuild:

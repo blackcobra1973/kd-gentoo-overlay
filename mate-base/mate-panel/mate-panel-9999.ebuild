@@ -20,7 +20,7 @@ IUSE="X +introspection"
 
 COMMON_DEPEND="dev-libs/atk:0[introspection?]
 	>=dev-libs/dbus-glib-0.80:0
-	>=dev-libs/glib-2.36:2
+	>=dev-libs/glib-2.50.0:2
 	>=dev-libs/libmateweather-1.17.0:0
 	dev-libs/libxml2:2
 	>=gnome-base/dconf-0.13.4:0
@@ -30,7 +30,7 @@ COMMON_DEPEND="dev-libs/atk:0[introspection?]
 	>=sys-apps/dbus-1.1.2:0
 	>=x11-libs/cairo-1.0.0:0
 	>=x11-libs/gdk-pixbuf-2.7.1:2[introspection?]
-	>=x11-libs/gtk+-3.14.0:3[introspection?]
+	>=x11-libs/gtk+-3.22.0:3[introspection?]
 	x11-libs/libICE:0
 	x11-libs/libSM:0
 	x11-libs/libX11:0

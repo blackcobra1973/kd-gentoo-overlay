@@ -25,7 +25,7 @@ RDEPEND="x11-libs/gtksourceview:${SLOT}
 	pluma? ( ${PYTHON_DEPS}
 		dev-python/markdown[${PYTHON_USEDEP}]
 		!webkit? ( app-editors/pluma )
-		webkit? ( <=app-editors/pluma-1.16.0[python,${PYTHON_USEDEP}] ) )
+		webkit? ( <app-editors/pluma-1.17.0[python,${PYTHON_USEDEP}] ) )
 	webkit? ( dev-python/pywebkitgtk[${PYTHON_USEDEP}] )"
 
 S="${WORKDIR}/${MY_PN}-1"

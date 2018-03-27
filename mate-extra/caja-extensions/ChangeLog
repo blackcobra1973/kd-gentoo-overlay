@@ -2,6 +2,27 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  02 Mar 2018; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  Remove USE="gtk3" dependency of caja
+
+  02 Mar 2018; wjn <wjn@aol.jp> metadata.xml:
+  Remove USE="gtk3" from metadata.xml
+
+  02 Mar 2018; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  Update version dependencies of libraries
+
+   Upstream: https://github.com/mate-desktop/caja-extensions/commit/aaa1476
+
+  02 Mar 2018; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  Depend on >=glib-2.50 and >=gtk+-3.22
+
+   Upstream: https://github.com/mate-desktop/caja-extensions/commit/e9ffcee
+
+  02 Mar 2018; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
+  Drop GTK+ 2 support
+
+   Upstream: https://github.com/mate-desktop/caja-extensions/commit/aaa1476
+
   03 Jan 2018; wjn <wjn@aol.jp> caja-extensions-9999.ebuild:
   [QA] Update copyright year to 2018
 

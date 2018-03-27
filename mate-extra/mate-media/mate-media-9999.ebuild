@@ -18,12 +18,12 @@ IUSE="debug"
 
 COMMON_DEPEND="app-text/rarian:0
 	dev-libs/libxml2:2
-	>=dev-libs/glib-2.36.0:2
+	>=dev-libs/glib-2.50.0:2
 	>=mate-base/mate-desktop-1.17.0:0
 	>=media-libs/libcanberra-0.13:0[gtk3]
 	>=media-libs/libmatemixer-1.10.0:0
 	x11-libs/cairo:0
-	>=x11-libs/gtk+-3.14.0:3
+	>=x11-libs/gtk+-3.22.0:3
 	x11-libs/pango:0
 	virtual/libintl:0"
 DEPEND="${COMMON_DEPEND}

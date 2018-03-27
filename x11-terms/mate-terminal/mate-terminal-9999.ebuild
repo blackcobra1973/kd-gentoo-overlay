@@ -18,15 +18,15 @@ IUSE="skey"
 
 COMMON_DEPEND="app-text/rarian:0
 	dev-libs/atk:0
-	>=dev-libs/glib-2.36.0:2
+	>=dev-libs/glib-2.50.0:2
 	>=gnome-base/dconf-0.13.4:0
 	x11-libs/gdk-pixbuf:2
-	>=x11-libs/gtk+-3.14.0:3
+	>=x11-libs/gtk+-3.22.0:3
 	x11-libs/libICE:0
 	x11-libs/libSM:0
 	x11-libs/libX11:0
 	x11-libs/pango:0
-	>=x11-libs/vte-0.38.0:2.91"
+	>=x11-libs/vte-0.46.0:2.91"
 DEPEND="${COMMON_DEPEND}
 	>=app-text/scrollkeeper-dtd-1:1.0
 	app-text/yelp-tools:0

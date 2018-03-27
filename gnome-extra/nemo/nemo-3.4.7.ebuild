@@ -54,7 +54,8 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40.1
 	sys-devel/gettext
 	virtual/pkgconfig
-	x11-proto/xproto
+	|| ( x11-base/xorg-proto
+		x11-proto/xproto )
 
 	dev-util/gtk-doc
 	gnome-base/gnome-common

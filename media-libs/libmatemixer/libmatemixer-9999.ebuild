@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE="alsa debug oss pulseaudio"
 
-COMMON_DEPEND=">=dev-libs/glib-2.36.0:2
+COMMON_DEPEND=">=dev-libs/glib-2.50.0:2
 	>=dev-libs/gobject-introspection-1.38.0:0
 	alsa? ( >=media-libs/alsa-lib-1.0.5:0 )
 	oss? ( virtual/os-headers:0 )

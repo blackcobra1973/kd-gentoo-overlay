@@ -18,19 +18,18 @@ SLOT="0"
 KEYWORDS=""
 
 SENDTO="cdr drive gajim mail pidgin upnp"
-IUSE="${SENDTO} debug gksu +gtk3 image-converter +open-terminal share wallpaper"
+IUSE="${SENDTO} debug gksu image-converter +open-terminal share wallpaper"
 REQUIRED_USE="gksu? ( open-terminal )"
 
-COMMON_DEPEND=">=dev-libs/glib-2.36.0:2
-	>=mate-base/caja-1.7.0:0[gtk3(+)=]
+COMMON_DEPEND=">=dev-libs/glib-2.50.0:2
+	>=mate-base/caja-1.17.1:0
 	virtual/libintl:0
 	x11-libs/gdk-pixbuf:2
+	>=x11-libs/gtk+-3.22.0:3
 	gajim? ( net-im/gajim:0
 		>=dev-libs/dbus-glib-0.60:0
 		>=sys-apps/dbus-1.0:0 )
-	!gtk3? ( >=x11-libs/gtk+-2.24.0:2 )
-	gtk3? ( >=x11-libs/gtk+-3.0.0:3 )
-	open-terminal? ( >=mate-base/mate-desktop-1.7.0:0 )
+	open-terminal? ( >=mate-base/mate-desktop-1.17.0:0 )
 	pidgin? ( >=dev-libs/dbus-glib-0.60:0 )
 	upnp? ( >=net-libs/gupnp-0.13:0= )"
 DEPEND="${COMMON_DEPEND}
@@ -71,7 +70,6 @@ src_configure() {
 
 	gnome2_src_configure ${MY_CONF} \
 		$(use_enable gksu) \
-		--with-gtk=$(usex gtk3 '3.0' '2.0') \
 		$(use_enable image-converter) \
 		$(use_enable open-terminal) \
 		$(use_enable share) \

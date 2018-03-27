@@ -2,6 +2,15 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  02 Mar 2018; wjn <wjn@aol.jp> metadata.xml:
+  Remove USE="gtk3" from metadata.xml
+
+  02 Mar 2018; wjn <wjn@aol.jp> mate-indicator-applet-9999.ebuild:
+  Depend on >=dev-libs/glib-2.50
+
+   Upstream:
+    https://github.com/mate-desktop/mate-indicator-applet/commit/b79a570
+
   03 Jan 2018; wjn <wjn@aol.jp> mate-indicator-applet-9999.ebuild:
   [QA] Update copyright year to 2018
 
