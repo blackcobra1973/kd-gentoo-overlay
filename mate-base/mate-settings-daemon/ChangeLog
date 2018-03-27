@@ -2,6 +2,24 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  02 Mar 2018; wjn <wjn@aol.jp> metadata.xml:
+  Remove USE="gtk3" from metadata.xml
+
+  02 Mar 2018; wjn <wjn@aol.jp> mate-settings-daemon-9999.ebuild:
+  Allow x11-base/xorg-proto as choice dependency
+
+  02 Mar 2018; wjn <wjn@aol.jp> mate-settings-daemon-9999.ebuild:
+  Depend on >=mate-desktop-1.20.0
+
+   Upstream https://github.com/mate-desktop/mate-settings-
+  daemon/commit/63320c3
+
+  02 Mar 2018; wjn <wjn@aol.jp> mate-settings-daemon-9999.ebuild:
+  Depend on >=glib-2.50 and >=gtk+-3.22
+
+   Upstream: https://github.com/mate-desktop/mate-settings-
+  daemon/commit/3367434
+
   03 Jan 2018; wjn <wjn@aol.jp> mate-settings-daemon-9999.ebuild:
   [QA] Update copyright year to 2018
 

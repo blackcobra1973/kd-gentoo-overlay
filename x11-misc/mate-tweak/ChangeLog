@@ -2,6 +2,12 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+*mate-tweak-18.04.13 (02 Mar 2018)
+
+  02 Mar 2018; wjn <wjn@aol.jp> -mate-tweak-3.5.10.ebuild,
+  -mate-tweak-16.10.5.ebuild, +mate-tweak-18.04.13.ebuild:
+  Add version 18.04.13, delete old 3.5.10 and 16.10.5
+
   03 Jan 2018; wjn <wjn@aol.jp> mate-tweak-3.5.10.ebuild,
   mate-tweak-16.10.5.ebuild:
   [QA] Update copyright year to 2018

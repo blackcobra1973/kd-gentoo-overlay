@@ -8,10 +8,6 @@
 		MATE utilities for netbooks are an applet and a daemon to maximize
 		windows and move their titles on the panel.
 	</longdescription>
-	<use>
-		<flag name="gtk3">Build for gtk+:3 instead of gtk+:2.
-			EXPERIMENTAL</flag>
-	</use>
 	<upstream>
 		<remote-id type="github">mate-desktop/mate-netbook</remote-id>
 	</upstream>

@@ -21,7 +21,7 @@ KEYWORDS=""
 IUSE="debug +introspection python"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
-COMMON_DEPEND=">=dev-libs/glib-2.15.2:2
+COMMON_DEPEND=">=dev-libs/glib-2.50.0:2
 	virtual/libintl:0
 	introspection? ( >=dev-libs/gobject-introspection-0.6.7:0 )
 	python? ( ${PYTHON_DEPS} )"

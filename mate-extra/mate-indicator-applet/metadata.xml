@@ -4,8 +4,4 @@
 	<maintainer type="person">
 		<email>wjn@aol.jp</email>
 	</maintainer>
-	<use>
-		<flag name="gtk3">Build for gtk+:3 instead of gtk+:2.
-			EXPERIMENTAL</flag>
-	</use>
 </pkgmetadata>

@@ -2,6 +2,16 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  03 Mar 2018; wjn <wjn@aol.jp> cinnamon-screensaver-3.0.1.ebuild,
+  cinnamon-screensaver-3.4.1.ebuild, cinnamon-screensaver-3.4.2.ebuild,
+  cinnamon-screensaver-3.6.1-r1.ebuild:
+  Allow x11-base/xorg-proto as choice dep
+
+*cinnamon-screensaver-3.6.1-r1 (02 Mar 2018)
+
+  02 Mar 2018; wjn <wjn@aol.jp> +cinnamon-screensaver-3.6.1-r1.ebuild:
+  Add version 3.6.1-r1
+
   03 Jan 2018; wjn <wjn@aol.jp> cinnamon-screensaver-3.0.1.ebuild,
   cinnamon-screensaver-3.4.1.ebuild, cinnamon-screensaver-3.4.2.ebuild:
   [QA] Update copyright year to 2018

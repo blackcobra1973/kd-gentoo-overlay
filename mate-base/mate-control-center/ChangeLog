@@ -2,6 +2,24 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  02 Mar 2018; wjn <wjn@aol.jp> mate-control-center-9999.ebuild:
+  Update version deps and drop USE="gtk3" deps
+
+  02 Mar 2018; wjn <wjn@aol.jp> mate-control-center-9999.ebuild:
+  Update version dependencies of libraries
+
+  02 Mar 2018; wjn <wjn@aol.jp> mate-control-center-9999.ebuild:
+  Allow x11-base/xorg-proto as choice dependency
+
+  02 Mar 2018; wjn <wjn@aol.jp> mate-control-center-9999.ebuild:
+  Depend on >=glib-2.50 and >=gtk+-3.22
+
+   Upstream: https://github.com/mate-desktop/mate-control-
+  center/commit/2be32a5
+
+  02 Mar 2018; wjn <wjn@aol.jp> mate-control-center-9999.ebuild, metadata.xml:
+  Drop gtk+:2 support
+
   03 Jan 2018; wjn <wjn@aol.jp> mate-control-center-9999.ebuild:
   [QA] Update copyright year to 2018
 

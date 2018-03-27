@@ -2,6 +2,25 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  02 Mar 2018; wjn <wjn@aol.jp> mate-utils-9999.ebuild:
+  Update the dependency on mate-base/mate-panel
+
+  02 Mar 2018; wjn <wjn@aol.jp> metadata.xml:
+  Remove USE="gtk3" from metadata.xml
+
+  02 Mar 2018; wjn <wjn@aol.jp> mate-utils-9999.ebuild:
+  Allow x11-base/xorg-proto as choice dependency
+
+  02 Mar 2018; wjn <wjn@aol.jp> mate-utils-9999.ebuild:
+  Depend on >=dev-libs/glib-2.50 and >=x11-libs/gtk+-3.22
+
+   Upstream: https://github.com/mate-desktop/mate-utils/commit/2165616
+
+  02 Mar 2018; wjn <wjn@aol.jp> mate-utils-9999.ebuild:
+  Drop GTK+ 2 support
+
+   Upstream: https://github.com/mate-desktop/mate-utils/commit/ea48176
+
   03 Jan 2018; wjn <wjn@aol.jp> mate-utils-9999.ebuild:
   [QA] Update copyright year to 2018
 

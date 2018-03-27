@@ -1,0 +1,11 @@
+# ChangeLog for dev-go/fuzzy
+# Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
+# (auto-generated from git log)
+
+*fuzzy-0.0.3 (19 Mar 2018)
+
+  19 Mar 2018; wjn <wjn@aol.jp> +fuzzy-0.0.3.ebuild:
+  Add newly, version 0.0.3
+
+   This package is needed by www-plugins/browserpass 2.0.12 and later
+

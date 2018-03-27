@@ -12,8 +12,6 @@
 		<flag name="gajim">Add extension to support <pkg>net-im/gajim</pkg>
 			</flag>
 		<flag name="gksu">Add extension to open terminal as root</flag>
-		<flag name="gtk3">Build for gtk+:3 instead of gtk+:2.
-			EXPERIMENTAL</flag>
 		<flag name="image-converter">Add image conversion utility</flag>
 		<flag name="mail">Add extension to support sendto by e-mail</flag>
 		<flag name="open-terminal">Add extension to open terminal</flag>

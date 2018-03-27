@@ -9,8 +9,6 @@
 			recommended for the most common usage; for example, this installs
 			the file manager. Disable this and other USE flags if you want a
 			more minimal MATE Desktop</flag>
-		<flag name="gtk3">EXPERIMENTAL: Build MATE Desktop based on GTK+ 3
-			</flag>
 		<flag name="extras">Install additional MATE Desktop applications that
 			are recommended for extended usage of the MATE Desktop as upstream
 			sees it; for example, this installs MATE Desktop's office related

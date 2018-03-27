@@ -7,8 +7,6 @@
 	<use>
 		<flag name="cpufreq">Install CPU frequency monitor applet based on
 			<pkg>sys-power/cpupower</pkg></flag>
-		<flag name="gtk3">Build for gtk+:3 instead of gtk+:2.
-			EXPERIMENTAL</flag>
 		<flag name="gucharmap">Install character applet based on
 			<pkg>gnome-extra/gucharmap</pkg></flag>
 		<flag name="weather">Install <pkg>dev-libs/libmateweather</pkg>

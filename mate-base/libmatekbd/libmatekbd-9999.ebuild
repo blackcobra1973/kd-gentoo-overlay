@@ -20,10 +20,10 @@ IUSE="X introspection test"
 
 DOCS=( AUTHORS ChangeLog NEWS README )
 
-COMMON_DEPEND=">=dev-libs/glib-2.36:2
+COMMON_DEPEND=">=dev-libs/glib-2.50:2
 	x11-libs/cairo:0
 	>=x11-libs/gdk-pixbuf-2.18:2[introspection?]
-	>=x11-libs/gtk+-3.14.0:3[introspection?]
+	>=x11-libs/gtk+-3.22.0:3[introspection?]
 	x11-libs/libX11:0
 	>=x11-libs/libxklavier-5.2:0[introspection]
 	x11-libs/pango:0

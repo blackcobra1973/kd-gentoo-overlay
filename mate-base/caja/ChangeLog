@@ -2,6 +2,11 @@
 # Copyright 1999-2018 Gentoo Foundation; Distributed under the GPL v2
 # (auto-generated from git log)
 
+  22 Feb 2018; wjn <wjn@aol.jp> caja-9999.ebuild:
+  Depend on >=gtk+-3.22 and >=glib-2.50
+
+   Upstream: https://github.com/mate-desktop/caja/commit/26a21fa
+
   03 Jan 2018; wjn <wjn@aol.jp> caja-9999.ebuild:
   [QA] Update copyright year to 2018
 
