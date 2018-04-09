@@ -19,6 +19,7 @@ It includes ebuilds made by myself but also found on the internet. I brought the
 9. [Raiagent Overlay](https://github.com/leycec/raiagent.git)
 10. [SSNB Overlay](https://github.com/gentoo-mirror/ssnb.git)
 12. [iDarkTemplar Overlay](https://github.com/iDarkTemplar/dt-overlay-patches.git)
+13. [Dlang Overlay] (https://github.com/gentoo/dlang.git)
 
 ## Not updated or used Overlays:
 
