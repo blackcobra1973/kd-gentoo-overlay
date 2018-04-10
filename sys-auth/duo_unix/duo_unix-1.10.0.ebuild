@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-auth/pam_blue/pam_blue-0.9.0.ebuild,v 1.6 2010/06/11 11:06:48 ssuominen Exp $
 
-EAPI=5
+EAPI=6
 
 inherit pam autotools multilib
 
