@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -8,33 +8,36 @@ HOMEPAGE="https://github.com/dlang-community/DCD"
 LICENSE="GPL-3"
 
 SLOT="0"
-KEYWORDS="x86 amd64"
+KEYWORDS="~x86 ~amd64"
 IUSE="systemd"
 
-CONTAINERS="2892cfc1e7a205d4f81af3970cbb53e4f365a765"
-DSYMBOL="026398b6888dbe2fcdf88b87babf1bd4d456f43f"
-LIBDPARSE="4229f11828a901ea5379409015f14a033e742906"
-MSGPACK="e6a5a69d2f86f2a0f7f7dad9de7080a55a929e46"
+CONTAINERS="6c5504cc80b75192b24cebe93209521c03f806d8"
+DSYMBOL="9d3711ae6db776343bf39d73551f3f86ea97591f"
+LIBDPARSE="970efe34e66fc7b3cb93a6ec59984099908070c5"
+MSGPACK="500940918243cf0468028e552605204c6aa46807"
+ALLOCATOR="7487970b58f4a2c0d495679329a8a2857111f3fd"
 SRC_URI="
 	https://github.com/dlang-community/DCD/archive/v${PV}.tar.gz -> DCD-${PV}.tar.gz
 	https://github.com/economicmodeling/containers/archive/${CONTAINERS}.tar.gz -> containers-${CONTAINERS}.tar.gz
 	https://github.com/dlang-community/dsymbol/archive/${DSYMBOL}.tar.gz -> dsymbol-${DSYMBOL}.tar.gz
 	https://github.com/dlang-community/libdparse/archive/${LIBDPARSE}.tar.gz -> libdparse-${LIBDPARSE}.tar.gz
+	https://github.com/dlang-community/stdx-allocator/archive/${ALLOCATOR}.tar.gz -> stdx-allocator-${ALLOCATOR}.tar.gz
 	https://github.com/msgpack/msgpack-d/archive/${MSGPACK}.tar.gz -> msgpack-d-${MSGPACK}.tar.gz
 	"
 S="${WORKDIR}/DCD-${PV}"
 
-DLANG_VERSION_RANGE="2.071-"
+DLANG_VERSION_RANGE="2.075-"
 DLANG_PACKAGE_TYPE="single"
 
 inherit dlang systemd
 
 src_prepare() {
 	# Default ebuild unpack function places archives side-by-side ...
-	mv -T ../containers-${CONTAINERS} containers || die
-	mv -T ../dsymbol-${DSYMBOL}       dsymbol    || die
-	mv -T ../libdparse-${LIBDPARSE}   libdparse  || die
-	mv -T ../msgpack-d-${MSGPACK}     msgpack-d  || die
+	mv -T ../stdx-allocator-${ALLOCATOR} stdx-allocator/source || die
+	mv -T ../containers-${CONTAINERS}    containers            || die
+	mv -T ../dsymbol-${DSYMBOL}          dsymbol               || die
+	mv -T ../libdparse-${LIBDPARSE}      libdparse             || die
+	mv -T ../msgpack-d-${MSGPACK}        msgpack-d             || die
 	# Stop makefile from executing git to write an unused githash.txt
 	touch githash githash.txt || die "Could not generate githash"
 	# Apply patches

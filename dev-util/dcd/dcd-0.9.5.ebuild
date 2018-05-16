@@ -8,14 +8,14 @@ HOMEPAGE="https://github.com/dlang-community/DCD"
 LICENSE="GPL-3"
 
 SLOT="0"
-KEYWORDS="x86 amd64"
+KEYWORDS="~x86 ~amd64"
 IUSE="systemd"
 
-CONTAINERS="6c5504cc80b75192b24cebe93209521c03f806d8"
-DSYMBOL="5b90412457ac5f1d67c04e4da01587edfd529ad5"
-LIBDPARSE="ee0fa01ab74b6bf27bed3c7bdb9d6fb789963342"
-ALLOCATOR="7487970b58f4a2c0d495679329a8a2857111f3fd"
+CONTAINERS="d0458897a60137a84f88eefcdd5a0b12ac07cbe7"
+DSYMBOL="52625b8612e503f8ae1d481a1cd3d52982e73fb9"
+LIBDPARSE="0e18b62cb2fd86ee09ec8457c394bdef409ca542"
 MSGPACK="500940918243cf0468028e552605204c6aa46807"
+ALLOCATOR="7487970b58f4a2c0d495679329a8a2857111f3fd"
 SRC_URI="
 	https://github.com/dlang-community/DCD/archive/v${PV}.tar.gz -> DCD-${PV}.tar.gz
 	https://github.com/economicmodeling/containers/archive/${CONTAINERS}.tar.gz -> containers-${CONTAINERS}.tar.gz
