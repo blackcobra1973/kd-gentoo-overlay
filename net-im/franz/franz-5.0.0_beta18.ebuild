@@ -37,8 +37,8 @@ src_install() {
 	doins -r *.pak *.so *.bin *.dat locales resources franz
 	fperms 755 "/usr/$(get_libdir)/${PN}/franz"
 
-	doicon -s scalable resources/app.asar.unpacked/assets/franz.svg
-	doicon resources/app.asar.unpacked/assets/franz.png
+	#doicon -s scalable resources/app.asar.unpacked/assets/franz.svg
+	#doicon resources/app.asar.unpacked/assets/franz.png
 
 	make_wrapper franz "/usr/$(get_libdir)/${PN}/franz"
 	make_desktop_entry franz Franz franz
