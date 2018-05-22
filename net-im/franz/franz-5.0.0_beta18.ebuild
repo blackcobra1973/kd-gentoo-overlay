@@ -13,9 +13,9 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 LICENSE="Franz"
 
-QA_EXECSTACK="usr*/lib64/${PN}/Franz"
+QA_EXECSTACK="usr*/lib64/${PN}/franz"
 QA_PRESTRIPPED="usr/lib.*/${PN}/lib.*
-	usr/lib.*/${PN}/Franz"
+	usr/lib.*/${PN}/franz"
 
 DEPEND="dev-libs/libpcre:3
 	dev-libs/libtasn1:0
@@ -33,12 +33,12 @@ S="${WORKDIR}"
 
 src_install() {
 	insinto "/usr/$(get_libdir)/${PN}"
-	doins -r *.pak *.so *.bin *.dat locales resources Franz
-	fperms 755 "/usr/$(get_libdir)/${PN}/Franz"
+	doins -r *.pak *.so *.bin *.dat locales resources franz
+	fperms 755 "/usr/$(get_libdir)/${PN}/franz"
 
 	doicon -s scalable resources/app.asar.unpacked/assets/franz.svg
 	doicon resources/app.asar.unpacked/assets/franz.png
 
-	make_wrapper franz "/usr/$(get_libdir)/${PN}/Franz"
+	make_wrapper franz "/usr/$(get_libdir)/${PN}/franz"
 	make_desktop_entry franz Franz franz
 }
