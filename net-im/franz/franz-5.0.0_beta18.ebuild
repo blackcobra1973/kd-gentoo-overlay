@@ -7,7 +7,8 @@ inherit eutils multilib
 
 DESCRIPTION="Franz is a free messaging app"
 HOMEPAGE="http://meetfranz.com/"
-SRC_URI="https://github.com/meetfranz/franz/releases/download/v5.0.0``-beta.18/franz-5.0.0-beta.18.tar.gz -> ${PF}.tar.gz"
+MY_PV="5.0.0-beta.18"
+SRC_URI="https://github.com/meetfranz/franz/releases/download/v${MY_PV}/franz-${MY_PV}.tar.gz -> ${PF}.tar.gz"
 
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
@@ -29,7 +30,7 @@ DEPEND="dev-libs/libpcre:3
 
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}"
+S="${WORKDIR}/${PN}-${MY_PV}"
 
 src_install() {
 	insinto "/usr/$(get_libdir)/${PN}"
