@@ -27,8 +27,7 @@ DEPEND="${RDEPEND}
 # installing the rules; add openrc for the checkpath used in the new
 # init script
 RDEPEND="${RDEPEND}
-	udev? ( virtual/udev )
-	sys-apps/openrc"
+	udev? ( virtual/udev )"
 
 pkg_setup() {
 	enewgroup openct
